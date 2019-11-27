@@ -1,13 +1,13 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
-// import Dashboard from "../pages/Dashboard";
+import Home from "../pages/Home";
 
 const BaseRouter = () => (
-  <div>
-    <Route exact path="/" component={Dashboard} />
+  <>
+    <Route exact path="/" component={Home} />
     {/*<PrivateRoute exact path="/profile" component={Profile} />*/}
-  </div>
+  </>
 );
 
 export default BaseRouter;
