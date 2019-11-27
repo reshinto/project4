@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
 import thunk from "redux-thunk";
 
-// import authReducer from "./reducers/authReducer";
+import authReducer from "./reducers/authReducer";
 // import iexReducer from "./reducers/iexReducer";
 // import userReducer from "./reducers/userReducer";
 // import searchReducer from "./reducers/searchReducer";
@@ -16,7 +16,7 @@ const initialState = {};
 const middleware = [thunk];
 
 const reducers = combineReducers({
-  // authReducer,
+  authReducer,
   // iexReducer,
   // userReducer,
   // searchReducer,
