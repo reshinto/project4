@@ -1,6 +1,9 @@
+import {getLastKey} from "../components/layouts/LayoutUtilities";
+
 class WeightedGraph {
-  constructor() {
+  constructor(totalWidthTiles, totalHeightTiles) {
     this.adjacencyList = {};
+    this.wallArr = new Array(getLastKey(totalWidthTiles, totalHeightTiles)).fill(null);
   }
 
   addVertex(vertex) {
@@ -19,16 +22,16 @@ class WeightedGraph {
   }
 
   _addWallEdge(k1, k2, weight) {
-    if (wallArr[k1] === 1 && wallArr[k2] === 1) {
+    if (this.wallArr[k1] === 1 && this.wallArr[k2] === 1) {
       this._addEdge(k1, k2, weight);
     }
   }
 
   _addWeightEdge(k1, k2, weight) {
-    if (wallArr[k1] > wallArr[k2]) {
-      weight = wallArr[k1];
-    } else if (wallArr[k2] > wallArr[k1]) {
-      weight = wallArr[k2];
+    if (this.wallArr[k1] > this.wallArr[k2]) {
+      weight = this.wallArr[k1];
+    } else if (this.wallArr[k2] > this.wallArr[k1]) {
+      weight = this.wallArr[k2];
     }
     if (k2 !== -1) {
       this._addEdge(k1, k2, weight);
