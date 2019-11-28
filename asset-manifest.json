@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/shoptimize/static/css/main.b100e6da.chunk.css",
-    "main.js": "/shoptimize/static/js/main.cbd743b4.chunk.js",
-    "main.js.map": "/shoptimize/static/js/main.cbd743b4.chunk.js.map",
+    "main.js": "/shoptimize/static/js/main.8b43b801.chunk.js",
+    "main.js.map": "/shoptimize/static/js/main.8b43b801.chunk.js.map",
     "runtime-main.js": "/shoptimize/static/js/runtime-main.cefc62b6.js",
     "runtime-main.js.map": "/shoptimize/static/js/runtime-main.cefc62b6.js.map",
     "static/js/2.3ad9d4df.chunk.js": "/shoptimize/static/js/2.3ad9d4df.chunk.js",
     "static/js/2.3ad9d4df.chunk.js.map": "/shoptimize/static/js/2.3ad9d4df.chunk.js.map",
     "index.html": "/shoptimize/index.html",
-    "precache-manifest.091dc03758d4480ccc1515786fcfe818.js": "/shoptimize/precache-manifest.091dc03758d4480ccc1515786fcfe818.js",
+    "precache-manifest.f2c879f3c6c8a6278fb2664dd74697ba.js": "/shoptimize/precache-manifest.f2c879f3c6c8a6278fb2664dd74697ba.js",
     "service-worker.js": "/shoptimize/service-worker.js",
     "static/css/main.b100e6da.chunk.css.map": "/shoptimize/static/css/main.b100e6da.chunk.css.map"
   },
@@ -16,6 +16,6 @@
     "static/js/runtime-main.cefc62b6.js",
     "static/js/2.3ad9d4df.chunk.js",
     "static/css/main.b100e6da.chunk.css",
-    "static/js/main.cbd743b4.chunk.js"
+    "static/js/main.8b43b801.chunk.js"
   ]
 }
