@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default class FormDialog extends React.Component {
+export default class LogIn extends React.Component {
   state = {
     open: false,
   };
@@ -23,17 +23,19 @@ export default class FormDialog extends React.Component {
   render() {
     return (
       <div>
-        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
-          Log In
+        <Button variant="outlined" color="secondary" onClick={this.handleClickOpen}>
+          Log in
         </Button>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Log in</DialogTitle>
+          <DialogTitle id="form-dialog-title">Log in!</DialogTitle>
           <DialogContent>
-
+            <DialogContentText>
+              Great to see you again!. Please input your log in details below.
+            </DialogContentText>
             <TextField
               autoFocus
               margin="dense"
@@ -42,8 +44,7 @@ export default class FormDialog extends React.Component {
               type="email"
               fullWidth
             />
-             <TextField
-
+              <TextField
               margin="dense"
               id="password"
               label="Password"

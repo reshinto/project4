@@ -9,11 +9,13 @@ import { makeStyles } from "@material-ui/core/styles";
 // core components
 import Header from "../Header/Header.js";
 import Footer from "../Footer/Footer.js";
+
 import GridContainer from "../Grid/GridContainer.js";
 import GridItem from "../Grid/GridItem.js";
 import Button from "../CustomButtons/Button.js";
 import HeaderLinks from "../Header/HeaderLinks.js";
 import Parallax from "../Parallax/Parallax.js";
+import Register from "../FormDialog/Register.js";
 
 import styles from "../../assets/jss/material-kit-react/views/landingPage.js";
 
@@ -47,22 +49,25 @@ export default function LandingPage(props) {
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
+            <div style = {{textAlign:"justify"}}>
               <h1 className={classes.title}>Get your groceries and get out.</h1>
               <h4>
-                Your guests are showing up in an hour. You have a midnight deadline. You forgot to cook dinner for date night. Whatever the reason, you need to grab what you need and go.
-                Shoptimize finds you the most efficient path to get all the items you need and get out the door ASAP.
+                Your guests are showing up in an hour. You have a midnight deadline. You forgot to cook dinner for date night. Whatever the reason, you need to grab what you need and go.</h4>
+                <h4>Shoptimize finds you the most efficient path to get all the items you need and get out the door ASAP.
               </h4>
+              </div>
               <br />
               <Button
                 color="danger"
                 size="lg"
-                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ref=creativetim"
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i className="fas fa-play" />
-                Watch video
+
+                Create Grocery List
               </Button>
+               <Register/>
             </GridItem>
           </GridContainer>
         </div>
