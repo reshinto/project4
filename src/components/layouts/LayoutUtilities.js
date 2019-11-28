@@ -1,7 +1,9 @@
 import {tileSize, totalWidthTiles, totalHeightTiles} from "./Constants";
 
+const _tileSize = tileSize(totalWidthTiles);
+
 export const getPositionKey = (x, y) => {
-  return Math.floor(Number(x) / tileSize) + Math.floor(Number(y) / tileSize) * totalWidthTiles;
+  return Math.floor(Number(x) / _tileSize) + Math.floor(Number(y) / _tileSize) * totalWidthTiles;
 };
 
 export const getCoordinates = (key, actual=true) => {
@@ -14,15 +16,15 @@ export const getCoordinates = (key, actual=true) => {
   } else {
     // get top left x, y actual coordinates
     return {
-      x: (Number(key) % totalWidthTiles) * tileSize,
-      y: Math.floor(Number(key) / totalWidthTiles) * tileSize
+      x: (Number(key) % totalWidthTiles) * _tileSize,
+      y: Math.floor(Number(key) / totalWidthTiles) * _tileSize
     };
   }
 }
 
 export const getLastKey = (_totalWidthTiles, _totalHeightTiles) => {
-  const x = tileSize * _totalWidthTiles - tileSize;
-  const y = tileSize * _totalHeightTiles - tileSize;
+  const x = _tileSize * _totalWidthTiles - _tileSize;
+  const y = _tileSize * _totalHeightTiles - _tileSize;
   return getPositionKey(x, y);
 }
 
@@ -38,9 +40,9 @@ export const getImageFile = (type) => {
 export const getCategoryKeyArr = (startKey,categoryWidth, categoryHeight) =>  {
   const categoryArr = [];
   const {x, y} = getCoordinates(startKey);
-  for (let i=x; i<x+categoryWidth; i=i+tileSize) {
+  for (let i=x; i<x+categoryWidth; i=i+_tileSize) {
     console.log(i)
-    for (let j=y; j<y+categoryHeight; j=j+tileSize) {
+    for (let j=y; j<y+categoryHeight; j=j+_tileSize) {
       console.log(j)
       const currentKey = getPositionKey(i, j);
       console.log(currentKey);
