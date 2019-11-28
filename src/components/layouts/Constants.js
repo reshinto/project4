@@ -1,8 +1,8 @@
 export const widthPadding = 40;
 export const heightPadding = 40;
-export const tileSize = 50;
-export const totalWidthTiles = Math.floor((window.innerWidth - widthPadding) / tileSize);
-export const totalHeightTiles = Math.floor((window.innerHeight - heightPadding) / tileSize);
+export const totalWidthTiles = 10
+export const totalHeightTiles = 10
+export const tileSize = Math.floor(window.innerWidth / totalWidthTiles);
 // remove excess space from map
-export const mapWidth = totalWidthTiles * tileSize;
-export const mapHeight = totalHeightTiles * tileSize;
+export const mapWidth = totalWidthTiles * tileSize - widthPadding;
+export const mapHeight = totalHeightTiles * tileSize - heightPadding;

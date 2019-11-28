@@ -34,3 +34,18 @@ export const getImageFile = (type) => {
       return "";
   }
 }
+
+export const getCategoryKeyArr = (startKey,categoryWidth, categoryHeight) =>  {
+  const categoryArr = [];
+  const {x, y} = getCoordinates(startKey);
+  for (let i=x; i<x+categoryWidth; i=i+tileSize) {
+    console.log(i)
+    for (let j=y; j<y+categoryHeight; j=j+tileSize) {
+      console.log(j)
+      const currentKey = getPositionKey(i, j);
+      console.log(currentKey);
+      categoryArr.push(currentKey);
+    }
+  }
+  return categoryArr;
+}
