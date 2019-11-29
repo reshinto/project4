@@ -1,0 +1,42 @@
+categories = {
+	"frozen": {
+		"aisle":1,
+		"items":["fish","dumplings"]
+	},
+	"cereals":{
+		"aisle:2,
+		"items":["cheerios","captain crunch"]
+	},
+	"bread,coffee,tea":{
+		"aisle":3,
+		"items":["gardenia bread", "lipton's"]
+	},
+	"pasta":{
+		"aisle":4,
+		"items":["spaghetti"]
+	},
+	"cooking oils, rice, noodles":{
+		"aisle":5,
+		"items":["soy sauce"]
+	},
+	"fruits": {
+		"aisle": 6,
+		"items":["apple", "pear","blueberry"]
+	},
+	"vegetables": {
+		"aisle": 7,
+		"items":["apple", "pear","blueberry"]
+	},
+		"baking": {
+		"aisle": 8,
+		"items":["flour"]
+	},
+		"sauces and condiments": {
+		"aisle": 9,
+		"items":["thousand island","vinaigrette"]
+	},
+		"dairy": {
+		"aisle": 10,
+		"items":["eggs","milk","cheese","yoghurt"]
+	},
+}
