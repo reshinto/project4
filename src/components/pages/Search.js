@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
-import Results from '../Search/results.js'
-import SearchBar from '../Search/searchbar.js'
+import Results from '../search-components/results.js'
+import SearchBar from '../search-components/searchbar.js'
 import Fuse from 'fuse.js';
 
 const options = [
