@@ -17,9 +17,9 @@ export const tokenConfig = getState => {
   const token = getState().authReducer.token;
   // If token, add to headers config
   if (token) {
-    config.headers["Authorization"] = `Bearer ${token}`;
+    config.headers["Authorization"] = `${token}`;
   }
   return config;
 };
 
-export const db = process.env.REACT_APP_DB;
+export const db = "https://asia-northeast1-shoptimizeprime.cloudfunctions.net/api";

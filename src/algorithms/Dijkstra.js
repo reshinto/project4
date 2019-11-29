@@ -1,62 +1,58 @@
 import PriorityQueue from "./PriorityQueue";
 
-function dijkstra(start, finish, g, animate = true) {
-  const nodes = new PriorityQueue();
+//TODO fix path issue
+function dijkstra(_start, _finish, g) {
+  const pq = new PriorityQueue();
   const distances = {};
   const previous = {};
   let path = []; // to return at end
-  let smallest;
-  let animationCount = 0;
+  let currentKey;
+  const start = String(_start);
+  const finish = String(_finish);
 
   // build up initial state
-  Object.keys(g.adjacencyList).forEach(function(vertex) {
-    // for (const vertex in this.adjacencyList) {
-    if (vertex === start) {
-      distances[vertex] = 0;
-      nodes.enqueue(vertex, 0);
+  Object.keys(g.adjacencyList).forEach(function(_key) {
+    console.log(typeof _key)
+    if (_key === start) {
+      distances[_key] = 0;
+      pq.enqueue(_key, 0);
     } else {
-      distances[vertex] = Infinity;
-      nodes.enqueue(vertex, Infinity);
+      distances[_key] = Infinity;
+      pq.enqueue(_key, Infinity);
     }
-    previous[vertex] = null;
+    previous[_key] = null;
   });
-  // }
-
   // as long as there is something to visit
-  while (nodes.values.length) {
-    smallest = nodes.dequeue().value;
-    // if (animate === true) {
-    //   animateSearch(smallest, animationCount);
-    //   animationCount++;
-    // }
-    if (smallest === finish) {
+  while (pq.values.length) {
+    currentKey = pq.dequeue().value;
+    console.log("currentKey", currentKey)
+    if (currentKey === finish) {
       // we are done, build up path to return at end
-      while (previous[smallest]) {
-        path.push(smallest);
-        smallest = previous[smallest];
+      while (previous[currentKey]) {
+        path.push(currentKey);
+        currentKey = previous[currentKey];
       }
       break;
     }
-    if (smallest || distances[smallest] !== Infinity) {
-      // i = neighbor
-      for (let i = 0; i < g.adjacencyList[smallest].length; i++) {
+    if (currentKey || distances[currentKey] !== Infinity) {
+      for (let i = 0; i < g.adjacencyList[currentKey].length; i++) {
         // find neighboring node
-        const nextNode = g.adjacencyList[smallest][i];
+        const nextNode = g.adjacencyList[currentKey][i];
         // calculate new distance to neighboring node
-        const candidate = distances[smallest] + nextNode.weight;
+        const candidate = distances[currentKey] + nextNode.weight;
         const nextNeighbor = nextNode.node;
         if (candidate < distances[nextNode.node]) {
-          // updating new smallest distance to neighbor
+          // updating new currentKey distance to neighbor
           distances[nextNeighbor] = candidate;
           // updating previous - how we got to neighbor
-          previous[nextNeighbor] = smallest;
+          previous[nextNeighbor] = currentKey;
           // enqueue in priority queue with new priority
-          nodes.enqueue(nextNeighbor, candidate);
+          pq.enqueue(nextNeighbor, candidate);
         }
       }
     }
   }
-  path = path.concat(smallest).reverse();
+  path = path.concat(currentKey).reverse();
   return path;
 }
 

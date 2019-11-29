@@ -1,7 +1,5 @@
 import React from "react";
 import {
-  widthPadding,
-  heightPadding,
   totalWidthTiles,
   totalHeightTiles,
   mapWidth,
@@ -9,12 +7,14 @@ import {
   tileSize
 } from "./Constants";
 import {
-  getImageFile,
+  // getImageFile,
   getCoordinates,
-  getLastKey,
-  getCategoryKeyArr
+  // getLastKey,
+  getCategoryKeyArr,
+  addConnections,
 } from "./LayoutUtilities";
 import WeightedGraph from "../../algorithms/WeightedGraph";
+import Dijkstra from "../../algorithms/Dijkstra";
 
 const style = {
   root: {
@@ -34,18 +34,19 @@ class Canvas extends React.Component {
     super();
     this.state = {
       tileSize: tileSize(totalWidthTiles),
-      mapWidth,
-      mapHeight,
-      // g: new WeightedGraph(totalWidthTiles, totalHeightTiles),
     }
   }
 
   componentDidMount() {
     const canvas = this.refs.canvas;
     ctx = canvas.getContext("2d");
-    this.drawFloor();
+    g = new WeightedGraph();
     this.addMapCategories();
-    this.drawCategories();
+    this.drawLayout();
+    this.linkConnections();
+    console.log(g.adjacencyList)
+    const path = Dijkstra(12, 3, g);
+    console.log(path)
     // window.addEventListener("resize", this.updateDimensions);
   }
 
@@ -84,41 +85,41 @@ class Canvas extends React.Component {
     ctx.fill();
   }
 
-  drawFloor = () => {
-    g = new WeightedGraph(totalWidthTiles, totalHeightTiles);
-    for (let i=0; i<=getLastKey(totalWidthTiles, totalHeightTiles); i++) {
-      // this.draw(i, "test");
-      g.addVertex(i);
-      this.fillColor(i, "grey");
-    }
-    this.fillColor(25, "red");
-  }
-
-  drawCategories = () => {
+  drawLayout = () => {
     for (let i=0; i<g.wallArr.length; i++) {
-      if (g.wallArr[i] === 1) {
-        this.fillColor(i, "green")
+      g.addVertex(i);
+      if (g.wallArr[i] === 5) {
+        this.fillColor(i, "green");
+      } else if (g.wallArr[i] === 1) {
+        this.fillColor(i, "grey");
       }
     }
   }
 
+  linkConnections = () => {
+    const weight = 5;
+    for (let i=0; i<g.wallArr.length; i++) {
+      // if (g.wallArr[i] === null) {
+        addConnections(g, i, weight);
+      // }
+    }
+  }
+
   addCategory = (startKey, categoryWidth, categoryHeight) => {
-    const catArr = getCategoryKeyArr(startKey, categoryWidth, categoryHeight);
+    const {tileSize} = this.state;
+    const catArr = getCategoryKeyArr(startKey, categoryWidth*tileSize, categoryHeight*tileSize);
+    console.log(catArr)
     for (let i=0; i<catArr.length; i++) {
-      g.wallArr[catArr[i]] = 1;
+      g.wallArr[catArr[i]] = 5;
       // this.fillColor(catArr[i], "green")
     }
     // console.log(this.state.g.wallArr)
   }
 
   addMapCategories = () => {
-    const {tileSize} = this.state;
-    const w = 1;
-    const h = 2;
-    this.addCategory(4, w*tileSize, h*tileSize);
-    // this.addCategory(30, 100, 200);
-    // this.addCategory(40, 100, 200);
-    // this.addCategory(90, 200, 100);
+    this.addCategory(4, 1, 2);
+    this.addCategory(10, 1, 2);
+    // this.addCategory(55, 2, 1);
   }
 
   render() {
@@ -126,8 +127,8 @@ class Canvas extends React.Component {
       <div style={style.root}>
         <canvas
           ref="canvas"
-          width={this.state.mapWidth}
-          height={this.state.mapHeight}
+          width={mapWidth}
+          height={mapHeight}
         >
           Your browser doesn't support the HTML5 CANVAS tag.
         </canvas>

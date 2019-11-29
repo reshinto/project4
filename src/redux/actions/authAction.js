@@ -1,121 +1,70 @@
 import axios from "axios";
 import * as actionTypes from "../types";
-import { db, tokenConfig } from "../utility";
+import { db } from "../utility";
 
-export const authStart = () => {
-  return {
-    type: actionTypes.AUTH_START
-  };
-};
-
-export const authSuccess = token => {
-  return {
-    type: actionTypes.AUTH_SUCCESS,
-    token: token
-  };
-};
-
-export const authFail = error => {
-  return {
-    type: actionTypes.AUTH_FAIL,
-    // error: error,
-    payload: error.response.data
-  };
-};
-
-export const clearErrors = () => {
-  return {
-    type: actionTypes.CLEAR_ERRORS
-  };
-};
-
-export const logoutSuccess = () => {
-  return {
-    type: actionTypes.AUTH_LOGOUT
-  };
-};
-
-export const logout = () => (dispatch, state) => {
+export const login = (userData) => (dispatch) => {
+  dispatch({ type: actionTypes.LOADING_UI });
   axios
-    .post(`${db}/api/auth/logout`, null, tokenConfig(state))
-    .then(res => {
-      localStorage.removeItem("authToken");
-      dispatch(logoutSuccess());
-      dispatch(clearErrors());
+    .post(`${db}/login`, userData)
+    .then((res) => {
+      setAuthorizationHeader(res.data.token);
+      dispatch(getUserData());
+      dispatch({ type: actionTypes.CLEAR_ERRORS });
     })
-    .catch(err => {
-      dispatch(authFail(err));
+    .catch((err) => {
+      dispatch({
+        type: actionTypes.SET_ERRORS,
+        payload: err.response.data
+      });
     });
 };
 
-export const checkAuthTimeout = expirationTime => {
-  return dispatch => {
-    setTimeout(() => {
-      dispatch(logout());
-    }, expirationTime * 1000);
-  };
-};
-
-export const login = (username, password) => dispatch => {
-  // Headers
+export const signup = (newUserData) => (dispatch) => {
+  console.log(newUserData)
+  console.log(db)
   const config = {
     headers: {
       "Content-Type": "application/json"
     }
   };
-  dispatch(authStart());
+  dispatch({ type: actionTypes.LOADING_UI });
   axios
-    .post(
-      `${db}/api/auth/login`,
-      {
-        username: username,
-        password: password
-      },
-      config
-    )
-    .then(res => {
-      const token = res.data.bearer;
-      setAuthorizationHeader(token);
-      dispatch(authSuccess(token));
-      dispatch(clearErrors());
-      dispatch(checkAuthTimeout(3600));
+    .post(`${db}/signup`, newUserData, config)
+    .then((res) => {
+      console.log(res)
+      // setAuthorizationHeader(res.data.token);
+      // dispatch(getUserData());
+      // dispatch({ type: actionTypes.CLEAR_ERRORS });
     })
-    .catch(err => {
-      dispatch(authFail(err));
+    .catch((err) => {
+      dispatch({
+        type: actionTypes.SET_ERRORS,
+        payload: err.response.data
+      });
     });
 };
 
-export const signup = (username, email, password) => dispatch => {
-  // Headers
-  const config = {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
-  dispatch(authStart());
-  axios
-    .post(
-      `${db}/api/auth/register`,
-      {
-        username: username,
-        email: email,
-        password: password
-      },
-      config
-    )
-    .then(res => {
-      const token = res.data.bearer;
-      setAuthorizationHeader(token);
-      dispatch(authSuccess(token));
-      dispatch(clearErrors());
-      dispatch(checkAuthTimeout(3600));
-    })
-    .catch(err => {
-      dispatch(authFail(err));
-    });
+export const logoutUser = () => (dispatch) => {
+  localStorage.removeItem('FBIdToken');
+  delete axios.defaults.headers.common['Authorization'];
+  dispatch({ type: actionTypes.SET_UNAUTHENTICATED });
 };
 
-const setAuthorizationHeader = token => {
-  const authToken = `Bearer ${token}`;
-  localStorage.setItem("authToken", authToken);
+export const getUserData = () => (dispatch) => {
+  dispatch({ type: actionTypes.LOADING_USER });
+  axios
+    .get(`${db}/user`)
+    .then((res) => {
+      dispatch({
+        type: actionTypes.SET_USER,
+        payload: res.data
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+const setAuthorizationHeader = (token) => {
+  const FBIdToken = `Bearer ${token}`;
+  localStorage.setItem('FBIdToken', FBIdToken);
+  axios.defaults.headers.common['Authorization'] = FBIdToken;
 };
