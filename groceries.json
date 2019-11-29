@@ -7,9 +7,9 @@ categories = {
 		"aisle:2,
 		"items":["cheerios","captain crunch"]
 	},
-	"spread, bread, coffee, tea":{
+	"bread,coffee,tea":{
 		"aisle":3,
-		"items":["gardenia"]
+		"items":["gardenia bread", "lipton's"]
 	},
 	"pasta":{
 		"aisle":4,
@@ -19,20 +19,24 @@ categories = {
 		"aisle":5,
 		"items":["soy sauce"]
 	},
-	"fruits and vegetables": {
+	"fruits": {
 		"aisle": 6,
 		"items":["apple", "pear","blueberry"]
 	},
-		"baking": {
+	"vegetables": {
 		"aisle": 7,
+		"items":["apple", "pear","blueberry"]
+	},
+		"baking": {
+		"aisle": 8,
 		"items":["flour"]
 	},
 		"sauces and condiments": {
-		"aisle": 8,
+		"aisle": 9,
 		"items":["thousand island","vinaigrette"]
 	},
 		"dairy": {
-		"aisle": 9,
+		"aisle": 10,
 		"items":["eggs","milk","cheese","yoghurt"]
 	},
 }

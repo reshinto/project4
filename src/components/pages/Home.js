@@ -7,22 +7,22 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 
 // core components
-import Header from "../Header/Header.js";
-import Footer from "../Footer/Footer.js";
+import Header from "../home-components/Header/Header.js";
+import Footer from "../home-components/Footer/Footer.js";
 
-import GridContainer from "../Grid/GridContainer.js";
-import GridItem from "../Grid/GridItem.js";
-import Button from "../CustomButtons/Button.js";
-import HeaderLinks from "../Header/HeaderLinks.js";
-import Parallax from "../Parallax/Parallax.js";
-import Register from "../FormDialog/Register.js";
+import GridContainer from "../home-components/Grid/GridContainer.js";
+import GridItem from "../home-components/Grid/GridItem.js";
+import Button from "../home-components/CustomButtons/Button.js";
+import HeaderLinks from "../home-components/Header/HeaderLinks.js";
+import Parallax from "../home-components/Parallax/Parallax.js";
+import Register from "../home-components/FormDialog/Register.js";
 
 import styles from "../../assets/jss/material-kit-react/views/landingPage.js";
 
 // Sections for this page
-import ProductSection from "./Sections/ProductSection.js";
-import TeamSection from "./Sections/TeamSection.js";
-import WorkSection from "./Sections/WorkSection.js";
+import ProductSection from "../home-components/Sections/ProductSection.js";
+import TeamSection from "../home-components/Sections/TeamSection.js";
+import WorkSection from "../home-components/Sections/WorkSection.js";
 
 const dashboardRoutes = [];
 
