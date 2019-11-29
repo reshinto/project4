@@ -1,29 +1,33 @@
 import * as actionTypes from "../types";
 
 const initialState = {
-  authenticated: false,
   loading: false,
+  errors: null
 };
 
 export default function(state=initialState, action) {
   switch (action.type) {
-    case actionTypes.SET_AUTHENTICATED:
+    case actionTypes.SET_ERRORS:
       return {
         ...state,
-        authenticated: true
-      };
-    case actionTypes.SET_UNAUTHENTICATED:
-      return initialState;
-    case actionTypes.SET_USER:
-      return {
-        authenticated: true,
         loading: false,
-        ...action.payload
+        errors: action.payload
       };
-    case actionTypes.LOADING_USER:
+    case actionTypes.CLEAR_ERRORS:
+      return {
+        ...state,
+        loading: false,
+        errors: null
+      };
+    case actionTypes.LOADING_UI:
       return {
         ...state,
         loading: true
+      };
+    case actionTypes.STOP_LOADING_UI:
+      return {
+        ...state,
+        loading: false
       };
     default:
       return state;
