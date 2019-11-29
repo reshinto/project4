@@ -1,6 +1,38 @@
 categories = {
-	"fruit": {
-		"aisle": 1,
-		"items":[]
-	}
+	"frozen": {
+		"aisle":1,
+		"items":["fish","dumplings"]
+	},
+	"cereals":{
+		"aisle:2,
+		"items":["cheerios","captain crunch"]
+	},
+	"spread, bread, coffee, tea":{
+		"aisle":3,
+		"items":["gardenia"]
+	},
+	"pasta":{
+		"aisle":4,
+		"items":["spaghetti"]
+	},
+	"cooking oils, rice, noodles":{
+		"aisle":5,
+		"items":["soy sauce"]
+	},
+	"fruits and vegetables": {
+		"aisle": 6,
+		"items":["apple", "pear","blueberry"]
+	},
+		"baking": {
+		"aisle": 7,
+		"items":["flour"]
+	},
+		"sauces and condiments": {
+		"aisle": 8,
+		"items":["thousand island","vinaigrette"]
+	},
+		"dairy": {
+		"aisle": 9,
+		"items":["eggs","milk","cheese","yoghurt"]
+	},
 }

@@ -1,15 +1,25 @@
-//loop through json file
-//where category["name"] is equal to selected category
-//return items array
-//each item needs a link or a plus button to add to the grocery list
-let category = this.props.category
+import React from 'react';
 
-//find the selected category object in the json file, and map out the items array
-let items = this.props.allData[category]["items"].map{(item)=> return <li>{item}<li>}
+export default class Results extends React.Component{
 
-export default function Results(){
 
-    <ul>
-        {items}
-    </ul>
+    render(){
+        let items;
+        let category;
+
+
+        if (this.props.category!=null){
+            category = this.props.category.value
+
+            items = this.props.allData[category]["items"].map((item,index)=>{return <li key={index}>{item}</li>})
+            }
+
+        return( <div>
+            <ul>
+                {items}
+            </ul>
+        </div>
+        )
+    }
+
 }
