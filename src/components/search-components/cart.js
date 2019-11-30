@@ -1,0 +1,1 @@
+//this will render the grocery list icon, with the number of items on the list
