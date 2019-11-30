@@ -2,6 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import Results from '../search-components/results.js'
 import SearchBar from '../search-components/searchbar.js'
+import GroceryList from '../search-components/grocerylist.js'
 import Fuse from 'fuse.js';
 
 const options = [
@@ -64,33 +65,11 @@ export default class Search extends React.Component {
           this.state = {
             selectedCategoryOption: null,
             selectedItemOption:null,
-            filterCategory: [],
-            filterInput:[]
+            groceryList: []
           };
-          // this.searchProduct = this.searchProduct.bind(this)
+
+        this.addToList = this.addToList.bind(this)
     }
-
-    // searchProduct(event){
-    //     let searchInput = event.target.value
-    //     console.log(searchInput)
-    //     let filteredProducts = []
-    //     let itemsArray = []
-
-    //      // const filteredProducts = allItems.filter((product)=>{return product.items !==-1})
-    //      for (const key in allItems){
-
-    //         itemsArray.push(allItems[key].items)
-
-    //      }
-    //      let singleArrayItems = itemsArray.flat()
-    //      for (let i=0;i<singleArrayItems.length;i++){
-    //          if (searchInput === singleArrayItems[i]){
-    //             filteredProducts.push(singleArrayItems[i])
-    //          }
-    //      }
-    //      console.log(filteredProducts)
-    //     this.setState({populateItems:filteredProducts})
-    // }
 
   handleCategoryChange = selectedCategoryOption => {
     this.setState(
@@ -106,9 +85,17 @@ export default class Search extends React.Component {
     );
   };
 
+  addToList = (event)=>{
+    let list = [...this.state.groceryList]
+
+    list.push(event.target.value)
+    this.setState({groceryList:list})
+  }
+
   render() {
     const { selectedCategoryOption } = this.state;
     const { selectedItemOption } = this.state;
+    console.log(this.state)
 
     return (
         <div>
@@ -116,7 +103,6 @@ export default class Search extends React.Component {
       <Select
         value={selectedItemOption}
         onChange={this.handleItemChange}
-
          isMulti
         options={itemsObject}
         className="basic-multi-select"
@@ -129,9 +115,9 @@ export default class Search extends React.Component {
         options={options}
       />
 
-      <SearchBar onChange = {this.searchProduct}/>
+      <Results allData = {allItems}  category = {this.state.selectedCategoryOption} itemFilter = {this.state.selectedItemOption} list = {this.addToList}/>
 
-      <Results allData = {allItems}  category = {this.state.selectedOption} filter = {this.state.populateItems}/>
+      <GroceryList list = {this.state.groceryList}/>
       </div>
     );
   }
