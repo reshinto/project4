@@ -3,6 +3,7 @@ import Select from 'react-select';
 import Results from '../search-components/results.js'
 import SearchBar from '../search-components/searchbar.js'
 import GroceryList from '../search-components/grocerylist.js'
+import Grid from '@material-ui/core/Grid';
 import Fuse from 'fuse.js';
 
 const options = [
@@ -99,21 +100,29 @@ export default class Search extends React.Component {
 
     return (
         <div>
-        <h3>Search by Item</h3>
-      <Select
-        value={selectedItemOption}
-        onChange={this.handleItemChange}
-         isMulti
-        options={itemsObject}
-        className="basic-multi-select"
-        classNamePrefix="select"
-      />
-        <h3>Search by Category</h3>
-          <Select
-        value={selectedCategoryOption}
-        onChange={this.handleCategoryChange}
-        options={options}
-      />
+        <Grid container>
+            <Grid item xs = {6}>
+                <h3>Search by Item</h3>
+              <Select
+                value={selectedItemOption}
+                onChange={this.handleItemChange}
+                 isMulti
+                options={itemsObject}
+                className="basic-multi-select"
+                classNamePrefix="select"
+              />
+            </Grid>
+
+               <Grid item xs = {6}>
+                <h3>Search by Category</h3>
+                  <Select
+                value={selectedCategoryOption}
+                onChange={this.handleCategoryChange}
+                options={options}
+              />
+              </Grid>
+
+        </Grid>
 
       <Results allData = {allItems}  category = {this.state.selectedCategoryOption} itemFilter = {this.state.selectedItemOption} list = {this.addToList}/>
 
