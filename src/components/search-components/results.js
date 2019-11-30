@@ -13,19 +13,21 @@ export default class Results extends React.Component{
 
         if (this.props.category!=null){
             category = this.props.category.value
-            console.log('@@@@@@@@@@@@@@@@@@@@@@@')
-            console.log(this.props.allData)
-                for (let i=0;i<this.props.allData;i++){
-                     console.log(this.props.allData[i][category])
 
-                items = this.props.allData[i][category]["items"].map((item,index)=>{return <li key={index}>{item}</li>})
-                }
+            console.log(category)
+            console.log(this.props.allData)
+
+            items = this.props.allData[category]["items"].map((item,index)=>{return <li key={index}>{item}</li>})
+
+            console.log(items)
+
             }
 
         if (this.props.filter != null){
 
             filtered = this.props.filter.map((item,index)=>{return <li key={index}>{item}</li>})
         }
+
 
 
         return( <div>

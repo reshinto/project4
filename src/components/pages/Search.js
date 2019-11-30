@@ -26,26 +26,24 @@ const options = [
 // var fuse = new Fuse(list, options); // "list" is the item array
 // var result = fuse.search("");
 
-const allItems = [
+const allItems =
                     {
                         "frozen": {
-                        "aisle":1,
-                        "items":["fish","dumplings"]
-                        }
-                     },
-                     {
+                            "aisle":1,
+                            "items":["fish","dumplings", "pizza","prata","ice cream"]
+                        },
+
                          "fruits": {
                             "aisle": 2,
-                            "items":["apple", "pear","blueberry"]
-                        }
-                     },
-                     {
+                            "items":["apples", "pears","blueberries","strawberries","watermelon"]
+                        },
+
                         "vegetables": {
                             "aisle": 3,
                             "items":["cucumber","carrot"]
                         }
                     }
-                ]
+
 
 
 
@@ -55,7 +53,8 @@ export default class Search extends React.Component {
         super()
           this.state = {
             selectedOption: null,
-            populateItems: []
+            filterCategory: [],
+            filterInput:[]
           };
           this.searchProduct = this.searchProduct.bind(this)
     }
