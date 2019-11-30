@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-export default class Results extends React.Component{
+export default class ResultsCategory extends React.Component{
 
     clickHandler(event){
             console.log(event.target)
@@ -30,36 +30,14 @@ export default class Results extends React.Component{
 
             }
 
-        if (this.props.itemFilter!=null){
-
-            itemItems = this.props.itemFilter.map((item,index)=>{
-                return (<div key={index}>
-                <li>{item.value}</li>
-                <button value = {item.value} onClick = {(event)=>{this.clickHandler(event)}}>Add to list </button>
-                    </div>
-                )
-            })
-
-        }
-
-
-
-
 
         return( <div>
          <Grid container>
 
-            <Grid item xs = {6}>
-             <ul>
-                {itemItems}
-            </ul>
-            </Grid>
-
-             <Grid item xs = {6}>
             <ul>
                 {categoryItems}
             </ul>
-            </Grid>
+
 
         </Grid>
         </div>

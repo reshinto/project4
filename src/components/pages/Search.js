@@ -1,10 +1,18 @@
 import React from 'react';
 import Select from 'react-select';
-import Results from '../search-components/results.js'
+import ResultsItem from '../search-components/resultsitem.js'
+import ResultsCategory from '../search-components/resultscategory.js'
 import SearchBar from '../search-components/searchbar.js'
 import GroceryList from '../search-components/grocerylist.js'
 import Grid from '@material-ui/core/Grid';
 import Fuse from 'fuse.js';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
 
 const options = [
   { value: 'frozen', label: 'Frozen' },
@@ -57,7 +65,9 @@ const allItems =
     })
 
 
-
+function Transition(props) {
+  return <Slide direction="up" {...props} />;
+}
 
 export default class Search extends React.Component {
 
@@ -66,11 +76,22 @@ export default class Search extends React.Component {
           this.state = {
             selectedCategoryOption: null,
             selectedItemOption:null,
-            groceryList: []
+            groceryList: [],
+            open:false
           };
 
         this.addToList = this.addToList.bind(this)
     }
+
+
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
 
   handleCategoryChange = selectedCategoryOption => {
     this.setState(
@@ -90,7 +111,9 @@ export default class Search extends React.Component {
     let list = [...this.state.groceryList]
 
     list.push(event.target.value)
-    this.setState({groceryList:list})
+
+    let unique = [...new Set(list)]
+    this.setState({groceryList:unique})
   }
 
   render() {
@@ -100,8 +123,8 @@ export default class Search extends React.Component {
 
     return (
         <div>
-        <Grid container>
-            <Grid item xs = {6}>
+
+
                 <h3>Search by Item</h3>
               <Select
                 value={selectedItemOption}
@@ -111,22 +134,51 @@ export default class Search extends React.Component {
                 className="basic-multi-select"
                 classNamePrefix="select"
               />
-            </Grid>
 
-               <Grid item xs = {6}>
+        <ResultsItem allData = {allItems} itemFilter = {this.state.selectedItemOption} list = {this.addToList}/>
+
+
                 <h3>Search by Category</h3>
                   <Select
                 value={selectedCategoryOption}
                 onChange={this.handleCategoryChange}
                 options={options}
               />
-              </Grid>
 
-        </Grid>
 
-      <Results allData = {allItems}  category = {this.state.selectedCategoryOption} itemFilter = {this.state.selectedItemOption} list = {this.addToList}/>
 
-      <GroceryList list = {this.state.groceryList}/>
+
+      <ResultsCategory allData = {allItems}  category = {this.state.selectedCategoryOption}  list = {this.addToList}/>
+
+
+       <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+          View Grocery List
+        </Button>
+        <Dialog
+          open={this.state.open}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-slide-title"
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle id="alert-dialog-slide-title">
+            {"Your Grocery List"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-slide-description">
+                  <GroceryList list = {this.state.groceryList}/>
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Close
+            </Button>
+            <Button onClick={this.handleClose} color="primary">
+              Generate Map
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     );
   }

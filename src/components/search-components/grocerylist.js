@@ -7,14 +7,16 @@ export default class GroceryList extends React.Component{
     render(){
          let items;
 
-        if (this.props.list.length > null){
+        if (this.props.list.length > 0){
 
 
             items = this.props.list.map((item,index)=>{return <li key={index}>{item}</li>})
 
+            } else {
+                items = "No items yet!"
             }
         return( <div>
-        <h1>Your Grocery Items</h1>
+
         <ul>
            {items}
         </ul>
