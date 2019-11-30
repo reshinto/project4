@@ -1,5 +1,5 @@
 import React from "react";
- 
+
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -58,6 +58,7 @@ export default function LandingPage(props) {
               </h4>
               </div>
               <br />
+              <a href = "/shoptimize/floormap">WOW FLOOR MAP LINK </a>
               <Button
                 color="danger"
                 size="lg"
@@ -78,10 +79,10 @@ export default function LandingPage(props) {
 
           <TeamSection />
 
+
         </div>
       </div>
       <Footer />
     </div>
   );
 }
-
