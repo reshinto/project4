@@ -17,7 +17,7 @@ export default class Results extends React.Component{
             console.log(category)
             console.log(this.props.allData)
 
-            items = this.props.allData[category]["items"].map((item,index)=>{return <li key={index}>{item}</li>})
+            items = this.props.allData[category]["items"].map((item,index)=>{return <div><li key={index}>{item}</li><a href = "#">Add to list</a></div>})
 
             console.log(items)
 
