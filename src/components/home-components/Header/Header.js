@@ -18,9 +18,13 @@ import Menu from "@material-ui/icons/Menu";
 // core components
 import styles from "../../../assets/jss/material-kit-react/components/headerStyle.js";
 
+// redux and logout action
+import { connect } from 'react-redux';
+import { logout } from '../../../redux/actions/authAction';
+
 const useStyles = makeStyles(styles);
 
-export default function Header(props) {
+function Header(props) {
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   React.useEffect(() => {
@@ -77,7 +81,17 @@ export default function Header(props) {
           )}
         </div>
 
-        <LogIn/>
+        {localStorage.getItem('FBIdToken') === null ? (
+          <LogIn/>
+        ) : (
+          <Button
+            type="submit"
+            onClick={props.logout}
+            color="primary"
+          >
+            Log out
+          </Button>
+        )}
       </Toolbar>
 
     </AppBar>
@@ -126,3 +140,9 @@ Header.propTypes = {
     ]).isRequired
   })
 };
+
+const mapDispatchToProps = {
+  logout
+}
+
+export default connect(null, mapDispatchToProps)(Header);
