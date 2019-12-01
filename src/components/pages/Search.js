@@ -13,6 +13,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
+import {searchBackground} from '../search-components/search-style.js'
+import SearchBackground from '../search-components/grocery.jpg'
+import Badge from '@material-ui/core/Badge';
 
 const options = [
   { value: 'frozen', label: 'Frozen' },
@@ -122,7 +125,8 @@ export default class Search extends React.Component {
     console.log(this.state)
 
     return (
-        <div style = {{padding:"10%"}}>
+        <div style = {{padding:"5%", backgroundImage: `url(${SearchBackground})`, backgroundSize: "cover", filter: 'blur (5px)', height: 800}}>
+        <div style = {{border:"1px solid black", padding:"5%", backgroundColor:"rgba(255,255,255,0.5)"}} >
 
 
                 <h3>Search by Item</h3>
@@ -150,10 +154,11 @@ export default class Search extends React.Component {
 
       <ResultsCategory allData = {allItems}  category = {this.state.selectedCategoryOption}  list = {this.addToList}/>
 
-
-       <Button variant="outlined" color="secondary" onClick={this.handleClickOpen}>
+      <Badge color="primary" badgeContent={this.state.groceryList.length}>
+       <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>
           View Grocery List
         </Button>
+        </Badge>
         <Dialog
           open={this.state.open}
           TransitionComponent={Transition}
@@ -179,6 +184,7 @@ export default class Search extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
+        </div>
       </div>
     );
   }
