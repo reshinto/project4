@@ -84,6 +84,7 @@ export default class Search extends React.Component {
           };
 
         this.addToList = this.addToList.bind(this)
+        this.removeFromList = this.removeFromList.bind(this)
     }
 
 
@@ -114,6 +115,15 @@ export default class Search extends React.Component {
     let list = [...this.state.groceryList]
 
     list.push(event.target.value)
+
+    let unique = [...new Set(list)]
+    this.setState({groceryList:unique})
+  }
+
+  removeFromList = (event)=>{
+    let list = [...this.state.groceryList]
+
+    list.splice(event.target.value,1)
 
     let unique = [...new Set(list)]
     this.setState({groceryList:unique})
@@ -172,7 +182,7 @@ export default class Search extends React.Component {
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-slide-description">
-                  <GroceryList list = {this.state.groceryList}/>
+                  <GroceryList list = {this.state.groceryList} remove = {this.removeFromList}/>
             </DialogContentText>
           </DialogContent>
           <DialogActions>
