@@ -8,7 +8,7 @@ export const login = (userData) => (dispatch) => {
     .post(`${db}/login`, userData)
     .then((res) => {
       setAuthorizationHeader(res.data.token);
-      dispatch(getUserData());
+      // dispatch(getUserData());
       dispatch({ type: actionTypes.CLEAR_ERRORS });
     })
     .catch((err) => {
@@ -32,9 +32,9 @@ export const signup = (newUserData) => (dispatch) => {
     .post(`${db}/signup`, newUserData, config)
     .then((res) => {
       console.log(res)
-      // setAuthorizationHeader(res.data.token);
+      setAuthorizationHeader(res.data.token);
       // dispatch(getUserData());
-      // dispatch({ type: actionTypes.CLEAR_ERRORS });
+      dispatch({ type: actionTypes.CLEAR_ERRORS });
     })
     .catch((err) => {
       dispatch({
@@ -44,7 +44,7 @@ export const signup = (newUserData) => (dispatch) => {
     });
 };
 
-export const logoutUser = () => (dispatch) => {
+export const logout = () => (dispatch) => {
   localStorage.removeItem('FBIdToken');
   delete axios.defaults.headers.common['Authorization'];
   dispatch({ type: actionTypes.SET_UNAUTHENTICATED });
