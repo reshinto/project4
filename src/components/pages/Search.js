@@ -122,7 +122,7 @@ export default class Search extends React.Component {
     console.log(this.state)
 
     return (
-        <div>
+        <div style = {{padding:"10%"}}>
 
 
                 <h3>Search by Item</h3>
@@ -151,7 +151,7 @@ export default class Search extends React.Component {
       <ResultsCategory allData = {allItems}  category = {this.state.selectedCategoryOption}  list = {this.addToList}/>
 
 
-       <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+       <Button variant="outlined" color="secondary" onClick={this.handleClickOpen}>
           View Grocery List
         </Button>
         <Dialog
@@ -171,10 +171,10 @@ export default class Search extends React.Component {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.handleClose} color="secondary">
               Close
             </Button>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.handleClose} color="secondary">
               Generate Map
             </Button>
           </DialogActions>

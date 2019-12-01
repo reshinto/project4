@@ -62,7 +62,7 @@ export default function LandingPage(props) {
               <Button
                 color="danger"
                 size="lg"
-                href="#"
+                href="/shoptimize/search"
                 target="_blank"
                 rel="noopener noreferrer"
               >

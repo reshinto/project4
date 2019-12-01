@@ -43,6 +43,7 @@ export default class LogIn extends React.Component {
               label="Email Address"
               type="email"
               fullWidth
+              color="secondary"
             />
               <TextField
               margin="dense"
@@ -50,13 +51,14 @@ export default class LogIn extends React.Component {
               label="Password"
               type="password"
               fullWidth
+              color="secondary"
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.handleClose} color="secondary">
               Cancel
             </Button>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.handleClose} color="secondary">
               Log in
             </Button>
           </DialogActions>

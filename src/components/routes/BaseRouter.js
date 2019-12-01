@@ -11,7 +11,7 @@ const pn = "shoptimize"
 const BaseRouter = () => (
   <>
   <Route exact path="/" component={Home} />
-  <Route exact path="/search" component={Search} />
+  <Route exact path="/shoptimize/search" component={Search} />
   <Route exact path={`/${pn}`} component={Home} />
   <Route exact path={`/${pn}/floormap`} component={Floormap} />
     {/*<PrivateRoute exact path="/profile" component={Profile} />*/}
