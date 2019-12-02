@@ -160,7 +160,7 @@ export default class Search extends React.Component {
     console.log(this.state)
 
     return (
-        <div style = {{padding:"5%", backgroundImage: `url(${SearchBackground})`, backgroundSize: "cover", filter: 'blur (5px)', height: 800}}>
+        <div style = {{padding:"5%", backgroundImage: `url(${SearchBackground})`, backgroundSize: "cover", filter: 'blur (5px)', minHeight: 800}}>
         <div style = {{padding:"5%", backgroundColor:"rgba(255,255,255,0.7)"}} >
 
 
