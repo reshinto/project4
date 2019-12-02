@@ -89,13 +89,13 @@ class LogIn extends React.Component {
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={this.handleClose} color="secondary">
+              <Button onClick={this.handleClose} color="primary">
                 Cancel
               </Button>
               <Button
                 type="submit"
                 onClick={this.handleClose}
-                color="secondary"
+                color="primary"
               >
                 Log in
               </Button>

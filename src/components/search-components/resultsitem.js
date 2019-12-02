@@ -21,9 +21,9 @@ export default class ResultsItem extends React.Component{
         if (this.props.itemFilter!=null){
 
             itemItems = this.props.itemFilter.map((item,index)=>{
-                return (<div key={index}>
-                <li>{item.value}</li>
-                <button value = {item.value} onClick = {(event)=>{this.clickHandler(event)}}>Add to list </button>
+                return (<div key={index} style = {{marginTop:10}}>
+                <li>{item.value}  <button value = {item.value} onClick = {(event)=>{this.clickHandler(event)}}>Add to list </button></li>
+
                     </div>
                 )
             })

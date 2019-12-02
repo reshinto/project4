@@ -62,6 +62,7 @@ class Register extends React.Component {
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
+
         >
           <form onSubmit={this.handleSubmit}>
             <DialogTitle id="form-dialog-title">Register!</DialogTitle>
@@ -79,6 +80,7 @@ class Register extends React.Component {
                 value={username}
                 onChange={this.handleChange}
                 fullWidth
+                color="secondary"
               />
               <TextField
                 margin="dense"
@@ -89,6 +91,7 @@ class Register extends React.Component {
                 value={this.state.email}
                 onChange={this.handleChange}
                 fullWidth
+                color="secondary"
               />
               <TextField
                 margin="dense"
@@ -99,6 +102,7 @@ class Register extends React.Component {
                 value={password}
                 onChange={this.handleChange}
                 fullWidth
+                color="secondary"
               />
             </DialogContent>
             <DialogActions>

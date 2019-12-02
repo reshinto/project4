@@ -1,4 +1,5 @@
 import React from 'react';
+import Select from 'react-select';
 
 export default class GroceryList extends React.Component{
 
@@ -16,7 +17,7 @@ export default class GroceryList extends React.Component{
 
 
             items = this.props.list.map((item,index)=>{
-                return (<li key={index}>{item}<button value = {index} onClick={(event)=>{this.clickHandler(event)}}>remove</button></li>)
+                return (<div><li key={index} style = {{marginTop:10}}>{item}<button value = {index} onClick={(event)=>{this.clickHandler(event)}} style = {{marginLeft:5}}>remove</button></li></div>)
             })
 
             } else {
@@ -27,6 +28,7 @@ export default class GroceryList extends React.Component{
         <ul>
            {items}
         </ul>
+
         </div>
         )
     }
