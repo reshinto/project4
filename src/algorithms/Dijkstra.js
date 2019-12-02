@@ -1,17 +1,19 @@
 import PriorityQueue from "./PriorityQueue";
 import {categoryMaps} from "../components/layouts/Constants";
+import {totalPath} from "../components/layouts/Constants";
 
-const totalPath = [];
-
-function dijkstra(_start, _finish, g, path) {
-  console.log(_finish)
+function dijkstra(_start, _finish, g, path, last, isLast=true) {
   const pq = new PriorityQueue();
   const distances = {};
   const previous = {};
-  if (path === undefined) path = []; // to return at end
+  if (path === undefined) {
+    path = []; // to return at end
+    last = _finish.pop();
+  }
   let currentKey;
   const start = String(_start);
   let finishArr = _finish.slice();
+  console.log(finishArr)
   let finish;
 
   // build up initial state
@@ -63,7 +65,11 @@ function dijkstra(_start, _finish, g, path) {
     totalPath.push(path[i])
   }
   if (finishArr.length > 0) {
-    dijkstra(finish[0], finishArr, g, path);
+    dijkstra(finish[0], finishArr, g, path, last);
+  } else {
+    if (isLast === true) {
+      dijkstra(finish[0], [last], g, path, last, isLast=false);
+    }
   }
   return totalPath;
 }

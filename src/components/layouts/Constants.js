@@ -10,3 +10,4 @@ export const mapWidth = totalWidthTiles * tileSize(totalWidthTiles);
 export const mapHeight = totalHeightTiles * tileSize(totalWidthTiles);
 export const categoryMaps = {};
 export const categoryKeyArr = [];
+export const totalPath = [];

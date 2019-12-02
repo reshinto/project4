@@ -7,6 +7,7 @@ import {
   tileSize,
   categoryMaps,
   categoryKeyArr,
+  totalPath,
 } from "./Constants";
 import {
   // getImageFile,
@@ -46,8 +47,7 @@ class Canvas extends React.Component {
     this.drawLayout();
     this.linkConnections();
     const path = Dijkstra(0, categoryKeyArr, g);
-    console.log(path)
-    this.drawPath(path);
+    this.animatePath(totalPath);
     // window.addEventListener("resize", this.updateDimensions);
   }
 
@@ -148,6 +148,14 @@ class Canvas extends React.Component {
     this.addCategory(Number(categoryKeyArr[5]), 5, 12, "french");
     this.addCategory(Number(categoryKeyArr[6]), 12, 7, "can foods");
     this.addCategory(Number(categoryKeyArr[7]), 7, 4, "lala land");
+  }
+
+  animatePath = (path) => {
+    for (let i=0; i<path.length; i++) {
+      ((i) => {
+        setTimeout(() => this.fillColor(path[i], "#D1E8E2"), 10 * i)
+      })(i)
+    }
   }
 
   render() {
