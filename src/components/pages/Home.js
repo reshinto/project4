@@ -25,6 +25,8 @@ import ProductSection from "../home-components/Sections/ProductSection.js";
 import TeamSection from "../home-components/Sections/TeamSection.js";
 import WorkSection from "../home-components/Sections/WorkSection.js";
 
+import { Link } from "react-router-dom";
+
 const dashboardRoutes = [];
 
 const useStyles = makeStyles(styles);
@@ -61,9 +63,8 @@ export default function LandingPage(props) {
               <Button
                 color="danger"
                 size="lg"
-                href="/shoptimize/search"
-                target="_blank"
-                rel="noopener noreferrer"
+                component={Link}
+                to="/shoptimize/search"
               >
 
                 Create Grocery List
