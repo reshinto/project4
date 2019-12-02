@@ -4,7 +4,9 @@ import {
   totalHeightTiles,
   mapWidth,
   mapHeight,
-  tileSize
+  tileSize,
+  categoryMaps,
+  categoryKeyArr,
 } from "./Constants";
 import {
   // getImageFile,
@@ -31,11 +33,9 @@ let ctx;
 let g;
 
 class Canvas extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      tileSize: tileSize(totalWidthTiles),
-    }
+  state = {
+    tileSize: tileSize(totalWidthTiles),
+    catKeyArr: [],
   }
 
   componentDidMount() {
@@ -45,8 +45,7 @@ class Canvas extends React.Component {
     this.addMapCategories();
     this.drawLayout();
     this.linkConnections();
-    console.log(getLastKey())
-    const path = Dijkstra(0, getLastKey(), g);
+    const path = Dijkstra(0, categoryKeyArr, g);
     console.log(path)
     this.drawPath(path);
     // window.addEventListener("resize", this.updateDimensions);
@@ -96,10 +95,13 @@ class Canvas extends React.Component {
   drawLayout = () => {
     for (let i=0; i<g.wallArr.length; i++) {
       g.addVertex(i);
+      // wall
       if (g.wallArr[i] === 5) {
         this.fillColor(i, "#2c3531");
+        // floor
       } else if (g.wallArr[i] === 1) {
         this.fillColor(i, "#116466");
+        // category
       } else if (g.wallArr[i] === 2) {
         this.fillColor(i, "#D9B08C");
       }
@@ -109,23 +111,22 @@ class Canvas extends React.Component {
   linkConnections = () => {
     const weight = 5;
     for (let i=0; i<g.wallArr.length; i++) {
-      // if (g.wallArr[i] === null) {
-        addConnections(g, i, weight);
-      // }
+      addConnections(g, i, weight);
     }
   }
 
-  addCategory = (startKey, categoryWidth, categoryHeight) => {
+  addCategory = (startKey, categoryWidth, categoryHeight, name) => {
     const catArr = getCategoryKeyArr(startKey, categoryWidth, categoryHeight);
     const catEdgeArr = getCategoryEdgeKeys(startKey, categoryWidth, categoryHeight);
     for (let i=0; i<catArr.length; i++) {
       if (catEdgeArr.indexOf(catArr[i]) !== -1) {
         g.wallArr[catArr[i]] = 2;
+        categoryMaps[catArr[i]] = name;
       } else {
         g.wallArr[catArr[i]] = 5;
       }
     }
-    // console.log(this.state.g.wallArr)
+    // console.log(categoryMaps)
   }
 
   getRandomKey = () => {
@@ -133,15 +134,20 @@ class Canvas extends React.Component {
   }
 
   addMapCategories = () => {
-    this.addCategory(this.getRandomKey(), 20, 70);
-    this.addCategory(this.getRandomKey(), 50, 20);
-    this.addCategory(this.getRandomKey(), 20, 70);
-    this.addCategory(this.getRandomKey(), 30, 40);
-    this.addCategory(this.getRandomKey(), 70, 20);
-    this.addCategory(this.getRandomKey(), 50, 20);
-    this.addCategory(this.getRandomKey(), 20, 70);
-    this.addCategory(this.getRandomKey(), 30, 40);
-    // this.addCategory(55, 2, 1);
+    for (let i=0; i<8; i++) {
+      const newKey = this.getRandomKey();
+      categoryKeyArr.push(String(newKey));
+    }
+    categoryKeyArr.push(String(getLastKey()));
+    console.log(categoryKeyArr);
+    this.addCategory(Number(categoryKeyArr[0]), 5, 17, "fruits");
+    this.addCategory(Number(categoryKeyArr[1]), 5, 12, "vegetables");
+    this.addCategory(Number(categoryKeyArr[2]), 5, 17, "meats");
+    this.addCategory(Number(categoryKeyArr[3]), 6, 14, "frozen food");
+    this.addCategory(Number(categoryKeyArr[4]), 7, 12, "japanese");
+    this.addCategory(Number(categoryKeyArr[5]), 5, 12, "french");
+    this.addCategory(Number(categoryKeyArr[6]), 12, 7, "can foods");
+    this.addCategory(Number(categoryKeyArr[7]), 7, 4, "lala land");
   }
 
   render() {

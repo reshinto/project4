@@ -1,14 +1,18 @@
 import PriorityQueue from "./PriorityQueue";
+import {categoryMaps} from "../components/layouts/Constants";
 
-//TODO fix path issue
-function dijkstra(_start, _finish, g) {
+const totalPath = [];
+
+function dijkstra(_start, _finish, g, path) {
+  console.log(_finish)
   const pq = new PriorityQueue();
   const distances = {};
   const previous = {};
-  let path = []; // to return at end
+  if (path === undefined) path = []; // to return at end
   let currentKey;
   const start = String(_start);
-  const finish = String(_finish);
+  let finishArr = _finish.slice();
+  let finish;
 
   // build up initial state
   Object.keys(g.adjacencyList).forEach(function(_key) {
@@ -24,13 +28,17 @@ function dijkstra(_start, _finish, g) {
   // as long as there is something to visit
   while (pq.values.length) {
     currentKey = pq.dequeue().value;
-    if (currentKey === finish) {
-      // we are done, build up path to return at end
-      while (previous[currentKey]) {
-        path.push(currentKey);
-        currentKey = previous[currentKey];
+    const finishKeyIndex = finishArr.indexOf(currentKey);
+    if (finishKeyIndex !== -1) {
+      finish = finishArr.splice(finishKeyIndex, 1);
+      if (currentKey === finish[0]) {
+        // we are done, build up path to return at end
+        while (previous[currentKey]) {
+          path.push(currentKey);
+          currentKey = previous[currentKey];
+        }
+        break;
       }
-      break;
     }
     if (currentKey || distances[currentKey] !== Infinity) {
       for (let i = 0; i < g.adjacencyList[currentKey].length; i++) {
@@ -51,7 +59,13 @@ function dijkstra(_start, _finish, g) {
     }
   }
   path = path.concat(currentKey).reverse();
-  return path;
+  for (let i=0; i<path.length; i++) {
+    totalPath.push(path[i])
+  }
+  if (finishArr.length > 0) {
+    dijkstra(finish[0], finishArr, g, path);
+  }
+  return totalPath;
 }
 
 export default dijkstra;
