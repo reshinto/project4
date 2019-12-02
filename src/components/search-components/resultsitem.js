@@ -1,12 +1,10 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import ImgMediaCard from './card.js'
 
 export default class ResultsItem extends React.Component{
 
-    clickHandler(event){
-            console.log(event.target)
-            this.props.list(event)
-        }
+
 
 
 
@@ -21,8 +19,9 @@ export default class ResultsItem extends React.Component{
         if (this.props.itemFilter!=null){
 
             itemItems = this.props.itemFilter.map((item,index)=>{
-                return (<div key={index} style = {{marginTop:10}}>
-                <li>{item.value}  <button value = {item.value} onClick = {(event)=>{this.clickHandler(event)}}>Add to list </button></li>
+                return (<div key={index} style = {{marginRight:10, marginTop:10}}>
+
+                <ImgMediaCard item = {item.value} onClick = {this.props.list}/>
 
                     </div>
                 )
@@ -35,12 +34,10 @@ export default class ResultsItem extends React.Component{
 
 
         return( <div>
-         <Grid container>
+         <Grid container justify="center">
 
-
-             <ul>
                 {itemItems}
-            </ul>
+
 
         </Grid>
         </div>
