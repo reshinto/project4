@@ -1,7 +1,7 @@
 export const widthPadding = 40;
 export const heightPadding = 40;
-export const totalWidthTiles = 100;
-export const totalHeightTiles = 100;
+export const totalWidthTiles = 450;
+export const totalHeightTiles = 450;
 export const tileSize = (totalWidthTiles) => {
   return Math.floor((window.innerWidth < window.innerHeight ? window.innerWidth : window.innerHeight) / totalWidthTiles);
 }

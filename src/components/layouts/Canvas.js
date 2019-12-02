@@ -60,7 +60,7 @@ class Canvas extends React.Component {
 
   drawPath = (path) => {
     for (let i=0; i<path.length; i++) {
-      this.fillColor(path[i], "red");
+      this.fillColor(path[i], "#D1E8E2");
     }
   }
 
@@ -97,11 +97,11 @@ class Canvas extends React.Component {
     for (let i=0; i<g.wallArr.length; i++) {
       g.addVertex(i);
       if (g.wallArr[i] === 5) {
-        this.fillColor(i, "green");
+        this.fillColor(i, "#2c3531");
       } else if (g.wallArr[i] === 1) {
-        this.fillColor(i, "grey");
+        this.fillColor(i, "#116466");
       } else if (g.wallArr[i] === 2) {
-        this.fillColor(i, "blue");
+        this.fillColor(i, "#D9B08C");
       }
     }
   }
@@ -133,10 +133,14 @@ class Canvas extends React.Component {
   }
 
   addMapCategories = () => {
-    this.addCategory(this.getRandomKey(), 5, 7);
-    this.addCategory(this.getRandomKey(), 5, 20);
-    this.addCategory(this.getRandomKey(), 20, 7);
-    this.addCategory(this.getRandomKey(), 5, 7);
+    this.addCategory(this.getRandomKey(), 20, 70);
+    this.addCategory(this.getRandomKey(), 50, 20);
+    this.addCategory(this.getRandomKey(), 20, 70);
+    this.addCategory(this.getRandomKey(), 30, 40);
+    this.addCategory(this.getRandomKey(), 70, 20);
+    this.addCategory(this.getRandomKey(), 50, 20);
+    this.addCategory(this.getRandomKey(), 20, 70);
+    this.addCategory(this.getRandomKey(), 30, 40);
     // this.addCategory(55, 2, 1);
   }
 
