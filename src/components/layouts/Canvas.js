@@ -9,7 +9,7 @@ import {
 import {
   // getImageFile,
   getCoordinates,
-  // getLastKey,
+  getLastKey,
   getCategoryKeyArr,
   addConnections,
   getCategoryEdgeKeys,
@@ -45,9 +45,10 @@ class Canvas extends React.Component {
     this.addMapCategories();
     this.drawLayout();
     this.linkConnections();
-    console.log(g.adjacencyList)
-    const path = Dijkstra(12, 3, g);
+    console.log(getLastKey())
+    const path = Dijkstra(0, getLastKey(), g);
     console.log(path)
+    this.drawPath(path);
     // window.addEventListener("resize", this.updateDimensions);
   }
 
@@ -55,6 +56,12 @@ class Canvas extends React.Component {
     return new Promise((resolve) => {
       this.setState(state, resolve);
     });
+  }
+
+  drawPath = (path) => {
+    for (let i=0; i<path.length; i++) {
+      this.fillColor(path[i], "red");
+    }
   }
 
   // updateDimensions = async () => {
@@ -110,7 +117,7 @@ class Canvas extends React.Component {
 
   addCategory = (startKey, categoryWidth, categoryHeight) => {
     const catArr = getCategoryKeyArr(startKey, categoryWidth, categoryHeight);
-    const catEdgeArr = getCategoryEdgeKeys(startKey);
+    const catEdgeArr = getCategoryEdgeKeys(startKey, categoryWidth, categoryHeight);
     for (let i=0; i<catArr.length; i++) {
       if (catEdgeArr.indexOf(catArr[i]) !== -1) {
         g.wallArr[catArr[i]] = 2;
@@ -121,9 +128,15 @@ class Canvas extends React.Component {
     // console.log(this.state.g.wallArr)
   }
 
+  getRandomKey = () => {
+    return Math.floor(Math.random() * getLastKey());
+  }
+
   addMapCategories = () => {
-    this.addCategory(4, 3, 3);
-    // this.addCategory(10, 1, 2);
+    this.addCategory(this.getRandomKey(), 5, 7);
+    this.addCategory(this.getRandomKey(), 5, 20);
+    this.addCategory(this.getRandomKey(), 20, 7);
+    this.addCategory(this.getRandomKey(), 5, 7);
     // this.addCategory(55, 2, 1);
   }
 

@@ -12,7 +12,6 @@ function dijkstra(_start, _finish, g) {
 
   // build up initial state
   Object.keys(g.adjacencyList).forEach(function(_key) {
-    console.log(typeof _key)
     if (_key === start) {
       distances[_key] = 0;
       pq.enqueue(_key, 0);
@@ -25,7 +24,6 @@ function dijkstra(_start, _finish, g) {
   // as long as there is something to visit
   while (pq.values.length) {
     currentKey = pq.dequeue().value;
-    console.log("currentKey", currentKey)
     if (currentKey === finish) {
       // we are done, build up path to return at end
       while (previous[currentKey]) {

@@ -4,8 +4,6 @@ import {
   mapHeight,
   totalWidthTiles,
   totalHeightTiles,
-  categoryWidthTiles,
-  categoryHeightTiles,
 } from "./Constants";
 
 const _tileSize = tileSize(totalWidthTiles);
@@ -71,23 +69,23 @@ export const getCategoryKeyArr = (startKey, categoryWidth, categoryHeight) =>  {
   return categoryArr.sort((a, b) => a - b);
 }
 
-export const getCategoryEdgeKeys = (key) => {
-  const catArr = getCategoryKeyArr(key, 3, 3);
+export const getCategoryEdgeKeys = (key, categoryWidth, categoryHeight) => {
+  const catArr = getCategoryKeyArr(key, categoryWidth, categoryHeight);
   const tmpArr = [...Array(catArr.length).keys()];
   const k = 0;  // current temp key
   const lK = tmpArr.length - 1;  // temp last key
-  const rTK = categoryWidthTiles - 1;  // temp right top key
-  const lBK = lK - categoryWidthTiles + 1;  // temp left bottom key
+  const rTK = categoryWidth - 1;  // temp right top key
+  const lBK = lK - categoryWidth + 1;  // temp left bottom key
   const categoryEdgeArr = [];
   // loop through the tmpArr to calculate the actual keys edges
-  for (let i=0; i<categoryWidthTiles; i++) {
-    for (let j=0; j<categoryHeightTiles; j++) {
-      const ck = getPositionKey(i, j, false, categoryWidthTiles);
+  for (let i=0; i<categoryWidth; i++) {
+    for (let j=0; j<categoryHeight; j++) {
+      const ck = getPositionKey(i, j, false, categoryWidth);
       if (ck === k || ck === rTK || ck === lK || ck === lBK ||
         (ck > k && ck < rTK) ||
-        (ck !== rTK && ck !== lK && (ck + 1) % categoryWidthTiles === 0) ||
+        (ck !== rTK && ck !== lK && (ck + 1) % categoryWidth === 0) ||
         (ck > lBK && ck < lK) ||
-        (ck !== 0 && ck !== lBK && ck % categoryWidthTiles === 0)
+        (ck !== 0 && ck !== lBK && ck % categoryWidth === 0)
       ) {
         categoryEdgeArr.push(catArr[ck]);
       }
