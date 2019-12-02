@@ -24,7 +24,7 @@ export default class ResultsCategory extends React.Component{
             console.log(category)
             console.log(this.props.allData)
 
-            categoryItems = this.props.allData[category]["items"].map((item,index)=>{return <div key={index}><li>{item}</li><button value = {item} onClick = {(event)=>{this.clickHandler(event)}}>Add to list</button></div>})
+            categoryItems = this.props.allData[category]["items"].map((item,index)=>{return <div key={index} style = {{marginTop:10}}><li>{item} <button value = {item} onClick = {(event)=>{this.clickHandler(event)}}>Add to list</button></li></div>})
 
 
 

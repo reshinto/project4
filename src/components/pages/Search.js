@@ -26,6 +26,10 @@ const options = [
   { value: 'baking needs', label: 'Baking Needs' },
 ];
 
+const stores = [{value: "NTUC", label:"NTUC"}, {value: "Cold Storage", label: "Cold Storage"}, {value: "Giant", label: "Giant"}]
+
+const locations = [{value: "Tanjong Pagar", label:"Tanjong Pagar"}, {value: "Lavender", label: "Lavender"}, {value: "Tampines", label: "Tampines"}]
+
 const allItems =
                 {
                     "frozen": {
@@ -52,6 +56,8 @@ const allItems =
                     }
 
                 }
+
+
 
     let itemsArray=[]
         for (const key in allItems){
@@ -80,6 +86,8 @@ export default class Search extends React.Component {
           this.state = {
             selectedCategoryOption: null,
             selectedItemOption:null,
+            selectedLayoutOption:null,
+            selectedLocationOption:null,
             groceryList: [],
             open:false
           };
@@ -112,6 +120,20 @@ export default class Search extends React.Component {
     );
   };
 
+      handleLayoutChange = selectedLayoutOption => {
+    this.setState(
+      { selectedLayoutOption },
+      () => console.log(`Option selected:`, this.state.selectedLayoutOption)
+    );
+  };
+
+      handleLocationChange = selectedLocationOption => {
+    this.setState(
+      { selectedLocationOption },
+      () => console.log(`Option selected:`, this.state.selectedLocationOption)
+    );
+  };
+
   addToList = (event)=>{
     let list = [...this.state.groceryList]
 
@@ -133,14 +155,16 @@ export default class Search extends React.Component {
   render() {
     const { selectedCategoryOption } = this.state;
     const { selectedItemOption } = this.state;
+    const { selectedLayoutOption } = this.state;
+    const { selectedLocationOption } = this.state;
     console.log(this.state)
 
     return (
         <div style = {{padding:"5%", backgroundImage: `url(${SearchBackground})`, backgroundSize: "cover", filter: 'blur (5px)', height: 800}}>
-        <div style = {{border:"1px solid black", padding:"5%", backgroundColor:"rgba(255,255,255,0.5)"}} >
+        <div style = {{padding:"5%", backgroundColor:"rgba(255,255,255,0.7)"}} >
 
 
-                <h3>Search by Item</h3>
+                <h3 style = {{color:"rgb(72,66,184)"}}>Search by Item</h3>
               <Select
                 value={selectedItemOption}
                 onChange={this.handleItemChange}
@@ -153,23 +177,46 @@ export default class Search extends React.Component {
         <ResultsItem allData = {allItems} itemFilter = {this.state.selectedItemOption} list = {this.addToList}/>
 
 
-                <h3>Search by Category</h3>
+                <h3 style = {{color:"rgb(72,66,184)"}}>Search by Category</h3>
                   <Select
                 value={selectedCategoryOption}
                 onChange={this.handleCategoryChange}
                 options={options}
               />
 
-
-
-
       <ResultsCategory allData = {allItems}  category = {this.state.selectedCategoryOption}  list = {this.addToList}/>
+      <Grid container
+      style = {{borderTop:"1px solid black"}}>
 
-      <Badge color="primary" badgeContent={this.state.groceryList.length}>
-       <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>
-          View Grocery List
-        </Button>
-        </Badge>
+          <Grid item xs={6}>
+            <h3 style = {{color:"rgb(72,66,184)"}}>Select Store</h3>
+                <Select
+                    value={selectedLayoutOption}
+                    onChange={this.handleLayoutChange}
+                    options={stores}
+                />
+            </Grid>
+
+            <Grid item xs={6}>
+            <h3 style = {{color:"rgb(72,66,184)"}}>Select Location</h3>
+                <Select
+                    value={selectedLocationOption}
+                    onChange={this.handleLocationChange}
+                    options={locations}
+                />
+
+            </Grid>
+        </Grid>
+        <br/>
+        <Grid container
+        justify="center">
+            <Badge color="primary" badgeContent={this.state.groceryList.length} style = {{zIndex:"0"}}>
+                   <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>
+                      View Grocery List
+                    </Button>
+            </Badge>
+        </Grid>
+
         <Dialog
           open={this.state.open}
           TransitionComponent={Transition}
@@ -178,21 +225,22 @@ export default class Search extends React.Component {
           aria-labelledby="alert-dialog-slide-title"
           aria-describedby="alert-dialog-slide-description"
         >
-          <DialogTitle id="alert-dialog-slide-title">
+          <DialogTitle id="alert-dialog-slide-title" style = {{textAlign:"center",marginTop:"5%", padding:"0"}}>
             {"Your Grocery List"}
           </DialogTitle>
+          <Button color = "secondary" >Save List</Button>
           <DialogContent>
             <DialogContentText id="alert-dialog-slide-description">
                   <GroceryList list = {this.state.groceryList} remove = {this.removeFromList}/>
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="secondary">
+            <Button onClick={this.handleClose} color="primary">
               Close
             </Button>
             <Button
               onClick={this.handleClose}
-              color="secondary"
+              color="primary"
               component={Link}
               to={"/shoptimize/floormap"}
             >
