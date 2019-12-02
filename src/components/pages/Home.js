@@ -58,7 +58,6 @@ export default function LandingPage(props) {
               </h4>
               </div>
               <br />
-              <a href = "/shoptimize/floormap">WOW FLOOR MAP LINK </a>
               <Button
                 color="danger"
                 size="lg"
