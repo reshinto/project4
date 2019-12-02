@@ -22,5 +22,5 @@ export const tokenConfig = getState => {
   return config;
 };
 
-// export const db = "https://asia-northeast1-shoptimizeprime.cloudfunctions.net/api";
-export const db = "http://localhost:5000/shoptimizeprime/asia-northeast1/api"
+export const db = "https://asia-northeast1-shoptimizeprime.cloudfunctions.net/api";
+// export const db = "http://localhost:5000/shoptimizeprime/asia-northeast1/api"
