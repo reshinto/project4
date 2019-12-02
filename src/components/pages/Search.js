@@ -210,7 +210,7 @@ export default class Search extends React.Component {
         <br/>
         <Grid container
         justify="center">
-            <Badge color="primary" badgeContent={this.state.groceryList.length}>
+            <Badge color="primary" badgeContent={this.state.groceryList.length} style = {{zIndex:"0"}}>
                    <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>
                       View Grocery List
                     </Button>
