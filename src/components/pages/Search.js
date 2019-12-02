@@ -16,6 +16,7 @@ import Slide from '@material-ui/core/Slide';
 import {searchBackground} from '../search-components/search-style.js'
 import SearchBackground from '../search-components/grocery.jpg'
 import Badge from '@material-ui/core/Badge';
+import { Link } from "react-router-dom";
 
 const options = [
   { value: 'frozen', label: 'Frozen' },
@@ -189,7 +190,12 @@ export default class Search extends React.Component {
             <Button onClick={this.handleClose} color="secondary">
               Close
             </Button>
-            <Button onClick={this.handleClose} color="secondary">
+            <Button
+              onClick={this.handleClose}
+              color="secondary"
+              component={Link}
+              to={"/shoptimize/floormap"}
+            >
               Generate Map
             </Button>
           </DialogActions>
