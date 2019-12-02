@@ -29,6 +29,9 @@ class  ImgMediaCard extends React.Component {
 
  render(){
      const { classes } = this.props;
+
+     console.log('CARD PROPSSSSS')
+     console.log(this.props.image)
   return (
     <Card className={classes.card}>
       <CardActionArea>
@@ -37,7 +40,7 @@ class  ImgMediaCard extends React.Component {
           alt="Contemplative Reptile"
           className={classes.media}
           height="140"
-          image="https://live.staticflickr.com/4054/4533044319_6dbb0d7574_z.jpg"
+          image={this.props.image}
           title="Contemplative Reptile"
         />
         <CardContent>
