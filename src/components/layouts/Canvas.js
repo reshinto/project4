@@ -12,6 +12,7 @@ import {
   // getLastKey,
   getCategoryKeyArr,
   addConnections,
+  getCategoryEdgeKeys,
 } from "./LayoutUtilities";
 import WeightedGraph from "../../algorithms/WeightedGraph";
 import Dijkstra from "../../algorithms/Dijkstra";
@@ -92,6 +93,8 @@ class Canvas extends React.Component {
         this.fillColor(i, "green");
       } else if (g.wallArr[i] === 1) {
         this.fillColor(i, "grey");
+      } else if (g.wallArr[i] === 2) {
+        this.fillColor(i, "blue");
       }
     }
   }
@@ -106,19 +109,21 @@ class Canvas extends React.Component {
   }
 
   addCategory = (startKey, categoryWidth, categoryHeight) => {
-    const {tileSize} = this.state;
-    const catArr = getCategoryKeyArr(startKey, categoryWidth*tileSize, categoryHeight*tileSize);
-    console.log(catArr)
+    const catArr = getCategoryKeyArr(startKey, categoryWidth, categoryHeight);
+    const catEdgeArr = getCategoryEdgeKeys(startKey);
     for (let i=0; i<catArr.length; i++) {
-      g.wallArr[catArr[i]] = 5;
-      // this.fillColor(catArr[i], "green")
+      if (catEdgeArr.indexOf(catArr[i]) !== -1) {
+        g.wallArr[catArr[i]] = 2;
+      } else {
+        g.wallArr[catArr[i]] = 5;
+      }
     }
     // console.log(this.state.g.wallArr)
   }
 
   addMapCategories = () => {
-    this.addCategory(4, 1, 2);
-    this.addCategory(10, 1, 2);
+    this.addCategory(4, 3, 3);
+    // this.addCategory(10, 1, 2);
     // this.addCategory(55, 2, 1);
   }
 

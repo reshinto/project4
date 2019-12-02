@@ -3,13 +3,19 @@ import {
   mapWidth,
   mapHeight,
   totalWidthTiles,
-  totalHeightTiles
+  totalHeightTiles,
+  categoryWidthTiles,
+  categoryHeightTiles,
 } from "./Constants";
 
 const _tileSize = tileSize(totalWidthTiles);
 
-export const getPositionKey = (x, y) => {
-  return Math.floor(Number(x) / _tileSize) + Math.floor(Number(y) / _tileSize) * totalWidthTiles;
+export const getPositionKey = (x, y, coords=true, _totalWidthTiles=totalWidthTiles) => {
+  if (coords === true) {
+    return Math.floor(Number(x) / _tileSize) + Math.floor(Number(y) / _tileSize) * _totalWidthTiles;
+  } else {
+    return Number(x) + Number(y) * _totalWidthTiles;
+  }
 };
 
 export const getCoordinates = (key, actual=true) => {
@@ -56,13 +62,38 @@ export const getImageFile = (type) => {
 export const getCategoryKeyArr = (startKey, categoryWidth, categoryHeight) =>  {
   const categoryArr = [];
   const {x, y} = getCoordinates(startKey);
-  for (let i=x; i<x+categoryWidth; i=i+_tileSize) {
-    for (let j=y; j<y+categoryHeight; j=j+_tileSize) {
+  for (let i=x; i<x+categoryWidth*_tileSize; i=i+_tileSize) {
+    for (let j=y; j<y+categoryHeight*_tileSize; j=j+_tileSize) {
       const currentKey = getPositionKey(i, j);
       categoryArr.push(currentKey);
     }
   }
-  return categoryArr;
+  return categoryArr.sort((a, b) => a - b);
+}
+
+export const getCategoryEdgeKeys = (key) => {
+  const catArr = getCategoryKeyArr(key, 3, 3);
+  const tmpArr = [...Array(catArr.length).keys()];
+  const k = 0;  // current temp key
+  const lK = tmpArr.length - 1;  // temp last key
+  const rTK = categoryWidthTiles - 1;  // temp right top key
+  const lBK = lK - categoryWidthTiles + 1;  // temp left bottom key
+  const categoryEdgeArr = [];
+  // loop through the tmpArr to calculate the actual keys edges
+  for (let i=0; i<categoryWidthTiles; i++) {
+    for (let j=0; j<categoryHeightTiles; j++) {
+      const ck = getPositionKey(i, j, false, categoryWidthTiles);
+      if (ck === k || ck === rTK || ck === lK || ck === lBK ||
+        (ck > k && ck < rTK) ||
+        (ck !== rTK && ck !== lK && (ck + 1) % categoryWidthTiles === 0) ||
+        (ck > lBK && ck < lK) ||
+        (ck !== 0 && ck !== lBK && ck % categoryWidthTiles === 0)
+      ) {
+        categoryEdgeArr.push(catArr[ck]);
+      }
+    }
+  }
+  return categoryEdgeArr.sort((a, b) => a - b);
 }
 
 export const getBottomLeftTopRightCoords = () => {
