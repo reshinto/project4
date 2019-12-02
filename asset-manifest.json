@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/shoptimize/static/css/main.b100e6da.chunk.css",
-    "main.js": "/shoptimize/static/js/main.f46500b4.chunk.js",
-    "main.js.map": "/shoptimize/static/js/main.f46500b4.chunk.js.map",
+    "main.js": "/shoptimize/static/js/main.ad5e9074.chunk.js",
+    "main.js.map": "/shoptimize/static/js/main.ad5e9074.chunk.js.map",
     "runtime-main.js": "/shoptimize/static/js/runtime-main.cefc62b6.js",
     "runtime-main.js.map": "/shoptimize/static/js/runtime-main.cefc62b6.js.map",
     "static/js/2.c6913541.chunk.js": "/shoptimize/static/js/2.c6913541.chunk.js",
     "static/js/2.c6913541.chunk.js.map": "/shoptimize/static/js/2.c6913541.chunk.js.map",
     "index.html": "/shoptimize/index.html",
-    "precache-manifest.12429eaca783ae9bf4a7b389cfcf18d7.js": "/shoptimize/precache-manifest.12429eaca783ae9bf4a7b389cfcf18d7.js",
+    "precache-manifest.7177ada7c20948ed20311688284845c8.js": "/shoptimize/precache-manifest.7177ada7c20948ed20311688284845c8.js",
     "service-worker.js": "/shoptimize/service-worker.js",
     "static/css/main.b100e6da.chunk.css.map": "/shoptimize/static/css/main.b100e6da.chunk.css.map",
     "static/media/grocery.jpg": "/shoptimize/static/media/grocery.66a58bd9.jpg"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.cefc62b6.js",
     "static/js/2.c6913541.chunk.js",
     "static/css/main.b100e6da.chunk.css",
-    "static/js/main.f46500b4.chunk.js"
+    "static/js/main.ad5e9074.chunk.js"
   ]
 }
