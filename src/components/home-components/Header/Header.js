@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import Hidden from "@material-ui/core/Hidden";
 import Drawer from "@material-ui/core/Drawer";
 import LogIn from "../FormDialog/Login.js";
+import Register from "../FormDialog/Register.js";
 
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
@@ -93,6 +94,8 @@ function Header(props) {
             Log out
           </Button>
         )}
+
+    <Register/>
       </Toolbar>
 
     </AppBar>

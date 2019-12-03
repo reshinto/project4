@@ -18,10 +18,21 @@ export default class ResultsItem extends React.Component{
 
         if (this.props.itemFilter!=null){
 
+            let itemImage;
+
+
             itemItems = this.props.itemFilter.map((item,index)=>{
+
+
+                for (let i=0;i<this.props.allData.length;i++){
+
+                    if (item.value === this.props.allData[i].name){
+                        itemImage = this.props.allData[i].img
+                    }
+                }
                 return (<div key={index} style = {{marginRight:10, marginTop:10}}>
 
-                <ImgMediaCard item = {item.value} onClick = {this.props.list}/>
+                <ImgMediaCard item = {item.value} image = {itemImage} onClick = {this.props.list}/>
 
                     </div>
                 )
@@ -34,12 +45,9 @@ export default class ResultsItem extends React.Component{
 
 
         return( <div>
-         <Grid container justify="center">
-
-                {itemItems}
-
-
-        </Grid>
+             <Grid container justify="center">
+                    {itemItems}
+            </Grid>
         </div>
         )
     }
