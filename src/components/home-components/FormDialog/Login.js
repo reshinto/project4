@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import Button from '../CustomButtons/Button.js'
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -50,7 +50,7 @@ class LogIn extends React.Component {
     const { email, password } = this.state;
     return (
       <div>
-        <Button variant="outlined" color="secondary" onClick={this.handleClickOpen}>
+        <Button variant="contained" color="danger" onClick={this.handleClickOpen} round>
           Log in
         </Button>
         <Dialog

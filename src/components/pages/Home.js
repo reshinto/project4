@@ -18,6 +18,7 @@ import HeaderLinks from "../home-components/Header/HeaderLinks.js";
 import Parallax from "../home-components/Parallax/Parallax.js";
 import Register from "../home-components/FormDialog/Register.js";
 
+
 import styles from "../../assets/jss/material-kit-react/views/landingPage.js";
 
 // Sections for this page
@@ -69,13 +70,15 @@ export default function LandingPage(props) {
 
                 Create Grocery List
               </Button>
-               <Register/>
+
             </GridItem>
           </GridContainer>
         </div>
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
+
+
 
           <TeamSection />
 

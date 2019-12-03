@@ -16,7 +16,18 @@ import Slide from '@material-ui/core/Slide';
 import {searchBackground} from '../search-components/search-style.js'
 import SearchBackground from '../search-components/grocery.jpg'
 import Badge from '@material-ui/core/Badge';
+
 import { Link } from "react-router-dom";
+
+import {
+  grayColor,
+  roseColor,
+  primaryColor,
+  infoColor,
+  successColor,
+  warningColor,
+  dangerColor
+} from "../../assets/jss/material-kit-react.js";
 
 const options = [
   { value: 'frozen', label: 'Frozen' },
@@ -241,7 +252,7 @@ export default class Search extends React.Component {
         <div style = {{padding:"5%", backgroundColor:"rgba(255,255,255,0.7)"}} >
 
 
-                <h3 style = {{color:"rgb(72,66,184)"}}>Search by Item</h3>
+                <h3 style = {{color:"rgb(156, 39, 176)"}}>Search by Item</h3>
               <Select
                 value={selectedItemOption}
                 onChange={this.handleItemChange}
@@ -254,7 +265,7 @@ export default class Search extends React.Component {
         <ResultsItem allData = {singleArrayItems} itemFilter = {this.state.selectedItemOption} list = {this.addToList}/>
 
 
-                <h3 style = {{color:"rgb(72,66,184)"}}>Search by Category</h3>
+                <h3 style = {{color:"rgb(156, 39, 176)"}}>Search by Category</h3>
                   <Select
                 value={selectedCategoryOption}
                 onChange={this.handleCategoryChange}
@@ -266,7 +277,7 @@ export default class Search extends React.Component {
       style = {{borderTop:"1px solid black"}}>
 
           <Grid item xs={6}>
-            <h3 style = {{color:"rgb(72,66,184)"}}>Select Store</h3>
+            <h3 style = {{color:"rgb(156, 39, 176)"}}>Select Store</h3>
                 <Select
                     value={selectedLayoutOption}
                     onChange={this.handleLayoutChange}
@@ -275,7 +286,7 @@ export default class Search extends React.Component {
             </Grid>
 
             <Grid item xs={6}>
-            <h3 style = {{color:"rgb(72,66,184)"}}>Select Location</h3>
+            <h3 style = {{color:"rgb(156, 39, 176)"}}>Select Location</h3>
                 <Select
                     value={selectedLocationOption}
                     onChange={this.handleLocationChange}
