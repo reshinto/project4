@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import ImgMediaCard from './card.js'
+import ImgMediaCardItem from './cardItem.js'
 
 export default class ResultsItem extends React.Component{
 
@@ -32,7 +32,7 @@ export default class ResultsItem extends React.Component{
                 }
                 return (<div key={index} style = {{marginRight:10, marginTop:10}}>
 
-                <ImgMediaCard item = {item.value} image = {itemImage} onClick = {this.props.list}/>
+                <ImgMediaCardItem item = {item.value} image = {itemImage} onClick = {this.props.list}/>
 
                     </div>
                 )
