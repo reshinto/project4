@@ -4,6 +4,7 @@ import PrivateRoute from "./PrivateRoute";
 import Home from "../pages/Home";
 import Search from "../pages/Search";
 import Floormap from "../pages/Floormap";
+import StoreLayout from "../pages/StoreLayout"
 
 // project name
 const pn = "shoptimize"
@@ -13,7 +14,7 @@ const BaseRouter = () => (
   <Route exact path="/" component={Home} />
   <Route exact path={`/${pn}/search`} component={Search} />
   <Route exact path={`/${pn}`} component={Home} />
-  <Route exact path={`/${pn}/floormap`} component={Floormap} />
+  <Route exact path={`/${pn}/floormap`} component={StoreLayout} />
     {/*<PrivateRoute exact path="/profile" component={Profile} />*/}
   </>
 );
