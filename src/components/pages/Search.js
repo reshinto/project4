@@ -16,18 +16,11 @@ import Slide from '@material-ui/core/Slide';
 import {searchBackground} from '../search-components/search-style.js'
 import SearchBackground from '../search-components/grocery.jpg'
 import Badge from '@material-ui/core/Badge';
+// import Badge from 'components/Badge/Badge.js';
 
 import { Link } from "react-router-dom";
 
-import {
-  grayColor,
-  roseColor,
-  primaryColor,
-  infoColor,
-  successColor,
-  warningColor,
-  dangerColor
-} from "../../assets/jss/material-kit-react.js";
+import badgeStyle from "../../assets/jss/material-kit-react/components/badgeStyle.js"
 
 const options = [
   { value: 'frozen', label: 'Frozen' },
@@ -79,7 +72,7 @@ const allItems =
                             img: "https://placekitten.com/400/300"
                             },
                             {name:"watermelons",
-                            img: "../search-components/watermelon.png"
+                            img: "https://media1.tenor.com/images/20a169a15eee8f97fdb0e540bacb5cbd/tenor.gif?itemid=14510497"
                             }
                        ]
                     },
@@ -298,7 +291,8 @@ export default class Search extends React.Component {
         <br/>
         <Grid container
         justify="center">
-            <Badge color="primary" badgeContent={this.state.groceryList.length} style = {{zIndex:"0"}}>
+            <Badge color = "primary"
+            badgeContent={this.state.groceryList.length} style = {{zIndex:"0"}}>
                    <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>
                       View Grocery List
                     </Button>

@@ -20,7 +20,7 @@ const styles = {
 };
 
 
-class  ImgMediaCard extends React.Component {
+class  ImgMediaCardItem extends React.Component {
 
      clickHandler(event){
             console.log(event)
@@ -31,7 +31,7 @@ class  ImgMediaCard extends React.Component {
      const { classes } = this.props;
 
      console.log('CARD PROPSSSSS')
-     console.log(this.props.image)
+     console.log(this.props)
   return (
     <Card className={classes.card}>
       <CardActionArea>
@@ -60,8 +60,8 @@ class  ImgMediaCard extends React.Component {
   }
 }
 
-ImgMediaCard.propTypes = {
+ImgMediaCardItem.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ImgMediaCard);
+export default withStyles(styles)(ImgMediaCardItem);
