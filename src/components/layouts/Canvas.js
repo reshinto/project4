@@ -1,13 +1,11 @@
 import React from "react";
 import {
   totalWidthTiles,
-  totalHeightTiles,
   mapWidth,
   mapHeight,
   tileSize,
   categoryMaps,
-  categoryKeyArr,
-  totalPath,
+  shoppingListArr,
 } from "./Constants";
 import {
   // getImageFile,
@@ -17,6 +15,7 @@ import {
   addConnections,
   getCategoryEdgeKeys,
 } from "./LayoutUtilities";
+import * as _map from "./GenerateLayout";
 import WeightedGraph from "../../algorithms/WeightedGraph";
 import Dijkstra from "../../algorithms/Dijkstra";
 
@@ -44,10 +43,11 @@ class Canvas extends React.Component {
     ctx = canvas.getContext("2d");
     g = new WeightedGraph();
     this.addMapCategories();
+    // this.addRandomCategories();
     this.drawLayout();
     this.linkConnections();
-    const path = Dijkstra(0, categoryKeyArr, g);
-    this.animatePath(totalPath);
+    const path = Dijkstra(0, shoppingListArr, g);
+    this.animatePath(path);
     // window.addEventListener("resize", this.updateDimensions);
   }
 
@@ -103,7 +103,8 @@ class Canvas extends React.Component {
         this.fillColor(i, "#116466");
         // category
       } else if (g.wallArr[i] === 2) {
-        this.fillColor(i, "#D9B08C");
+        // this.fillColor(i, "#D9B08C");
+        this.fillColor(i, "#116466");
       }
     }
   }
@@ -126,7 +127,6 @@ class Canvas extends React.Component {
         g.wallArr[catArr[i]] = 5;
       }
     }
-    // console.log(categoryMaps)
   }
 
   getRandomKey = () => {
@@ -134,26 +134,44 @@ class Canvas extends React.Component {
   }
 
   addMapCategories = () => {
-    for (let i=0; i<8; i++) {
-      const newKey = this.getRandomKey();
-      categoryKeyArr.push(String(newKey));
+    const map = _map.map7;
+    for (let i=0; i<map.length; i++) {
+      this.addCategory(map[i].key, map[i].w, map[i].h, map[i].name);
     }
-    categoryKeyArr.push(String(getLastKey()));
-    console.log(categoryKeyArr);
-    this.addCategory(Number(categoryKeyArr[0]), 5, 17, "fruits");
-    this.addCategory(Number(categoryKeyArr[1]), 5, 12, "vegetables");
-    this.addCategory(Number(categoryKeyArr[2]), 5, 17, "meats");
-    this.addCategory(Number(categoryKeyArr[3]), 6, 14, "frozen food");
-    this.addCategory(Number(categoryKeyArr[4]), 7, 12, "japanese");
-    this.addCategory(Number(categoryKeyArr[5]), 5, 12, "french");
-    this.addCategory(Number(categoryKeyArr[6]), 12, 7, "can foods");
-    this.addCategory(Number(categoryKeyArr[7]), 7, 4, "lala land");
+    this.addShoppingList(map);
+  }
+
+  addShoppingList = (map) => {
+    const list = [7579, 5239, 2115, 4409, 3665];
+    for (let i=0; i<list.length -1; i++) {
+      // shoppingListArr.push(String(map[Math.floor(Math.random() * map.length)].key));
+      shoppingListArr.push(String(list[i]));
+    }
+    shoppingListArr.push(String(getLastKey()));
+  }
+
+  addRandomCategories = () => {
+    const totalCategories = 25
+    for (let i=0; i<totalCategories; i++) {
+      const newKey = this.getRandomKey();
+      shoppingListArr.push(String(newKey));
+    }
+    for (let i=0; i<totalCategories; i++) {
+      this.addCategory(shoppingListArr[i], Math.ceil(Math.random() * 10) + 3, Math.ceil(Math.random() * 10) + 3, "random");
+    }
+    shoppingListArr.push(String(getLastKey()));
   }
 
   animatePath = (path) => {
     for (let i=0; i<path.length; i++) {
       ((i) => {
-        setTimeout(() => this.fillColor(path[i], "#D1E8E2"), 10 * i)
+        setTimeout(() => {
+          if (shoppingListArr.indexOf(path[i]) !== -1) {
+            return this.fillColor(path[i], "red");
+          } else {
+            return this.fillColor(path[i], "#D1E8E2");
+          }
+        }, 1 * i)
       })(i)
     }
   }
