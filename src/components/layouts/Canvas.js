@@ -134,7 +134,7 @@ class Canvas extends React.Component {
   }
 
   addMapCategories = () => {
-    const map = _map.map7;
+    const map = _map.map2;
     for (let i=0; i<map.length; i++) {
       this.addCategory(map[i].key, map[i].w, map[i].h, map[i].name);
     }
@@ -142,8 +142,9 @@ class Canvas extends React.Component {
   }
 
   addShoppingList = (map) => {
-    const list = [7579, 5239, 2115, 4409, 3665];
-    for (let i=0; i<list.length -1; i++) {
+    // const list = [7579, 5239, 2115, 4409, 3665];
+    const list = [5420, 6420, 6065, 7579, 2115];
+    for (let i=0; i<list.length; i++) {
       // shoppingListArr.push(String(map[Math.floor(Math.random() * map.length)].key));
       shoppingListArr.push(String(list[i]));
     }
