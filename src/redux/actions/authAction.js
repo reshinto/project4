@@ -8,6 +8,7 @@ export const login = (userData) => (dispatch) => {
     .post(`${db}/login`, userData)
     .then((res) => {
       setAuthorizationHeader(res.data.token);
+      dispatch({ type: actionTypes.SET_AUTHENTICATED });
       // dispatch(getUserData());
       dispatch({ type: actionTypes.CLEAR_ERRORS });
     })
@@ -33,6 +34,7 @@ export const signup = (newUserData) => (dispatch) => {
     .then((res) => {
       console.log(res)
       setAuthorizationHeader(res.data.token);
+      dispatch({ type: actionTypes.SET_AUTHENTICATED });
       // dispatch(getUserData());
       dispatch({ type: actionTypes.CLEAR_ERRORS });
     })

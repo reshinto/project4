@@ -67,6 +67,7 @@ function Header(props) {
     [classes.fixed]: fixed
   });
   const brandComponent = <Button className={classes.title}>{brand}</Button>;
+  console.log(props.authenticated)
   return (
     <AppBar className={appBarClasses}>
       <Toolbar className={classes.container}>
@@ -81,7 +82,7 @@ function Header(props) {
           )}
         </div>
 
-        {localStorage.getItem('FBIdToken') === null ? (
+        {props.authenticated === false ? (
           <LogIn/>
         ) : (
           <Button
@@ -141,8 +142,17 @@ Header.propTypes = {
   })
 };
 
+const mapStateToProps = state => {
+  return {
+    authenticated: state.authReducer.authenticated,
+  };
+};
+
+
 const mapDispatchToProps = {
   logout
 }
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps,
+  mapDispatchToProps
+)(Header);
