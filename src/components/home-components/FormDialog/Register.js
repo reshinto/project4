@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import Button from '../CustomButtons/Button.js'
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -53,9 +53,11 @@ class Register extends React.Component {
     const { username, email, password } = this.state;
     return (
       <div>
-        <Button color="danger"
-                size="lg"
-                onClick={this.handleClickOpen}>
+        <Button
+                variant = "outlined"
+                color="primary"
+                onClick={this.handleClickOpen}
+                round>
           Register
         </Button>
         <Dialog

@@ -4,6 +4,10 @@ import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
+import One from "./wizard.gif"
+import Two from "./sad.gif"
+import Three from "./pizza.gif"
+
 // @material-ui/icons
 
 // core components
@@ -13,6 +17,7 @@ import Button from "../CustomButtons/Button.js";
 import Card from "../Card/Card.js";
 import CardBody from "../Card/CardBody.js";
 import CardFooter from "../Card/CardFooter.js";
+import CardQuote from "../Card/CardQuote.js"
 
 import styles from "../../../assets/jss/material-kit-react/views/landingPageSections/teamStyle.js";
 
@@ -31,18 +36,20 @@ export default function TeamSection() {
   );
   return (
     <div className={classes.section}>
-      <h2 className={classes.title}>WOW LOOK MORE INTERESTING STUFF BELOW</h2>
+      <h2 className={classes.title}>`WOW LOOK MORE INTERESTING STUFF BELOW`</h2>
+      <br/>
+       <CardQuote/>
       <div>
         <GridContainer>
           <GridItem xs={12} sm={12} md={4}>
             <Card plain>
               <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
-                <img src="https://images2.minutemediacdn.com/image/upload/c_crop,h_1193,w_2121,x_0,y_64/f_auto,q_auto,w_1100/v1565279671/shape/mentalfloss/578211-gettyimages-542930526.jpg" alt="..." className={imageClasses} />
+                <img src={One} alt="..." className={imageClasses} />
               </GridItem>
               <h4 className={classes.cardTitle}>
-                Gigi Hadid
+                TK
                 <br />
-                <small className={classes.smallTitle}>Model</small>
+                <small className={classes.smallTitle}>Resident Wizard</small>
               </h4>
               <CardBody>
                 <p className={classes.description}>
@@ -80,12 +87,12 @@ export default function TeamSection() {
           <GridItem xs={12} sm={12} md={4}>
             <Card plain>
               <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
-                <img src="https://images2.minutemediacdn.com/image/upload/c_crop,h_1193,w_2121,x_0,y_64/f_auto,q_auto,w_1100/v1565279671/shape/mentalfloss/578211-gettyimages-542930526.jpg" alt="..." className={imageClasses} />
+                <img src={Two} alt="..." className={imageClasses} />
               </GridItem>
               <h4 className={classes.cardTitle}>
-                Christian Louboutin
+                JN
                 <br />
-                <small className={classes.smallTitle}>Designer</small>
+                <small className={classes.smallTitle}>Cat-person</small>
               </h4>
               <CardBody>
                 <p className={classes.description}>
@@ -116,12 +123,12 @@ export default function TeamSection() {
           <GridItem xs={12} sm={12} md={4}>
             <Card plain>
               <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
-                <img src="https://images2.minutemediacdn.com/image/upload/c_crop,h_1193,w_2121,x_0,y_64/f_auto,q_auto,w_1100/v1565279671/shape/mentalfloss/578211-gettyimages-542930526.jpg" alt="..." className={imageClasses} />
+                <img src={Three} alt="..." className={imageClasses} />
               </GridItem>
               <h4 className={classes.cardTitle}>
-                Kendall Jenner
+                GT
                 <br />
-                <small className={classes.smallTitle}>Model</small>
+                <small className={classes.smallTitle}>Most Well-rested</small>
               </h4>
               <CardBody>
                 <p className={classes.description}>

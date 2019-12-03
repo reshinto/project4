@@ -1,5 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import ImgMediaCard from './card.js'
 
 export default class ResultsCategory extends React.Component{
 
@@ -14,32 +15,34 @@ export default class ResultsCategory extends React.Component{
         let categoryItems;
         let itemItems
         let category;
-          console.log('HELLO PROPS')
 
-        console.log(this.props.itemFilter)//array of objects
 
         if (this.props.category!=null){
             category = this.props.category.value
+             let itemImage;
 
             console.log(category)
             console.log(this.props.allData)
 
-            categoryItems = this.props.allData[category]["items"].map((item,index)=>{return <div key={index} style = {{marginTop:10}}><li>{item} <button value = {item} onClick = {(event)=>{this.clickHandler(event)}}>Add to list</button></li></div>})
+            categoryItems = this.props.allData[category]["items"].map((item,index)=>{
+                itemImage = item.img
+                return (<div key={index} style = {{marginRight:10, marginTop:10}}>
+
+                <ImgMediaCard item = {item.value} image = {itemImage} onClick = {this.props.list}/>
+
+                    </div>
+                )
+            })
 
 
 
             }
 
 
-        return( <div>
-         <Grid container>
-
-            <ul>
-                {categoryItems}
-            </ul>
-
-
-        </Grid>
+        return ( <div>
+             <Grid container justify = "center">
+                    {categoryItems}
+            </Grid>
         </div>
         )
     }

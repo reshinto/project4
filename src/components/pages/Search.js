@@ -16,7 +16,18 @@ import Slide from '@material-ui/core/Slide';
 import {searchBackground} from '../search-components/search-style.js'
 import SearchBackground from '../search-components/grocery.jpg'
 import Badge from '@material-ui/core/Badge';
+
 import { Link } from "react-router-dom";
+
+import {
+  grayColor,
+  roseColor,
+  primaryColor,
+  infoColor,
+  successColor,
+  warningColor,
+  dangerColor
+} from "../../assets/jss/material-kit-react.js";
 
 const options = [
   { value: 'frozen', label: 'Frozen' },
@@ -34,25 +45,101 @@ const allItems =
                 {
                     "frozen": {
                         "aisle":1,
-                        "items":["fish","dumplings", "pizza","prata","ice cream"]
+                        "items":[
+                            {name:"fish",
+                            img: "../search-components/apples.png"
+                            },
+                            {name:"dumplings",
+                            img: "../search-components/apples.png"
+                            },
+                            {name:"pizza",
+                            img: "../search-components/apples.png"
+                            },
+                            {name:"prata",
+                            img: "../search-components/prata.png"
+                            },
+                            {name:"ice cream",
+                            img: "../search-components/watermelon.png"
+                            }]
                     },
 
                      "fruits": {
                         "aisle": 2,
-                        "items":["apples", "pears","blueberries","strawberries","watermelon"]
+                        "items":[
+                            {name:"apples",
+                            img: "https://i1.wp.com/4f7bg01yl3z03jojs41hgo8k-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/HF160920_Global_Blog_All_About_Apples_15_low.jpg?ssl=1"
+                            },
+                            {name:"pears",
+                            img: "https://placekitten.com/400/300"
+                            },
+                            {name:"blueberries",
+                            img: "https://placekitten.com/400/300"
+                            },
+                            {name:"strawberries",
+                            img: "https://placekitten.com/400/300"
+                            },
+                            {name:"watermelons",
+                            img: "../search-components/watermelon.png"
+                            }
+                       ]
                     },
 
                     "vegetables": {
                         "aisle": 3,
-                        "items":["cucumbers","carrots", "onions", "capsicum","celery"]
+                        "items":[
+                            {name:"cucumbers",
+                            img: "../search-components/apples.png"
+                            },
+                            {name:"carrots",
+                            img: "../search-components/apples.png"
+                            },
+                            {name:"onions",
+                            img: "../search-components/apples.png"
+                            },
+                            {name:"capsicum",
+                            img: "../search-components/strawberries.png"
+                            },
+                            {name:"celery",
+                            img: "../search-components/watermelon.png"
+                            }]
                     },
                     "snacks and candy":{
                         "aisle":4,
-                        "items":["chocolate bars","potato chips","nuts", "gummies", "seaweed"]
+                        "items":[
+                            {name:"chocolate bars",
+                            img: "../search-components/apples.png"
+                            },
+                            {name:"potato chips",
+                            img: "../search-components/apples.png"
+                            },
+                            {name:"nuts",
+                            img: "../search-components/apples.png"
+                            },
+                            {name:"gummies",
+                            img: "../search-components/strawberries.png"
+                            },
+                            {name:"seaweed",
+                            img: "../search-components/watermelon.png"
+                            }]
                     },
                     "baking needs": {
                         "aisle":5,
-                        "items": ["flour", "baking chocolate", "icing", "baking soda", "pancake mix"]
+                        "items": [
+                            {name:"flour",
+                            img: "../search-components/apples.png"
+                            },
+                            {name:"baking chocolate",
+                            img: "../search-components/apples.png"
+                            },
+                            {name:"icing",
+                            img: "../search-components/apples.png"
+                            },
+                            {name:"baking soda",
+                            img: "../search-components/strawberries.png"
+                            },
+                            {name:"pancake mix",
+                            img: "../search-components/watermelon.png"
+                            }]
                     }
 
                 }
@@ -69,8 +156,8 @@ const allItems =
 
     let itemsObject = singleArrayItems.map(item=>{
         const container = {}
-        container.value = item
-        container.label = item.charAt(0).toUpperCase() + item.slice(1)
+        container.value = item.name
+        container.label = item.name.charAt(0).toUpperCase() + item.name.slice(1)
         return container
     })
 
@@ -157,14 +244,15 @@ export default class Search extends React.Component {
     const { selectedItemOption } = this.state;
     const { selectedLayoutOption } = this.state;
     const { selectedLocationOption } = this.state;
-    console.log(this.state)
+    console.log('HELLO ARRAYYYY')
+    console.log(singleArrayItems)
 
     return (
         <div style = {{padding:"5%", backgroundImage: `url(${SearchBackground})`, backgroundSize: "cover", filter: 'blur (5px)', minHeight: 800}}>
         <div style = {{padding:"5%", backgroundColor:"rgba(255,255,255,0.7)"}} >
 
 
-                <h3 style = {{color:"rgb(72,66,184)"}}>Search by Item</h3>
+                <h3 style = {{color:"rgb(156, 39, 176)"}}>Search by Item</h3>
               <Select
                 value={selectedItemOption}
                 onChange={this.handleItemChange}
@@ -174,10 +262,10 @@ export default class Search extends React.Component {
                 classNamePrefix="select"
               />
 
-        <ResultsItem allData = {allItems} itemFilter = {this.state.selectedItemOption} list = {this.addToList}/>
+        <ResultsItem allData = {singleArrayItems} itemFilter = {this.state.selectedItemOption} list = {this.addToList}/>
 
 
-                <h3 style = {{color:"rgb(72,66,184)"}}>Search by Category</h3>
+                <h3 style = {{color:"rgb(156, 39, 176)"}}>Search by Category</h3>
                   <Select
                 value={selectedCategoryOption}
                 onChange={this.handleCategoryChange}
@@ -189,7 +277,7 @@ export default class Search extends React.Component {
       style = {{borderTop:"1px solid black"}}>
 
           <Grid item xs={6}>
-            <h3 style = {{color:"rgb(72,66,184)"}}>Select Store</h3>
+            <h3 style = {{color:"rgb(156, 39, 176)"}}>Select Store</h3>
                 <Select
                     value={selectedLayoutOption}
                     onChange={this.handleLayoutChange}
@@ -198,7 +286,7 @@ export default class Search extends React.Component {
             </Grid>
 
             <Grid item xs={6}>
-            <h3 style = {{color:"rgb(72,66,184)"}}>Select Location</h3>
+            <h3 style = {{color:"rgb(156, 39, 176)"}}>Select Location</h3>
                 <Select
                     value={selectedLocationOption}
                     onChange={this.handleLocationChange}
