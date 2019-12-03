@@ -20,7 +20,21 @@ import Badge from '@material-ui/core/Badge';
 
 import { Link } from "react-router-dom";
 
+ 
 import badgeStyle from "../../assets/jss/material-kit-react/components/badgeStyle.js"
+
+import { connect } from 'react-redux';
+
+import {
+  grayColor,
+  roseColor,
+  primaryColor,
+  infoColor,
+  successColor,
+  warningColor,
+  dangerColor
+} from "../../assets/jss/material-kit-react.js";
+
 
 const options = [
   { value: 'frozen', label: 'Frozen' },
@@ -159,7 +173,7 @@ function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
 
-export default class Search extends React.Component {
+class Search extends React.Component {
 
     constructor(){
         super()
@@ -310,7 +324,9 @@ export default class Search extends React.Component {
           <DialogTitle id="alert-dialog-slide-title" style = {{textAlign:"center",marginTop:"5%", padding:"0"}}>
             {"Your Grocery List"}
           </DialogTitle>
-          <Button color = "secondary" >Save List</Button>
+          {this.props.authenticated ? (
+            <Button color = "secondary" >Save List</Button>
+          ) : ""}
           <DialogContent>
             <DialogContentText id="alert-dialog-slide-description">
                   <GroceryList list = {this.state.groceryList} remove = {this.removeFromList}/>
@@ -335,3 +351,14 @@ export default class Search extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    authenticated: state.authReducer.authenticated,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(Search);
