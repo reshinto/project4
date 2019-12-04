@@ -19,7 +19,7 @@ import Badge from '@material-ui/core/Badge';
 // import Badge from 'components/Badge/Badge.js';
 
 import { Link } from "react-router-dom";
-
+import { setGroceryList } from "../../redux/actions/mapAction";
 
 import badgeStyle from "../../assets/jss/material-kit-react/components/badgeStyle.js"
 
@@ -175,21 +175,26 @@ function Transition(props) {
 
 class Search extends React.Component {
 
-    constructor(){
-        super()
-          this.state = {
-            selectedCategoryOption: null,
-            selectedItemOption:null,
-            selectedLayoutOption:null,
-            selectedLocationOption:null,
-            groceryList: [],
-            open:false
-          };
+  constructor(){
+    super()
+      this.state = {
+        selectedCategoryOption: null,
+        selectedItemOption:null,
+        selectedLayoutOption:null,
+        selectedLocationOption:null,
+        groceryList: [],
+        open:false
+      };
 
-        this.addToList = this.addToList.bind(this)
-        this.removeFromList = this.removeFromList.bind(this)
+    this.addToList = this.addToList.bind(this)
+    this.removeFromList = this.removeFromList.bind(this)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.groceryList.length !== prevState.groceryList.length) {
+      this.props.setGroceryList(this.state.groceryList);
     }
-
+  }
 
   handleClickOpen = () => {
     this.setState({ open: true });
@@ -253,6 +258,11 @@ class Search extends React.Component {
     const { selectedLocationOption } = this.state;
     console.log('HELLO ARRAYYYY')
     console.log(singleArrayItems)
+    console.log("groceryList", this.state.groceryList)
+    console.log("categoryOption", this.state.selectedCategoryOption)
+    console.log("itemOption", this.state.selectedItemOption)
+    console.log("layoutOption", this.state.selectedLayoutOption)
+    console.log("locationOption", this.state.selectedLocationOption)
 
     return (
 
@@ -358,7 +368,14 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    setGroceryList: list => dispatch(setGroceryList(list)),
+  };
+};
+
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(Search);
