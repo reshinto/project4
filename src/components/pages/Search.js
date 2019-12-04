@@ -182,7 +182,7 @@ const allItems =
 
     let itemsObject = singleArrayItems.map(item=>{
         const container = {}
-        container.value = item.name
+        container.name = item.name
         container.category = item.category
         container.label = item.name.charAt(0).toUpperCase() + item.name.slice(1)
         return container

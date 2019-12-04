@@ -47,7 +47,7 @@ class  ImgMediaCardItem extends React.Component {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {this.props.item.value}
+            {this.props.item.name}
           </Typography>
 
         </CardContent>

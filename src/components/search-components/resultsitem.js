@@ -26,7 +26,7 @@ export default class ResultsItem extends React.Component{
 
                 for (let i=0;i<this.props.allData.length;i++){
 
-                    if (item.value === this.props.allData[i].name){
+                    if (item.name === this.props.allData[i].name){
                         itemImage = this.props.allData[i].img
                     }
                 }
