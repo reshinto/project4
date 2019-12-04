@@ -4,7 +4,6 @@ import {
   mapWidth,
   mapHeight,
   tileSize,
-  categoryMaps,
   shoppingListArr,
 } from "./Constants";
 import {
@@ -49,22 +48,13 @@ class Canvas extends React.Component {
     this.drawLayout();
     this.linkConnections();
     const path = Dijkstra(0, shoppingListArr, g);
-    const direction = [];
-    // for (let i=0; i<path.length; i++) {
-    //   if (categoryMaps[path[i]] !== undefined) {
-    //     if (categoryMaps[path[i]] !== "") {
-    //       console.log("filtered", categoryMaps[path[i]])
-    //       direction.push(categoryMaps[path[i]]);
-    //     }
-    //   }
-    // }
-    // console.log(direction)
+    this.getDirections(path);
     this.animatePath(path);
     // window.addEventListener("resize", this.updateDimensions);
   }
 
   componentWillUnmount() {
-
+    // ctx.clearRect(0, 0, )
   }
 
   setStateAsync(state) {
@@ -138,9 +128,6 @@ class Canvas extends React.Component {
     for (let i=0; i<catArr.length; i++) {
       if (catEdgeArr.indexOf(catArr[i]) !== -1) {
         g.wallArr[catArr[i]] = 2;
-        if (categoryMaps[catArr[i]] !== name) {
-          categoryMaps[catArr[i]] = name;
-        }
       } else {
         g.wallArr[catArr[i]] = 5;
       }
@@ -155,14 +142,15 @@ class Canvas extends React.Component {
     const {name: mapType} = this.props.mapType;
     if (mapType !== undefined) {
       const map = _map[mapType];
-      for (let i=0; i<map.length; i++) {
-        this.addCategory(map[i].key, map[i].w, map[i].h, map[i].name);
+      const mapArr = Object.keys(map);
+      for (let i=0; i<mapArr.length; i++) {
+        this.addCategory(mapArr[i], map[Number(mapArr[i])].w, map[Number(mapArr[i])].h, map[Number(mapArr[i])].name);
       }
-      this.addShoppingList(map);
+      this.addShoppingList();
     }
   }
 
-  addShoppingList = (map) => {
+  addShoppingList = () => {
     const {category} = this.props.mapType;
     const {groceryList} = this.props;
     for (let i=0; i<groceryList.length; i++) {
@@ -186,12 +174,12 @@ class Canvas extends React.Component {
   // }
 
   animatePath = (path) => {
-    console.log(categoryMaps)
     for (let i=0; i<path.length; i++) {
       ((i) => {
         setTimeout(() => {
           if (shoppingListArr.indexOf(path[i]) !== -1) {
-            console.log(categoryMaps[path[i]])
+            const {name: mapType} = this.props.mapType;
+            const map = _map[mapType];
             return this.fillColor(path[i], "red");
           } else {
             return this.fillColor(path[i], "#D1E8E2");
@@ -201,9 +189,22 @@ class Canvas extends React.Component {
     }
   }
 
+  getDirections = (path) => {
+    const directions = [];
+    for (let i=0; i<path.length; i++) {
+      if (shoppingListArr.indexOf(path[i]) !== -1) {
+        const {name: mapType} = this.props.mapType;
+        const map = _map[mapType];
+        directions.push(map[path[i]].name);
+      }
+    }
+    const uniqueDirections = [...new Set(directions)];
+    console.log(directions)
+    console.log(uniqueDirections);
+    return uniqueDirections;
+  }
+
   render() {
-    console.log("groceryList in canvas", this.props.groceryList)
-    console.log("map name", this.props.mapType)
     return (
       <div style={style.root}>
         <canvas
