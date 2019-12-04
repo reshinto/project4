@@ -20,7 +20,7 @@ import Badge from '@material-ui/core/Badge';
 
 import { Link } from "react-router-dom";
 
- 
+
 import badgeStyle from "../../assets/jss/material-kit-react/components/badgeStyle.js"
 
 import { connect } from 'react-redux';
@@ -255,7 +255,7 @@ class Search extends React.Component {
     console.log(singleArrayItems)
 
     return (
-        <div style = {{padding:"5%", backgroundImage: `url(${SearchBackground})`, backgroundSize: "cover", filter: 'blur (5px)', minHeight: 800}}>
+
         <div style = {{padding:"5%", backgroundColor:"rgba(255,255,255,0.7)"}} >
 
 
@@ -346,7 +346,7 @@ class Search extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
-        </div>
+
       </div>
     );
   }

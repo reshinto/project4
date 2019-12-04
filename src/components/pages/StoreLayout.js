@@ -28,33 +28,34 @@ function StoreLayout(){
   );
 
 return (
-    <div>
-        <Parallax filter image="https://images.unsplash.com/photo-1516594798947-e65505dbb29d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" style = {{zIndex:"0"}}>
-         <div className={classes.container}>
-          <GridContainer>
+    <div style = {{backgroundImage:"url(https://images.unsplash.com/photo-1516594798947-e65505dbb29d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)", backgroundSize:"cover"}}>
 
-            <div style = {{textAlign:"justify", color:"white"}}>
-              <h1 className={classes.title}>Get your groceries and get out.</h1>
+    <div style = {{backgroundColor:"rgba(255,255,255,0.5)"}}>
+
+
+
+            <div style = {{textAlign:"center", color:"rgb(42,54,49"}}>
+              <h1 style = {{marginTop:"-1.33em"}}>Get your groceries and get out.</h1>
               <h4>
-                Your guests are showing up in an hour. You have a midnight deadline. You forgot to cook dinner for date night. Whatever the reason, you need to grab what you need and go.</h4>
+                HERE ARE THE INSTRUCTIONS FOR GETTING OUT OF THIS PLACE</h4>
+                <ul style = {{listStyleType:"none"}}>
+                    <li>This category first</li>
+                    <li>Then this other category</li>
+                    <li>Don't forget to pay</li>
+                </ul>
 
               </div>
 
 
-              </GridContainer>
-              </div>
-            </Parallax>
 
 
-         <div className={classNames(classes.main, classes.mainRaised)}>
-        <div className={classes.container}>
+
 
 
             <Floormap/>
+        </div>
 
 
-        </div>
-        </div>
 
     </div>
     )
