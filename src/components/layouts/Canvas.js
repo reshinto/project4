@@ -18,6 +18,7 @@ import {
 import * as _map from "./GenerateLayout";
 import WeightedGraph from "../../algorithms/WeightedGraph";
 import Dijkstra from "../../algorithms/Dijkstra";
+import { connect } from "react-redux";
 
 const style = {
   root: {
@@ -179,6 +180,7 @@ class Canvas extends React.Component {
   }
 
   render() {
+    console.log("groceryList in canvas", this.props.groceryList)
     return (
       <div style={style.root}>
         <canvas
@@ -193,4 +195,13 @@ class Canvas extends React.Component {
   }
 }
 
-export default Canvas;
+const mapStateToProps = state => {
+  return {
+    groceryList: state.mapReducer.groceryList,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(Canvas);

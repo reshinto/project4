@@ -4,12 +4,7 @@ import thunk from "redux-thunk";
 
 import authReducer from "./reducers/authReducer";
 import uiReducer from "./reducers/uiReducer";
-// import userReducer from "./reducers/userReducer";
-// import searchReducer from "./reducers/searchReducer";
-// import tradeReducer from "./reducers/tradeReducer";
-// import fundsReducer from "./reducers/fundsReducer";
-// import newsReducer from "./reducers/newsReducer";
-// import fmpReducer from "./reducers/fmpReducer";
+import mapReducer from "./reducers/mapReducer";
 
 const initialState = {};
 
@@ -18,12 +13,7 @@ const middleware = [thunk];
 const reducers = combineReducers({
   authReducer,
   uiReducer,
-  // userReducer,
-  // searchReducer,
-  // tradeReducer,
-  // fundsReducer,
-  // newsReducer,
-  // fmpReducer,
+  mapReducer,
 });
 
 const enhancer = composeWithDevTools(applyMiddleware(...middleware));
