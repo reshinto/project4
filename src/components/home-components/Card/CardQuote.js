@@ -8,11 +8,11 @@ import Quote from "../Typography/Quote.js";
 export default function CardQuote() {
   return (
     <Card>
-      <CardHeader color="primary">Quote</CardHeader>
+      <CardHeader color="primary">WHO WILL HELP SHAKESPEARE?</CardHeader>
       <CardBody>
         <Quote
-          text='"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."'
-          author="Someone famous in Source Title"
+          text="They call for dates and quinces in the pastry."
+          author="Shakespeare, Henry IV Part II: Act 2, Scene 4"
         />
       </CardBody>
     </Card>

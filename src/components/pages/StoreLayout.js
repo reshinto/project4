@@ -9,6 +9,8 @@ import GridContainer from "../home-components/Grid/GridContainer.js";
 import GridItem from "../home-components/Grid/GridItem.js";
 import Button from "../home-components/CustomButtons/Button.js";
 import Paper from '@material-ui/core/Paper';
+import SearchHeader from "../home-components/Header/SearchHeader.js";
+import { Link } from "react-router-dom";
 
 
 
@@ -28,15 +30,34 @@ function StoreLayout(){
   );
 
 return (
+
+
     <div style = {{backgroundImage:"url(https://images.unsplash.com/photo-1516594798947-e65505dbb29d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)", backgroundSize:"cover"}}>
+
+    <div style = {{float:"right", marginRight: 10}}>
+        <Button
+            component={Link}
+            to = "/shoptimize"
+            color="danger"
+            variant = "outlined"
+            round
+          >
+            Home
+          </Button>
+    </div>
+
 
     <div style = {{backgroundColor:"rgba(255,255,255,0.5)"}}>
 
 
 
             <div style = {{textAlign:"center", color:"rgb(42,54,49"}}>
-              <h1 style = {{marginTop:"-1.33em"}}>Get your groceries and get out.</h1>
-              <h4>
+              <h1 style = {{marginTop: 20}}>Get your groceries and get out.</h1>
+            </div>
+
+            <Floormap/>
+
+             <h4>
                 HERE ARE THE INSTRUCTIONS FOR GETTING OUT OF THIS PLACE</h4>
                 <ul style = {{listStyleType:"none"}}>
                     <li>This category first</li>
@@ -44,15 +65,6 @@ return (
                     <li>Don't forget to pay</li>
                 </ul>
 
-              </div>
-
-
-
-
-
-
-
-            <Floormap/>
         </div>
 
 

@@ -13,6 +13,7 @@ import Hidden from "@material-ui/core/Hidden";
 import Drawer from "@material-ui/core/Drawer";
 import LogIn from "../FormDialog/Login.js";
 import Register from "../FormDialog/Register.js";
+import { Link } from "react-router-dom";
 
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
@@ -25,7 +26,7 @@ import { logout } from '../../../redux/actions/authAction';
 
 const useStyles = makeStyles(styles);
 
-function Header(props) {
+function SearchHeader(props) {
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   React.useEffect(() => {
@@ -83,22 +84,18 @@ function Header(props) {
           )}
         </div>
 
-        {props.authenticated === false ?(<Register/>):(<></>)}
 
-        {props.authenticated === false ? (
-          <LogIn/>
-        ) : (
 
              <Button
-            type="submit"
-            onClick={props.logout}
+            component={Link}
+            to = "/shoptimize"
             color="danger"
             variant = "outlined"
             round
           >
-            Log out
+            Home
           </Button>
-        )}
+
 
 
 
@@ -108,11 +105,11 @@ function Header(props) {
   );
 }
 
-Header.defaultProp = {
+SearchHeader.defaultProp = {
   color: "white"
 };
 
-Header.propTypes = {
+SearchHeader.propTypes = {
   color: PropTypes.oneOf([
     "primary",
     "info",
@@ -151,17 +148,4 @@ Header.propTypes = {
   })
 };
 
-const mapStateToProps = state => {
-  return {
-    authenticated: state.authReducer.authenticated,
-  };
-};
-
-
-const mapDispatchToProps = {
-  logout
-}
-
-export default connect(mapStateToProps,
-  mapDispatchToProps
-)(Header);
+export default (SearchHeader);

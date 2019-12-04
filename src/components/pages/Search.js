@@ -316,6 +316,7 @@ class Search extends React.Component {
         selectedLayoutOption:null,
         selectedLocationOption:null,
         groceryList: [],
+        disabled:false,
         open:false
       };
   }
@@ -347,6 +348,8 @@ class Search extends React.Component {
       { selectedCategoryOption },
       () => console.log(`Option selected:`, this.state.selectedCategoryOption)
     );
+
+    this.setState({disabled: false})
   };
 
     handleItemChange = selectedItemOption => {
@@ -372,13 +375,11 @@ class Search extends React.Component {
 
   addToList = (event)=>{
     let list = [...this.state.groceryList]
-    console.log('ADD STUFF TO LIST')
     let item = JSON.parse(event.target.value)
-    console.log(JSON.parse(event.target.value))
     list.push(item)
 
-    // let unique = [...new Set(list)]
     this.setState({groceryList:list})
+
   }
 
   removeFromList = (event)=>{
@@ -396,23 +397,9 @@ class Search extends React.Component {
     const { selectedLayoutOption } = this.state;
     const { selectedLocationOption } = this.state;
 
-    console.log('HELLO ARRAYYYY')
-    console.log(singleArrayItems)
-    console.log("groceryList", this.state.groceryList)
-    console.log("categoryOption", this.state.selectedCategoryOption)
-    console.log("itemOption", this.state.selectedItemOption)
-    console.log("layoutOption", this.state.selectedLayoutOption)
-    console.log("locationOption", this.state.selectedLocationOption)
-    console.log('GROCERY LISTTTTT')
-    console.log(this.state.grocerylist)
 
 
     const {classes} = this.props
-
-    console.log("ITEMS OBJECT!!!")
-
-    console.log(singleArrayItems)
-    console.log(itemsObject)
 
     return (
 
@@ -435,12 +422,14 @@ class Search extends React.Component {
         onChange={this.handleCategoryChange}
         options={options}
         className = {classes.dropdownFont}
+
       />
 
     <ResultsCategory
       allData={allItems}
       category={this.state.selectedCategoryOption}
       list={this.addToList}
+    disabled = {this.state.disabled}
     />
     <Grid container
       style={{borderTop:"1px solid black", marginTop: 10}}
@@ -478,9 +467,13 @@ class Search extends React.Component {
         justify="center">
             <Badge color = "primary"
             badgeContent={this.state.groceryList.length} style = {{zIndex:"0"}}>
-                   <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>
+            {this.state.selectedLocationOption !== null? (<Button variant="contained" color="secondary" onClick={this.handleClickOpen}>
                       View Grocery List
                     </Button>
+                    ): <Button variant="contained" color="secondary" onClick={this.handleClickOpen} disabled>
+                      View Grocery List
+                    </Button>}
+
             </Badge>
         </Grid>
 

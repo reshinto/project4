@@ -23,9 +23,6 @@ const styles = {
 class  ImgMediaCardItem extends React.Component {
 
      clickHandler(event){
-        console.log('EVENT TARGET!!!!')
-             console.log(event.target)
-            this.btn.setAttribute("disabled", "disabled");
             this.props.onClick(event)
         }
 
@@ -54,7 +51,7 @@ class  ImgMediaCardItem extends React.Component {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <button value = {JSON.stringify(this.props.item)} size="small" color="primary" onClick = {(event)=>{this.clickHandler(event)}} ref={btn => { this.btn = btn; }} >
+        <button value = {JSON.stringify(this.props.item)} size="small" color="primary" onClick = {(event)=>{this.clickHandler(event)}} >
           Add to list
         </button>
       </CardActions>
