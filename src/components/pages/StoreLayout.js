@@ -32,31 +32,45 @@ function StoreLayout(){
 return (
 
 
-    <div style = {{backgroundImage:"url(https://images.unsplash.com/photo-1516594798947-e65505dbb29d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)", backgroundSize:"cover"}}>
+    <div style = {{backgroundImage:"url(https://images.unsplash.com/photo-1516594798947-e65505dbb29d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)", backgroundSize:"cover", minHeight: 800, overflow:"scroll"}} >
 
-    <div style = {{float:"right", marginRight: 10}}>
-        <Button
-            component={Link}
-            to = "/shoptimize"
-            color="danger"
-            variant = "outlined"
-            round
-          >
-            Home
-          </Button>
+    <GridContainer>
+    <div style = {{padding:25}}>
+
+          <Button
+                component={Link}
+                to = "/shoptimize/search"
+                color="primary"
+                variant = "outlined"
+                round
+              >
+                New Grocery List
+              </Button>
+            <Button
+                component={Link}
+                to = "/shoptimize"
+                color="danger"
+                variant = "outlined"
+                round
+              >
+                Home
+              </Button>
+
+
     </div>
 
 
-    <div style = {{backgroundColor:"rgba(255,255,255,0.5)"}}>
+    <div style = {{backgroundColor:"rgba(255,255,255,0.5)", margin: "0 auto"}}>
 
 
 
             <div style = {{textAlign:"center", color:"rgb(42,54,49"}}>
-              <h1 style = {{marginTop: 20}}>Get your groceries and get out.</h1>
+              <h1 style = {{marginTop: 0, padding:10}}>Get your groceries and get out...efficiently.</h1>
             </div>
 
             <Floormap/>
 
+            <div style = {{padding:20}}>
              <h4>
                 HERE ARE THE INSTRUCTIONS FOR GETTING OUT OF THIS PLACE</h4>
                 <ul style = {{listStyleType:"none"}}>
@@ -64,8 +78,10 @@ return (
                     <li>Then this other category</li>
                     <li>Don't forget to pay</li>
                 </ul>
+            </div>
 
         </div>
+        </GridContainer>
 
 
 
