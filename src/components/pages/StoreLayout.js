@@ -5,7 +5,7 @@ import Floormap from "./Floormap.js"
 // import classNames from "classnames";
 // @material-ui/core components
 // import { makeStyles } from "@material-ui/core/styles";
-// import GridContainer from "../home-components/Grid/GridContainer.js";
+import GridContainer from "../home-components/Grid/GridContainer.js";
 // import GridItem from "../home-components/Grid/GridItem.js";
 import Button from "../home-components/CustomButtons/Button.js";
 // import Paper from "@material-ui/core/Paper";
@@ -29,7 +29,7 @@ class StoreLayout extends React.Component{
 
   render() {
     const {directions} = this.props;
-    
+
     return (
       <div style = {{backgroundImage:"url(https://images.unsplash.com/photo-1516594798947-e65505dbb29d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)", backgroundSize:"cover", minHeight: 800, overflow:"scroll"}} >
         <GridContainer>
@@ -50,7 +50,7 @@ class StoreLayout extends React.Component{
           <div style = {{textAlign:"center", color:"rgb(42,54,49"}}>
             <h1 style = {{marginTop: 0, padding:10}}>Get your groceries and get out...efficiently.</h1>
           </div>
-  
+
           <Floormap/>
 
           <h4>
@@ -64,6 +64,7 @@ class StoreLayout extends React.Component{
               <li>Don"t forget to pay</li>
             </ul>
         </div>
+        </GridContainer>
       </div>
     )
   }
