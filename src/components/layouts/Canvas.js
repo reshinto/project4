@@ -53,6 +53,10 @@ class Canvas extends React.Component {
     // window.addEventListener("resize", this.updateDimensions);
   }
 
+  componentWillUnmount() {
+
+  }
+
   setStateAsync(state) {
     return new Promise((resolve) => {
       this.setState(state, resolve);
@@ -136,11 +140,14 @@ class Canvas extends React.Component {
   }
 
   addMapCategories = () => {
-    const map = _map.map2;
-    for (let i=0; i<map.length; i++) {
-      this.addCategory(map[i].key, map[i].w, map[i].h, map[i].name);
+    const {mapName} = this.props;
+    if (mapName !== undefined) {
+      const map = _map[mapName];
+      for (let i=0; i<map.length; i++) {
+        this.addCategory(map[i].key, map[i].w, map[i].h, map[i].name);
+      }
+      this.addShoppingList(map);
     }
-    this.addShoppingList(map);
   }
 
   addShoppingList = (map) => {
@@ -181,6 +188,7 @@ class Canvas extends React.Component {
 
   render() {
     console.log("groceryList in canvas", this.props.groceryList)
+    console.log("map name", this.props.mapName)
     return (
       <div style={style.root}>
         <canvas
@@ -198,6 +206,7 @@ class Canvas extends React.Component {
 const mapStateToProps = state => {
   return {
     groceryList: state.mapReducer.groceryList,
+    mapName: state.mapReducer.mapName,
   };
 };
 

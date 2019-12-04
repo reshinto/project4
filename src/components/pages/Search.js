@@ -19,7 +19,7 @@ import Badge from '@material-ui/core/Badge';
 // import Badge from 'components/Badge/Badge.js';
 
 import { Link } from "react-router-dom";
-import { setGroceryList } from "../../redux/actions/mapAction";
+import { setGroceryList, setMap } from "../../redux/actions/mapAction";
 import { withStyles } from "@material-ui/core/styles";
 
 import badgeStyle from "../../assets/jss/material-kit-react/components/badgeStyle.js"
@@ -39,9 +39,25 @@ const options = [
 ];
 
 const stores = [
-{value: "NTUC", label:"NTUC", locations: [{value: "Tanjong Pagar", label:"Tanjong Pagar"}, {value: "Lavender", label: "Lavender"}, {value: "Terence's House", label: "Terence's House"}]},
-{value: "Cold Storage", label: "Cold Storage", locations: [{value: "Tanjong Pagar", label:"Tanjong Pagar"}, {value: "Lavender", label: "Lavender"}, {value: "Tampines", label: "Tampines"}]},
-{value: "Giant", label: "Giant", locations: [{value: "Garrick's", label:"Garrick's"}]}
+  {
+    value: "NTUC",
+    label:"NTUC",
+    locations: [
+      {value: "Tanjong Pagar", label:"Tanjong Pagar", mapName: "map1"},
+      {value: "Lavender", label: "Lavender", mapName: "map2"},
+      {value: "Terence's House", label: "Terence's House", mapName: "map1"}
+    ]},
+  {
+    value: "Cold Storage",
+    label: "Cold Storage",
+    locations: [
+      {value: "Tanjong Pagar", label:"Tanjong Pagar", mapName: "map2"},
+      {value: "Lavender", label: "Lavender", mapName: "map1"},
+      {value: "Tampines", label: "Tampines", mapName: "map2"}]},
+  {
+    value: "Giant",
+    label: "Giant",
+    locations: [{value: "Garrick's", label:"Garrick's", mapName: "map1"}]}
 ]
 
 
@@ -208,14 +224,18 @@ class Search extends React.Component {
         groceryList: [],
         open:false
       };
-
-    this.addToList = this.addToList.bind(this)
-    this.removeFromList = this.removeFromList.bind(this)
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.groceryList.length !== prevState.groceryList.length) {
       this.props.setGroceryList(this.state.groceryList);
+    }
+    if (this.state.selectedLocationOption !== null) {
+      if (prevState.selectedLocationOption === null) {
+        this.props.setMap(this.state.selectedLocationOption.mapName);
+      } else if (this.state.selectedLocationOption.mapName !== prevState.selectedLocationOption.mapName) {
+        this.props.setMap(this.state.selectedLocationOption.mapName);
+      }
     }
   }
 
@@ -294,62 +314,61 @@ class Search extends React.Component {
     const {classes} = this.props
 
     return (
+      <div style = {{padding:"5%", backgroundColor:"rgba(255,255,255,0.7)"}} >
+        <h3 style = {{color:"rgb(156, 39, 176)"}}>Search by Item</h3>
+        <Select
+          value={selectedItemOption}
+          onChange={this.handleItemChange}
+          isMulti
+          options={itemsObject}
+          classNamePrefix="select"
+          className = {`${classes.dropdownFont} basic-multi-select`}
+        />
 
-        <div style = {{padding:"5%", backgroundColor:"rgba(255,255,255,0.7)"}} >
+      <ResultsItem allData = {singleArrayItems} itemFilter = {this.state.selectedItemOption} list = {this.addToList}/>
+
+      <h3 style = {{color:"rgb(156, 39, 176)"}}>Search by Category</h3>
+      <Select
+        value={selectedCategoryOption}
+        onChange={this.handleCategoryChange}
+        options={options}
+        className = {classes.dropdownFont}
+      />
+
+    <ResultsCategory
+      allData={allItems}
+      category={this.state.selectedCategoryOption}
+      list={this.addToList}
+    />
+    <Grid container
+      style={{borderTop:"1px solid black", marginTop: 10}}
+    >
+
+      <Grid item xs={6}>
+        <h3 style = {{color:"rgb(156, 39, 176)"}}>Select Store</h3>
+        <Select
+            value={selectedLayoutOption}
+            onChange={this.handleLayoutChange}
+            options={stores}
+            className = {classes.dropdownFont}
+        />
+      </Grid>
+
+      <Grid item xs={6}>
+        {this.state.selectedLayoutOption !== null? (
+          <>
+            <h3 style = {{color:"rgb(156, 39, 176)"}}>Select Location</h3>
+            <Select
+              value={selectedLocationOption}
+              onChange={this.handleLocationChange}
+              options={this.state.selectedLayoutOption.locations}
+              className = {classes.dropdownFont}
+            />
+          </>
+        ): ""}
 
 
-                <h3 style = {{color:"rgb(156, 39, 176)"}}>Search by Item</h3>
-              <Select
-                value={selectedItemOption}
-                onChange={this.handleItemChange}
-                 isMulti
-                options={itemsObject}
-                classNamePrefix="select"
-                className = {`${classes.dropdownFont} basic-multi-select`}
-
-             />
-
-        <ResultsItem allData = {singleArrayItems} itemFilter = {this.state.selectedItemOption} list = {this.addToList}/>
-
-
-                <h3 style = {{color:"rgb(156, 39, 176)"}}>Search by Category</h3>
-                  <Select
-                value={selectedCategoryOption}
-                onChange={this.handleCategoryChange}
-                options={options}
-                className = {classes.dropdownFont}
-              />
-
-      <ResultsCategory allData = {allItems}  category = {this.state.selectedCategoryOption}  list = {this.addToList}/>
-      <Grid container
-      style = {{borderTop:"1px solid black", marginTop: 10}}>
-
-          <Grid item xs={6}>
-            <h3 style = {{color:"rgb(156, 39, 176)"}}>Select Store</h3>
-                <Select
-                    value={selectedLayoutOption}
-                    onChange={this.handleLayoutChange}
-                    options={stores}
-                    className = {classes.dropdownFont}
-                />
-            </Grid>
-
-            <Grid item xs={6}>
-
-            {this.state.selectedLayoutOption !== null? (
-                <>
-                    <h3 style = {{color:"rgb(156, 39, 176)"}}>Select Location</h3>
-                    <Select
-                        value={selectedLocationOption}
-                        onChange={this.handleLocationChange}
-                        options={this.state.selectedLayoutOption.locations}
-                        className = {classes.dropdownFont}
-                    />
-                </>
-                ): ""}
-
-
-            </Grid>
+      </Grid>
         </Grid>
         <br/>
         <Grid container
@@ -410,6 +429,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setGroceryList: list => dispatch(setGroceryList(list)),
+    setMap: mapName => dispatch(setMap(mapName)),
   };
 };
 

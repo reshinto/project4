@@ -7,9 +7,9 @@ export const setGroceryList = list => {
   }
 };
 
-export const setMap = mapType => {
+export const setMap = mapName => {
   return {
     type: actionTypes.SET_MAP,
-    payload: mapType
+    payload: mapName
   }
 };

@@ -3,7 +3,7 @@ import { updateObject } from "../utility";
 
 const initialState = {
   groceryList: [],
-  mapType: ""
+  mapName: ""
 };
 
 const setGroceryList = (state, action) => {
@@ -14,7 +14,7 @@ const setGroceryList = (state, action) => {
 
 const setMap = (state, action) => {
   return updateObject(state, {
-    mapType: action.payload
+    mapName: action.payload
   });
 };
 
