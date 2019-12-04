@@ -1,6 +1,6 @@
 import PriorityQueue from "./PriorityQueue";
-import {categoryMaps} from "../components/layouts/Constants";
-import {totalPath} from "../components/layouts/Constants";
+
+const totalPath = [];
 
 function dijkstra(_start, _finish, g, path, last, isLast=true) {
   const pq = new PriorityQueue();

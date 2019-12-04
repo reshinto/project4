@@ -4,7 +4,6 @@ import {
   mapWidth,
   mapHeight,
   tileSize,
-  shoppingListArr,
 } from "./Constants";
 import {
   // getImageFile,
@@ -32,6 +31,7 @@ const style = {
 
 let ctx;
 let g;
+let shoppingListArr;
 
 class Canvas extends React.Component {
   state = {
@@ -43,6 +43,8 @@ class Canvas extends React.Component {
     const canvas = this.refs.canvas;
     ctx = canvas.getContext("2d");
     g = new WeightedGraph();
+    shoppingListArr = [];
+    this.clearFloor();
     this.addMapCategories();
     // this.addRandomCategories();
     this.drawLayout();
@@ -51,10 +53,6 @@ class Canvas extends React.Component {
     this.getDirections(path);
     this.animatePath(path);
     // window.addEventListener("resize", this.updateDimensions);
-  }
-
-  componentWillUnmount() {
-    // ctx.clearRect(0, 0, )
   }
 
   setStateAsync(state) {
@@ -96,6 +94,12 @@ class Canvas extends React.Component {
     ctx.rect(x, y, tileSize, tileSize);
     ctx.fillStyle = color;
     ctx.fill();
+  }
+
+  clearFloor = () => {
+    for (let i=0; i<getLastKey(); i++) {
+        this.fillColor(i, "#116466");
+    }
   }
 
   drawLayout = () => {
@@ -151,6 +155,7 @@ class Canvas extends React.Component {
   }
 
   addShoppingList = () => {
+    shoppingListArr = [];
     const {category} = this.props.mapType;
     const {groceryList} = this.props;
     for (let i=0; i<groceryList.length; i++) {
