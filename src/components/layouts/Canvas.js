@@ -49,6 +49,16 @@ class Canvas extends React.Component {
     this.drawLayout();
     this.linkConnections();
     const path = Dijkstra(0, shoppingListArr, g);
+    const direction = [];
+    // for (let i=0; i<path.length; i++) {
+    //   if (categoryMaps[path[i]] !== undefined) {
+    //     if (categoryMaps[path[i]] !== "") {
+    //       console.log("filtered", categoryMaps[path[i]])
+    //       direction.push(categoryMaps[path[i]]);
+    //     }
+    //   }
+    // }
+    // console.log(direction)
     this.animatePath(path);
     // window.addEventListener("resize", this.updateDimensions);
   }
@@ -128,7 +138,9 @@ class Canvas extends React.Component {
     for (let i=0; i<catArr.length; i++) {
       if (catEdgeArr.indexOf(catArr[i]) !== -1) {
         g.wallArr[catArr[i]] = 2;
-        categoryMaps[catArr[i]] = name;
+        if (categoryMaps[catArr[i]] !== name) {
+          categoryMaps[catArr[i]] = name;
+        }
       } else {
         g.wallArr[catArr[i]] = 5;
       }
@@ -154,28 +166,32 @@ class Canvas extends React.Component {
     const {category} = this.props.mapType;
     const {groceryList} = this.props;
     for (let i=0; i<groceryList.length; i++) {
-      shoppingListArr.push(String([category[groceryList[i].category]]));
+      if (shoppingListArr.indexOf(String([category[groceryList[i].category]])) === -1) {
+        shoppingListArr.push(String([category[groceryList[i].category]]));
+      }
     }
     shoppingListArr.push(String(getLastKey()));
   }
 
-  addRandomCategories = () => {
-    const totalCategories = 25
-    for (let i=0; i<totalCategories; i++) {
-      const newKey = this.getRandomKey();
-      shoppingListArr.push(String(newKey));
-    }
-    for (let i=0; i<totalCategories; i++) {
-      this.addCategory(shoppingListArr[i], Math.ceil(Math.random() * 10) + 3, Math.ceil(Math.random() * 10) + 3, "random");
-    }
-    shoppingListArr.push(String(getLastKey()));
-  }
+  // addRandomCategories = () => {
+  //   const totalCategories = 25
+  //   for (let i=0; i<totalCategories; i++) {
+  //     const newKey = this.getRandomKey();
+  //     shoppingListArr.push(String(newKey));
+  //   }
+  //   for (let i=0; i<totalCategories; i++) {
+  //     this.addCategory(shoppingListArr[i], Math.ceil(Math.random() * 10) + 3, Math.ceil(Math.random() * 10) + 3, "random");
+  //   }
+  //   shoppingListArr.push(String(getLastKey()));
+  // }
 
   animatePath = (path) => {
+    console.log(categoryMaps)
     for (let i=0; i<path.length; i++) {
       ((i) => {
         setTimeout(() => {
           if (shoppingListArr.indexOf(path[i]) !== -1) {
+            console.log(categoryMaps[path[i]])
             return this.fillColor(path[i], "red");
           } else {
             return this.fillColor(path[i], "#D1E8E2");

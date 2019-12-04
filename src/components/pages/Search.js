@@ -75,13 +75,13 @@ const stores = [
         value: "Terence's House",
         label: "Terence's House",
         mapType: {
-          name: "map1",
+          name: "map3",
           category: {
-            "frozen": 7579,
-            "fruits": 5239,
-            "vegetables": 2115,
-            "snacks and candy": 4409,
-            "baking needs": 3665
+            "frozen": 8015,
+            "fruits": 8469,
+            "vegetables": 2465,
+            "snacks and candy": 565,
+            "baking needs": 3919
           }
         }
       }
@@ -123,13 +123,13 @@ const stores = [
         value: "Tampines",
         label: "Tampines",
         mapType: {
-          name: "map2",
+          name: "map3",
           category: {
-            "frozen": 5420,
-            "fruits": 6420,
-            "vegetables": 6065,
-            "snacks and candy": 7579,
-            "baking needs": 2115
+            "frozen": 8015,
+            "fruits": 8469,
+            "vegetables": 2465,
+            "snacks and candy": 565,
+            "baking needs": 3919
           }
         }
       }
