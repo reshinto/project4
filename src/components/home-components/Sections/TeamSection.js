@@ -21,10 +21,6 @@ import CardQuote from "../Card/CardQuote.js"
 
 import styles from "../../../assets/jss/material-kit-react/views/landingPageSections/teamStyle.js";
 
-// import team1 from "assets/img/faces/avatar.jpg";
-// import team2 from "assets/img/faces/christian.jpg";
-// import team3 from "assets/img/faces/kendall.jpg";
-
 const useStyles = makeStyles(styles);
 
 export default function TeamSection() {
@@ -36,9 +32,11 @@ export default function TeamSection() {
   );
   return (
     <div className={classes.section}>
-      <h2 className={classes.title}>`WOW LOOK MORE INTERESTING STUFF BELOW`</h2>
+
       <br/>
        <CardQuote/>
+
+          <h2 className={classes.title}>CHECK OUT OUR TEAM</h2>
       <div>
         <GridContainer>
           <GridItem xs={12} sm={12} md={4}>
@@ -49,14 +47,11 @@ export default function TeamSection() {
               <h4 className={classes.cardTitle}>
                 TK
                 <br />
-                <small className={classes.smallTitle}>Resident Wizard</small>
+                <small>Code Wizard</small>
               </h4>
               <CardBody>
                 <p className={classes.description}>
-                  You can write here details about one of your team members. You
-                  can give more details about what they do. Feel free to add
-                  some <a href="#pablo">links</a> for people to be able to
-                  follow them outside the site.
+                 TK will solve all your coding problems if you ask nicely.
                 </p>
               </CardBody>
               <CardFooter className={classes.justifyCenter}>
@@ -92,14 +87,11 @@ export default function TeamSection() {
               <h4 className={classes.cardTitle}>
                 JN
                 <br />
-                <small className={classes.smallTitle}>Cat-person</small>
+                <small>Cat-person</small>
               </h4>
               <CardBody>
                 <p className={classes.description}>
-                  You can write here details about one of your team members. You
-                  can give more details about what they do. Feel free to add
-                  some <a href="#pablo">links</a> for people to be able to
-                  follow them outside the site.
+                JN will find any excuse to put a cat somewhere.
                 </p>
               </CardBody>
               <CardFooter className={classes.justifyCenter}>
@@ -128,14 +120,11 @@ export default function TeamSection() {
               <h4 className={classes.cardTitle}>
                 GT
                 <br />
-                <small className={classes.smallTitle}>Most Well-rested</small>
+                <small>Most Well-rested</small>
               </h4>
               <CardBody>
                 <p className={classes.description}>
-                  You can write here details about one of your team members. You
-                  can give more details about what they do. Feel free to add
-                  some <a href="#pablo">links</a> for people to be able to
-                  follow them outside the site.
+                 GT holds the secrets of napping anywhere, anytime.
                 </p>
               </CardBody>
               <CardFooter className={classes.justifyCenter}>
