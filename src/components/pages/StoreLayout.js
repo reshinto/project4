@@ -11,11 +11,11 @@ import Button from "../home-components/CustomButtons/Button.js";
 // import SearchHeader from "../home-components/Header/SearchHeader.js";
 import Canvas from "../layouts/Canvas";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 window.onbeforeunload = function () {
   window.scrollTo(0, 0);
 }
-// import { Link } from "react-router-dom";
 
 
 // import styles from "../../assets/jss/material-kit-react/views/landingPageSections/teamStyle.js";
@@ -39,15 +39,15 @@ class StoreLayout extends React.Component{
       <div style = {{backgroundImage:"url(https://images.unsplash.com/photo-1516594798947-e65505dbb29d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)", backgroundSize:"cover", height: "100vh", width: "100vw", overflow:"scroll"}} >
         <GridContainer>
           <div style = {{padding:25}}>
-            <a href="/shoptimize/search" style={{textDecoration: "none", color: "white"}}>
-              <Button
-                color="primary"
-                variant = "outlined"
-                round
-              >
-                New Grocery List
-              </Button>
-            </a>
+            <Button
+              color="primary"
+              variant = "outlined"
+              round
+              component={Link}
+              to="/shoptimize/search"
+            >
+              New Grocery List
+            </Button>
             <a href="/shoptimize" style={{textDecoration: "none", color: "white"}}>
               <Button
                 color="danger"
