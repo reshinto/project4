@@ -32,7 +32,7 @@ export default class ResultsItem extends React.Component{
                 }
                 return (<div key={index} style = {{marginRight:10, marginTop:10}}>
 
-                <ImgMediaCardItem item = {item.value} image = {itemImage} onClick = {this.props.list}/>
+                <ImgMediaCardItem item = {item} image = {itemImage} onClick = {this.props.list}/>
 
                     </div>
                 )
