@@ -3,7 +3,8 @@ import { updateObject } from "../utility";
 
 const initialState = {
   groceryList: [],
-  mapType: ""
+  mapType: "",
+  directions: [],
 };
 
 const setGroceryList = (state, action) => {
@@ -18,12 +19,20 @@ const setMap = (state, action) => {
   });
 };
 
+const setDirections = (state, action) => {
+  return updateObject(state, {
+    directions: action.payload
+  });
+};
+
 const mapReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_GROCERY_LIST:
       return setGroceryList(state, action);
     case actionTypes.SET_MAP:
       return setMap(state, action);
+    case actionTypes.SET_DIRECTIONS:
+      return setDirections(state, action);
     default:
       return state;
   }
