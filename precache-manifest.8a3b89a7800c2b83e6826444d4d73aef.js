@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d4f10f2a43c03fdf1777b6fcc88349da",
+    "revision": "865f3860612b30d6ec867a9f7f5a0ce7",
     "url": "/shoptimize/index.html"
   },
   {
-    "revision": "cc2c7f7a570b802d0f75",
+    "revision": "0040113f975883f41739",
     "url": "/shoptimize/static/css/main.b100e6da.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/shoptimize/static/js/2.a20ab328.chunk.js"
   },
   {
-    "revision": "cc2c7f7a570b802d0f75",
-    "url": "/shoptimize/static/js/main.61f14e96.chunk.js"
+    "revision": "0040113f975883f41739",
+    "url": "/shoptimize/static/js/main.fd92ddbb.chunk.js"
   },
   {
     "revision": "d8358db888c02237e958",
