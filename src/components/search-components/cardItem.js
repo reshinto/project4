@@ -25,6 +25,7 @@ class  ImgMediaCardItem extends React.Component {
      clickHandler(event){
         console.log('EVENT TARGET!!!!')
              console.log(event.target)
+            this.btn.setAttribute("disabled", "disabled");
             this.props.onClick(event)
         }
 
@@ -47,13 +48,13 @@ class  ImgMediaCardItem extends React.Component {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {this.props.item.name}
+            {this.props.item.value}
           </Typography>
 
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <button value = {JSON.stringify(this.props.item)} size="small" color="primary" onClick = {(event)=>{this.clickHandler(event)}}>
+        <button value = {JSON.stringify(this.props.item)} size="small" color="primary" onClick = {(event)=>{this.clickHandler(event)}} ref={btn => { this.btn = btn; }} >
           Add to list
         </button>
       </CardActions>

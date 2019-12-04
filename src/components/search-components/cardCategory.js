@@ -25,6 +25,7 @@ class  ImgMediaCardCategory extends React.Component {
      clickHandler(event){
         console.log('HELLO CATEGORY CARD')
             console.log(event.target)
+            this.btn.setAttribute("disabled", "disabled");
             this.props.onClick(event)
         }
 
@@ -50,7 +51,7 @@ class  ImgMediaCardCategory extends React.Component {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <button value = {JSON.stringify(this.props.item)} size="small" color="primary" onClick = {(event)=>{this.clickHandler(event)}}>
+        <button value = {JSON.stringify(this.props.item)} size="small" color="primary" onClick = {(event)=>{this.clickHandler(event)}} ref={btn => { this.btn = btn; }}>
           Add to list
         </button>
       </CardActions>

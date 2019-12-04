@@ -14,7 +14,7 @@ export default class ResultsItem extends React.Component{
         let category;
           console.log('HELLO PROPS')
 
-        console.log(this.props.itemFilter)//array of objects
+        console.log(this.props)//array of objects
 
         if (this.props.itemFilter!=null){
 
@@ -26,7 +26,7 @@ export default class ResultsItem extends React.Component{
 
                 for (let i=0;i<this.props.allData.length;i++){
 
-                    if (item.name === this.props.allData[i].name){
+                    if (item.value === this.props.allData[i].value){
                         itemImage = this.props.allData[i].img
                     }
                 }

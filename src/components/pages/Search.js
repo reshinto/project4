@@ -160,23 +160,23 @@ const allItems =
                     "frozen": {
                         "aisle":1,
                         "items":[
-                            {name:"fish",
+                            {value:"fish",
                             img: "https://www.thespruceeats.com/thmb/yPLWl_gyHEd0479KtY8NxoMNspM=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/148964914-56a2f6f35f9b58b7d0cfe462.jpg",
                             category:"frozen"
                             },
-                            {name:"dumplings",
+                            {value:"dumplings",
                             img: "https://static01.nyt.com/images/2014/07/29/magazine/Dumplings1/Dumplings1-tmagArticle.jpg",
                             category:"frozen"
                             },
-                            {name:"pizza",
+                            {value:"pizza",
                             img: "http://www.marketreportgazette.com/wp-content/uploads/2019/08/Frozen-Pizza.jpg",
                             category:"frozen"
                             },
-                            {name:"prata",
+                            {value:"prata",
                             img: "https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2016/03/roti-prata-in-singapore.jpg",
                             category:"frozen"
                             },
-                            {name:"ice cream",
+                            {value:"ice cream",
                             img: "https://previews.123rf.com/images/foodandmore/foodandmore1404/foodandmore140400039/27128938-array-of-different-flavored-colorful-ice-cream-in-plastic-tubs-displayed-on-an-old-wooden-table-at-a.jpg",
                             category:"frozen"
                             }]
@@ -185,23 +185,23 @@ const allItems =
                      "fruits": {
                         "aisle": 2,
                         "items":[
-                            {name:"apples",
+                            {value:"apples",
                             img: "https://i1.wp.com/4f7bg01yl3z03jojs41hgo8k-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/HF160920_Global_Blog_All_About_Apples_15_low.jpg?ssl=1",
                             category:"fruits"
                             },
-                            {name:"blueberries",
+                            {value:"blueberries",
                             img: "https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/blueberries-1296x728-feature.jpg?w=1155&h=1528",
                             category:"fruits"
                             },
-                            {name:"pears",
+                            {value:"pears",
                             img: "https://www.stemilt.com/wp-content/uploads/2016/07/Concorde.jpg",
                             category:"fruits"
                             },
-                            {name:"strawberries",
+                            {value:"strawberries",
                             img: "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fcdn-image.myrecipes.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fmedium_2x%2Fpublic%2Ffield%2Fimage%2Fstrawberry-calories-hero-getty.jpg%3Fitok%3DgMhqclgZ&w=450&c=sc&poi=face&q=85",
                             category:"fruits"
                             },
-                            {name:"watermelons",
+                            {value:"watermelons",
                             img: "https://media.fromthegrapevine.com/assets/images/2016/7/watermelon-whole-one-half.jpg.480x0_q71_crop-scale.jpg",
                             category:"fruits"
                             }
@@ -211,23 +211,23 @@ const allItems =
                     "vegetables": {
                         "aisle": 3,
                         "items":[
-                            {name:"cucumbers",
+                            {value:"cucumbers",
                             img: "https://cfig.ca/wp-content/uploads/2018/11/cucumber.jpg",
                             category:"vegetables"
                             },
-                            {name:"carrots",
+                            {value:"carrots",
                             img: "https://hips.hearstapps.com/ghk.h-cdn.co/assets/18/09/2048x1364/gallery-1519672422-carrots.jpg?resize=480:*",
                             category:"vegetables"
                             },
-                            {name:"onions",
+                            {value:"onions",
                             img: "https://www.thespruceeats.com/thmb/sxx0JHQRPnPV0heagzJFz__zarE=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/onions-2500-5839b12d5f9b58d5b1107a90.jpg",
                             category:"vegetables"
                             },
-                            {name:"capsicum",
+                            {value:"capsicum",
                             img: "https://1v1d1e1lmiki1lgcvx32p49h8fe-wpengine.netdna-ssl.com/wp-content/uploads/2018/04/1522916196-coloured-capsicums-peppers-.jpg",
                             category:"vegetables"
                             },
-                            {name:"celery",
+                            {value:"celery",
                             img: "https://cdn.apartmenttherapy.info/image/fetch/f_auto,q_auto:eco,c_fill,g_auto,w_1500/https%3A%2F%2Fstorage.googleapis.com%2Fgen-atmedia%2F3%2F2014%2F10%2F1c340c24e50e2a71609db0d2c0d77849b36ba2b4.jpeg",
                             category:"vegetables"
                             }]
@@ -235,23 +235,23 @@ const allItems =
                     "snacks and candy":{
                         "aisle":4,
                         "items":[
-                            {name:"chocolate bars",
+                            {value:"chocolate bars",
                             img: "https://cdn-a.william-reed.com/var/wrbm_gb_food_pharma/storage/images/publications/food-beverage-nutrition/confectionerynews.com/article/2019/08/19/new-study-finds-steep-rise-in-sugar-levels-in-uk-chocolate-bars/10055756-1-eng-GB/New-study-finds-steep-rise-in-sugar-levels-in-UK-chocolate-bars_wrbm_large.jpg",
                             category:"snacks and candy"
                             },
-                            {name:"potato chips",
+                            {value:"potato chips",
                             img: "https://previews.123rf.com/images/kwangmoo/kwangmoo1807/kwangmoo180700317/104709437-crispy-potato-chips-snack-texture-background.jpg",
                             category:"snacks and candy"
                             },
-                            {name:"nuts",
+                            {value:"nuts",
                             img: "https://media.npr.org/assets/img/2019/09/27/nuts-1_custom-61cfca772f4f991e157977ffe42febcb8c23d7dc-s800-c85.jpg",
                             category:"snacks and candy"
                             },
-                            {name:"gummies",
+                            {value:"gummies",
                             img: "https://tidbitsmag.com/wp-content/uploads/2016/08/20685982-Assortment-of-gummies-on-a-market-stall-Stock-Photo.jpg",
                             category:"snacks and candy"
                             },
-                            {name:"seaweed",
+                            {value:"seaweed",
                             img: "https://media.npr.org/assets/img/2017/08/31/istock-605786284-34f5b78a564c2a7c6e7bfe5d68a2b830a42e4238-s800-c85.jpg",
                             category:"snacks and candy"
                             }]
@@ -259,23 +259,23 @@ const allItems =
                     "baking needs": {
                         "aisle":5,
                         "items": [
-                            {name:"flour",
+                            {value:"flour",
                             img: "https://img2.exportersindia.com/product_images/bc-full/2019/5/6121355/whole-wheat-flour-1559192789-4929971.jpeg",
                             category:"baking needs"
                             },
-                            {name:"baking chocolate",
+                            {value:"baking chocolate",
                             img: "https://cdn.sallysbakingaddiction.com/wp-content/uploads/2017/02/baking-with-chocolate-5.jpg",
                              category:"baking needs"
                             },
-                            {name:"icing",
+                            {value:"icing",
                             img: "https://www.biggerbolderbaking.com/wp-content/uploads/2018/03/BBB214-Crazy-Frosting-Website-Featured-Image.jpg",
                              category:"baking needs"
                             },
-                            {name:"baking soda",
+                            {value:"baking soda",
                             img: "https://www.thespruceeats.com/thmb/e8HKZPTx6Q6GxiCHcudw9QrAHC8=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/baking-soda-58ace6af5f9b58a3c9b23ab2.jpg",
                              category:"baking needs"
                             },
-                            {name:"pancake mix",
+                            {value:"pancake mix",
                             img: "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2019/7/11/0/FNK_the-best-pancakes_H_s4x3.jpg.rend.hgtvcom.826.620.suffix/1562853903667.jpeg",
                              category:"baking needs"
                             }]
@@ -295,9 +295,9 @@ const allItems =
 
     let itemsObject = singleArrayItems.map(item=>{
         const container = {}
-        container.name = item.name
+        container.value = item.value
         container.category = item.category
-        container.label = item.name.charAt(0).toUpperCase() + item.name.slice(1)
+        container.label = item.value.charAt(0).toUpperCase() + item.value.slice(1)
         return container
     })
 
@@ -395,6 +395,7 @@ class Search extends React.Component {
     const { selectedItemOption } = this.state;
     const { selectedLayoutOption } = this.state;
     const { selectedLocationOption } = this.state;
+
     console.log('HELLO ARRAYYYY')
     console.log(singleArrayItems)
     console.log("groceryList", this.state.groceryList)
@@ -405,9 +406,16 @@ class Search extends React.Component {
     console.log('GROCERY LISTTTTT')
     console.log(this.state.grocerylist)
 
+
     const {classes} = this.props
 
+    console.log("ITEMS OBJECT!!!")
+
+    console.log(singleArrayItems)
+    console.log(itemsObject)
+
     return (
+
       <div style = {{padding:"5%", backgroundColor:"rgba(255,255,255,0.7)"}} >
         <h3 style = {{color:"rgb(156, 39, 176)"}}>Search by Item</h3>
         <Select
@@ -463,6 +471,7 @@ class Search extends React.Component {
 
 
       </Grid>
+
         </Grid>
         <br/>
         <Grid container
