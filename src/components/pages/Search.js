@@ -215,7 +215,7 @@ const allItems =
                         "aisle": 3,
                         "items":[
                             {value:"cucumbers",
-                            img: "https://cfig.ca/wp-content/uploads/2018/11/cucumber.jpg",
+                            img: "https://www.healthline.com/hlcmsresource/images/AN_images/AN88-Cucumbers-732x549-thumb.jpg",
                             category:"vegetables"
                             },
                             {value:"carrots",
@@ -395,7 +395,7 @@ class Search extends React.Component {
   }
 
   render() {
-    const { 
+    const {
       selectedCategoryOption,
       selectedItemOption,
       selectedLayoutOption,
