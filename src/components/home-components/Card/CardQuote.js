@@ -8,7 +8,7 @@ import Quote from "../Typography/Quote.js";
 export default function CardQuote() {
   return (
     <Card>
-      <CardHeader color="primary">Quote</CardHeader>
+      <CardHeader color="primary">WHO WILL HELP SHAKESPEARE?</CardHeader>
       <CardBody>
         <Quote
           text="They call for dates and quinces in the pastry."
