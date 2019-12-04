@@ -23,7 +23,8 @@ const styles = {
 class  ImgMediaCardCategory extends React.Component {
 
      clickHandler(event){
-            console.log(event)
+        console.log('HELLO CATEGORY CARD')
+            console.log(event.target)
             this.props.onClick(event)
         }
 
@@ -43,13 +44,13 @@ class  ImgMediaCardCategory extends React.Component {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {this.props.item}
+            {this.props.item.name}
           </Typography>
 
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <button value = {this.props.item} size="small" color="primary" onClick = {(event)=>{this.clickHandler(event)}}>
+        <button value = {JSON.stringify(this.props.item)} size="small" color="primary" onClick = {(event)=>{this.clickHandler(event)}}>
           Add to list
         </button>
       </CardActions>

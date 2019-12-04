@@ -69,16 +69,16 @@ export default function Footer(props) {
             </ListItem>
           </List>
         </div>
-        <div className={classes.right}>
-          &copy; {1900 + new Date().getYear()} , made with{" "}
-          <Favorite className={classes.icon} /> by{" "}
+        <div className={classes.right}> developed based on
+         work
+          by{" "}
           <a
             href="https://www.creative-tim.com?ref=mkr-footer"
             className={aClasses}
             target="_blank"
           >
-            Creative Tim
-          </a>{" "}
+            Creative Tim,
+          </a>{" "} made with <Favorite className={classes.icon} />{" "}
           for a better web.
         </div>
       </div>

@@ -25,7 +25,7 @@ export default class ResultsCategory extends React.Component{
                 itemImage = item.img
                 return (<div key={index} style = {{marginRight:10, marginTop:10}}>
 
-                <ImgMediaCardCategory item = {item.name} image = {itemImage} onClick = {this.props.list}/>
+                <ImgMediaCardCategory item = {item} image = {itemImage} onClick = {this.props.list}/>
 
                     </div>
                 )
