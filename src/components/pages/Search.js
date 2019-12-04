@@ -1,22 +1,22 @@
-import React from 'react';
-import Select from 'react-select';
-import ResultsItem from '../search-components/resultsitem.js'
-import ResultsCategory from '../search-components/resultscategory.js'
-import SearchBar from '../search-components/searchbar.js'
-import GroceryList from '../search-components/grocerylist.js'
-import Grid from '@material-ui/core/Grid';
-import Fuse from 'fuse.js';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Slide from '@material-ui/core/Slide';
-import {searchBackground} from '../search-components/search-style.js'
-import SearchBackground from '../search-components/grocery.jpg'
-import Badge from '@material-ui/core/Badge';
-// import Badge from 'components/Badge/Badge.js';
+import React from "react";
+import Select from "react-select";
+import ResultsItem from "../search-components/resultsitem.js"
+import ResultsCategory from "../search-components/resultscategory.js"
+import SearchBar from "../search-components/searchbar.js"
+import GroceryList from "../search-components/grocerylist.js"
+import Grid from "@material-ui/core/Grid";
+import Fuse from "fuse.js";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Slide from "@material-ui/core/Slide";
+import {searchBackground} from "../search-components/search-style.js"
+import SearchBackground from "../search-components/grocery.jpg"
+import Badge from "@material-ui/core/Badge";
+// import Badge from "components/Badge/Badge.js";
 
 import { Link } from "react-router-dom";
 import { setGroceryList, setMap } from "../../redux/actions/mapAction";
@@ -24,18 +24,18 @@ import { withStyles } from "@material-ui/core/styles";
 
 import badgeStyle from "../../assets/jss/material-kit-react/components/badgeStyle.js"
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 const styles = theme=>({
     dropdownFont:{color: "black"}
 })
 
 const options = [
-  { value: 'frozen', label: 'Frozen' },
-  { value: 'fruits', label: 'Fruits' },
-  { value: 'vegetables', label: 'Vegetables' },
-  {value: 'snacks and candy', label: 'Snacks and Candy' },
-  { value: 'baking needs', label: 'Baking Needs' },
+  { value: "frozen", label: "Frozen" },
+  { value: "fruits", label: "Fruits" },
+  { value: "vegetables", label: "Vegetables" },
+  { value: "snacks and candy", label: "Snacks and Candy" },
+  { value: "baking needs", label: "Baking Needs" },
 ];
 
 const stores = [
@@ -49,11 +49,11 @@ const stores = [
         mapType: {
           name: "map1",
           category: {
-            "frozen": 7579,
+            "frozen": 4409,
             "fruits": 5239,
-            "vegetables": 2115,
-            "snacks and candy": 4409,
-            "baking needs": 3665
+            "vegetables": 7579,
+            "snacks and candy": 3665,
+            "baking needs": 2115
           }
         }
       },
@@ -63,10 +63,10 @@ const stores = [
         mapType: {
           name: "map2",
           category: {
-            "frozen": 5420,
+            "frozen": 6065,
             "fruits": 6420,
-            "vegetables": 6065,
-            "snacks and candy": 7579,
+            "vegetables": 7579,
+            "snacks and candy": 5420,
             "baking needs": 2115
           }
         }
@@ -77,11 +77,11 @@ const stores = [
         mapType: {
           name: "map3",
           category: {
-            "frozen": 8015,
-            "fruits": 8469,
-            "vegetables": 2465,
-            "snacks and candy": 565,
-            "baking needs": 3919
+            "frozen": 8469,
+            "fruits": 2465,
+            "vegetables": 565,
+            "snacks and candy": 3929,
+            "baking needs": 8015
           }
         }
       }
@@ -97,10 +97,10 @@ const stores = [
         mapType: {
           name: "map2",
           category: {
-            "frozen": 5420,
+            "frozen": 6065,
             "fruits": 6420,
-            "vegetables": 6065,
-            "snacks and candy": 7579,
+            "vegetables": 7579,
+            "snacks and candy": 5420,
             "baking needs": 2115
           }
         }
@@ -109,13 +109,13 @@ const stores = [
         value: "Lavender",
         label: "Lavender",
         mapType: {
-          name: "map1",
+          name: "map3",
           category: {
-            "frozen": 7579,
-            "fruits": 5239,
-            "vegetables": 2115,
-            "snacks and candy": 4409,
-            "baking needs": 3665
+            "frozen": 8469,
+            "fruits": 2465,
+            "vegetables": 565,
+            "snacks and candy": 3929,
+            "baking needs": 8015
           }
         }
       },
@@ -123,13 +123,13 @@ const stores = [
         value: "Tampines",
         label: "Tampines",
         mapType: {
-          name: "map3",
+          name: "map1",
           category: {
-            "frozen": 8015,
-            "fruits": 8469,
-            "vegetables": 2465,
-            "snacks and candy": 565,
-            "baking needs": 3919
+            "frozen": 4409,
+            "fruits": 5239,
+            "vegetables": 7579,
+            "snacks and candy": 3665,
+            "baking needs": 2115
           }
         }
       }
@@ -138,20 +138,23 @@ const stores = [
   {
     value: "Giant",
     label: "Giant",
-    locations: [{
-      value: "Garrick's",
-      label:"Garrick's",
+    locations: [
+      {
+        value: "Garrick's",
+        label:"Garrick's",
         mapType: {
-          name: "map1",
+          name: "map3",
           category: {
-            "frozen": 7579,
-            "fruits": 5239,
-            "vegetables": 2115,
-            "snacks and candy": 4409,
-            "baking needs": 3665
+            "frozen": 8469,
+            "fruits": 2465,
+            "vegetables": 565,
+            "snacks and candy": 3929,
+            "baking needs": 8015
           }
         }
-    }]}
+      }
+    ]
+  }
 ]
 
 
@@ -372,7 +375,7 @@ class Search extends React.Component {
 
   addToList = (event)=>{
     let list = [...this.state.groceryList]
-    console.log('ADD STUFF TO LIST')
+    console.log("ADD STUFF TO LIST")
     let item = JSON.parse(event.target.value)
     console.log(JSON.parse(event.target.value))
     list.push(item)
@@ -396,14 +399,14 @@ class Search extends React.Component {
     const { selectedLayoutOption } = this.state;
     const { selectedLocationOption } = this.state;
 
-    console.log('HELLO ARRAYYYY')
+    console.log("HELLO ARRAYYYY")
     console.log(singleArrayItems)
     console.log("groceryList", this.state.groceryList)
     console.log("categoryOption", this.state.selectedCategoryOption)
     console.log("itemOption", this.state.selectedItemOption)
     console.log("layoutOption", this.state.selectedLayoutOption)
     console.log("locationOption", this.state.selectedLocationOption)
-    console.log('GROCERY LISTTTTT')
+    console.log("GROCERY LISTTTTT")
     console.log(this.state.grocerylist)
 
 
