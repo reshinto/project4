@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 
 // core components
-import Header from "../home-components/Header/Header.js";
+import SearchHeader from "../home-components/Header/Header.js";
 import Footer from "../home-components/Footer/Footer.js";
 
 import GridContainer from "../home-components/Grid/GridContainer.js";
@@ -37,7 +37,7 @@ export default function LandingPage(props) {
   const { ...rest } = props;
   return (
     <div>
-      <Header
+      <SearchHeader
         color="transparent"
         routes={dashboardRoutes}
         brand="shoptimize."

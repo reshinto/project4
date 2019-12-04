@@ -5,10 +5,11 @@ import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
+
 // @material-ui/icons
 
 // core components
-import Header from "../home-components/Header/Header.js";
+import SearchHeader from "../home-components/Header/SearchHeader.js";
 import Footer from "../home-components/Footer/Footer.js";
 
 import GridContainer from "../home-components/Grid/GridContainer.js";
@@ -41,13 +42,25 @@ export default function Search2(props) {
   const { ...rest } = props;
   return (
     <div>
+      <SearchHeader
+        color="transparent"
+        routes={dashboardRoutes}
+        brand="shoptimize."
+
+        fixed
+        changeColorOnScroll={{
+          height: 400,
+          color: "white"
+        }}
+        {...rest}
+      />
 
       <Parallax filter image={SearchBackground}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
             <div>
-              <h1 className={classes.title}>Get your groceries and get out.</h1>
+              <h1 className={classes.title}>Get your groceries and get out!</h1>
               </div>
               <br />
 
