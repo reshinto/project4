@@ -18,6 +18,7 @@ import {
 import * as _map from "./GenerateLayout";
 import WeightedGraph from "../../algorithms/WeightedGraph";
 import Dijkstra from "../../algorithms/Dijkstra";
+import { connect } from "react-redux";
 
 const style = {
   root: {
@@ -50,6 +51,10 @@ class Canvas extends React.Component {
     const path = Dijkstra(0, shoppingListArr, g);
     this.animatePath(path);
     // window.addEventListener("resize", this.updateDimensions);
+  }
+
+  componentWillUnmount() {
+
   }
 
   setStateAsync(state) {
@@ -135,19 +140,21 @@ class Canvas extends React.Component {
   }
 
   addMapCategories = () => {
-    const map = _map.map2;
-    for (let i=0; i<map.length; i++) {
-      this.addCategory(map[i].key, map[i].w, map[i].h, map[i].name);
+    const {name: mapType} = this.props.mapType;
+    if (mapType !== undefined) {
+      const map = _map[mapType];
+      for (let i=0; i<map.length; i++) {
+        this.addCategory(map[i].key, map[i].w, map[i].h, map[i].name);
+      }
+      this.addShoppingList(map);
     }
-    this.addShoppingList(map);
   }
 
   addShoppingList = (map) => {
-    // const list = [7579, 5239, 2115, 4409, 3665];
-    const list = [5420, 6420, 6065, 7579, 2115];
-    for (let i=0; i<list.length; i++) {
-      // shoppingListArr.push(String(map[Math.floor(Math.random() * map.length)].key));
-      shoppingListArr.push(String(list[i]));
+    const {category} = this.props.mapType;
+    const {groceryList} = this.props;
+    for (let i=0; i<groceryList.length; i++) {
+      shoppingListArr.push(String([category[groceryList[i].category]]));
     }
     shoppingListArr.push(String(getLastKey()));
   }
@@ -179,6 +186,8 @@ class Canvas extends React.Component {
   }
 
   render() {
+    console.log("groceryList in canvas", this.props.groceryList)
+    console.log("map name", this.props.mapType)
     return (
       <div style={style.root}>
         <canvas
@@ -193,4 +202,14 @@ class Canvas extends React.Component {
   }
 }
 
-export default Canvas;
+const mapStateToProps = state => {
+  return {
+    groceryList: state.mapReducer.groceryList,
+    mapType: state.mapReducer.mapType,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(Canvas);

@@ -19,8 +19,8 @@ import Badge from '@material-ui/core/Badge';
 // import Badge from 'components/Badge/Badge.js';
 
 import { Link } from "react-router-dom";
-import { withStyles } from "@material-ui/core/styles"
-
+import { setGroceryList, setMap } from "../../redux/actions/mapAction";
+import { withStyles } from "@material-ui/core/styles";
 
 import badgeStyle from "../../assets/jss/material-kit-react/components/badgeStyle.js"
 
@@ -39,9 +39,119 @@ const options = [
 ];
 
 const stores = [
-{value: "NTUC", label:"NTUC", locations: [{value: "Tanjong Pagar", label:"Tanjong Pagar"}, {value: "Lavender", label: "Lavender"}, {value: "Terence's House", label: "Terence's House"}]},
-{value: "Cold Storage", label: "Cold Storage", locations: [{value: "Tanjong Pagar", label:"Tanjong Pagar"}, {value: "Lavender", label: "Lavender"}, {value: "Tampines", label: "Tampines"}]},
-{value: "Giant", label: "Giant", locations: [{value: "Garrick's", label:"Garrick's"}]}
+  {
+    value: "NTUC",
+    label:"NTUC",
+    locations: [
+      {
+        value: "Tanjong Pagar",
+        label:"Tanjong Pagar",
+        mapType: {
+          name: "map1",
+          category: {
+            "frozen": 7579,
+            "fruits": 5239,
+            "vegetables": 2115,
+            "snacks and candy": 4409,
+            "baking needs": 3665
+          }
+        }
+      },
+      {
+        value: "Lavender",
+        label: "Lavender",
+        mapType: {
+          name: "map2",
+          category: {
+            "frozen": 5420,
+            "fruits": 6420,
+            "vegetables": 6065,
+            "snacks and candy": 7579,
+            "baking needs": 2115
+          }
+        }
+      },
+      {
+        value: "Terence's House",
+        label: "Terence's House",
+        mapType: {
+          name: "map1",
+          category: {
+            "frozen": 7579,
+            "fruits": 5239,
+            "vegetables": 2115,
+            "snacks and candy": 4409,
+            "baking needs": 3665
+          }
+        }
+      }
+    ]
+  },
+  {
+    value: "Cold Storage",
+    label: "Cold Storage",
+    locations: [
+      {
+        value: "Tanjong Pagar",
+        label:"Tanjong Pagar",
+        mapType: {
+          name: "map2",
+          category: {
+            "frozen": 5420,
+            "fruits": 6420,
+            "vegetables": 6065,
+            "snacks and candy": 7579,
+            "baking needs": 2115
+          }
+        }
+      },
+      {
+        value: "Lavender",
+        label: "Lavender",
+        mapType: {
+          name: "map1",
+          category: {
+            "frozen": 7579,
+            "fruits": 5239,
+            "vegetables": 2115,
+            "snacks and candy": 4409,
+            "baking needs": 3665
+          }
+        }
+      },
+      {
+        value: "Tampines",
+        label: "Tampines",
+        mapType: {
+          name: "map2",
+          category: {
+            "frozen": 5420,
+            "fruits": 6420,
+            "vegetables": 6065,
+            "snacks and candy": 7579,
+            "baking needs": 2115
+          }
+        }
+      }
+    ]
+  },
+  {
+    value: "Giant",
+    label: "Giant",
+    locations: [{
+      value: "Garrick's",
+      label:"Garrick's",
+        mapType: {
+          name: "map1",
+          category: {
+            "frozen": 7579,
+            "fruits": 5239,
+            "vegetables": 2115,
+            "snacks and candy": 4409,
+            "baking needs": 3665
+          }
+        }
+    }]}
 ]
 
 
@@ -198,21 +308,30 @@ function Transition(props) {
 
 class Search extends React.Component {
 
-    constructor(){
-        super()
-          this.state = {
-            selectedCategoryOption: null,
-            selectedItemOption:null,
-            selectedLayoutOption:null,
-            selectedLocationOption:null,
-            groceryList: [],
-            open:false
-          };
+  constructor(){
+    super()
+      this.state = {
+        selectedCategoryOption: null,
+        selectedItemOption:null,
+        selectedLayoutOption:null,
+        selectedLocationOption:null,
+        groceryList: [],
+        open:false
+      };
+  }
 
-        this.addToList = this.addToList.bind(this)
-        this.removeFromList = this.removeFromList.bind(this)
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.groceryList.length !== prevState.groceryList.length) {
+      this.props.setGroceryList(this.state.groceryList);
     }
-
+    if (this.state.selectedLocationOption !== null) {
+      if (prevState.selectedLocationOption === null) {
+        this.props.setMap(this.state.selectedLocationOption.mapType);
+      } else if (this.state.selectedLocationOption.mapType.name !== prevState.selectedLocationOption.mapType.name) {
+        this.props.setMap(this.state.selectedLocationOption.mapType);
+      }
+    }
+  }
 
   handleClickOpen = () => {
     this.setState({ open: true });
@@ -277,6 +396,17 @@ class Search extends React.Component {
     const { selectedLayoutOption } = this.state;
     const { selectedLocationOption } = this.state;
 
+    console.log('HELLO ARRAYYYY')
+    console.log(singleArrayItems)
+    console.log("groceryList", this.state.groceryList)
+    console.log("categoryOption", this.state.selectedCategoryOption)
+    console.log("itemOption", this.state.selectedItemOption)
+    console.log("layoutOption", this.state.selectedLayoutOption)
+    console.log("locationOption", this.state.selectedLocationOption)
+    console.log('GROCERY LISTTTTT')
+    console.log(this.state.grocerylist)
+
+
     const {classes} = this.props
 
     console.log("ITEMS OBJECT!!!")
@@ -285,6 +415,7 @@ class Search extends React.Component {
     console.log(itemsObject)
 
     return (
+
 
         <div style = {{padding:"5%", backgroundColor:"rgba(255,255,255,0.7)"}} >
 
@@ -340,6 +471,63 @@ class Search extends React.Component {
 
 
             </Grid>
+
+      <div style = {{padding:"5%", backgroundColor:"rgba(255,255,255,0.7)"}} >
+        <h3 style = {{color:"rgb(156, 39, 176)"}}>Search by Item</h3>
+        <Select
+          value={selectedItemOption}
+          onChange={this.handleItemChange}
+          isMulti
+          options={itemsObject}
+          classNamePrefix="select"
+          className = {`${classes.dropdownFont} basic-multi-select`}
+        />
+
+      <ResultsItem allData = {singleArrayItems} itemFilter = {this.state.selectedItemOption} list = {this.addToList}/>
+
+      <h3 style = {{color:"rgb(156, 39, 176)"}}>Search by Category</h3>
+      <Select
+        value={selectedCategoryOption}
+        onChange={this.handleCategoryChange}
+        options={options}
+        className = {classes.dropdownFont}
+      />
+
+    <ResultsCategory
+      allData={allItems}
+      category={this.state.selectedCategoryOption}
+      list={this.addToList}
+    />
+    <Grid container
+      style={{borderTop:"1px solid black", marginTop: 10}}
+    >
+
+      <Grid item xs={6}>
+        <h3 style = {{color:"rgb(156, 39, 176)"}}>Select Store</h3>
+        <Select
+            value={selectedLayoutOption}
+            onChange={this.handleLayoutChange}
+            options={stores}
+            className = {classes.dropdownFont}
+        />
+      </Grid>
+
+      <Grid item xs={6}>
+        {this.state.selectedLayoutOption !== null? (
+          <>
+            <h3 style = {{color:"rgb(156, 39, 176)"}}>Select Location</h3>
+            <Select
+              value={selectedLocationOption}
+              onChange={this.handleLocationChange}
+              options={this.state.selectedLayoutOption.locations}
+              className = {classes.dropdownFont}
+            />
+          </>
+        ): ""}
+
+
+      </Grid>
+
         </Grid>
         <br/>
         <Grid container
@@ -397,7 +585,15 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    setGroceryList: list => dispatch(setGroceryList(list)),
+    setMap: mapType => dispatch(setMap(mapType)),
+  };
+};
+
+
 export default connect(
   mapStateToProps,
-  null
-)(withStyles (styles)(Search));
+  mapDispatchToProps
+)(withStyles(styles)(Search));
