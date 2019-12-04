@@ -416,62 +416,6 @@ class Search extends React.Component {
 
     return (
 
-
-        <div style = {{padding:"5%", backgroundColor:"rgba(255,255,255,0.7)"}} >
-
-
-                <h3 style = {{color:"rgb(156, 39, 176)"}}>Search by Item</h3>
-              <Select
-                value={selectedItemOption}
-                onChange={this.handleItemChange}
-                isMulti
-                options={itemsObject}
-                className = {`${classes.dropdownFont} basic-multi-select`}
-                classNamePrefix="select"
-             />
-
-        <ResultsItem allData = {singleArrayItems} itemFilter = {this.state.selectedItemOption} list = {this.addToList}/>
-
-
-                <h3 style = {{color:"rgb(156, 39, 176)"}}>Search by Category</h3>
-                  <Select
-                value={selectedCategoryOption}
-                onChange={this.handleCategoryChange}
-                options={options}
-                className = {classes.dropdownFont}
-              />
-
-      <ResultsCategory allData = {allItems}  category = {this.state.selectedCategoryOption}  list = {this.addToList}/>
-      <Grid container
-      style = {{borderTop:"1px solid black", marginTop: 10}}>
-
-          <Grid item xs={6}>
-            <h3 style = {{color:"rgb(156, 39, 176)"}}>Select Store</h3>
-                <Select
-                    value={selectedLayoutOption}
-                    onChange={this.handleLayoutChange}
-                    options={stores}
-                    className = {classes.dropdownFont}
-                />
-            </Grid>
-
-            <Grid item xs={6}>
-
-            {this.state.selectedLayoutOption !== null? (
-                <>
-                    <h3 style = {{color:"rgb(156, 39, 176)"}}>Select Location</h3>
-                    <Select
-                        value={selectedLocationOption}
-                        onChange={this.handleLocationChange}
-                        options={this.state.selectedLayoutOption.locations}
-                        className = {classes.dropdownFont}
-                    />
-                </>
-                ): ""}
-
-
-            </Grid>
-
       <div style = {{padding:"5%", backgroundColor:"rgba(255,255,255,0.7)"}} >
         <h3 style = {{color:"rgb(156, 39, 176)"}}>Search by Item</h3>
         <Select
