@@ -23,14 +23,13 @@ const styles = {
 class  ImgMediaCardCategory extends React.Component {
 
      clickHandler(event){
-        console.log('HELLO CATEGORY CARD')
-            console.log(event.target)
-            this.btn.setAttribute("disabled", "disabled");
-            this.props.onClick(event)
+        this.props.onClick(event)
+
         }
 
  render(){
      const { classes } = this.props;
+
 
   return (
     <Card className={classes.card}>
@@ -45,13 +44,13 @@ class  ImgMediaCardCategory extends React.Component {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {this.props.item.name}
+            {this.props.item.value}
           </Typography>
 
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <button value = {JSON.stringify(this.props.item)} size="small" color="primary" onClick = {(event)=>{this.clickHandler(event)}} ref={btn => { this.btn = btn; }}>
+        <button value = {JSON.stringify(this.props.item)} size="small" color="primary" onClick = {(event)=>{this.clickHandler(event)}}>
           Add to list
         </button>
       </CardActions>
