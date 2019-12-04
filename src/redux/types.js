@@ -12,3 +12,4 @@ export const STOP_LOADING_UI = "STOP_LOADING_UI";
 // Connect grocery list to map
 export const SET_GROCERY_LIST = "SET_GROCERY_LIST";
 export const SET_MAP = "SET_MAP";
+export const SET_DIRECTIONS = "SET_DIRECTIONS";

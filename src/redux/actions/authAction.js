@@ -21,8 +21,6 @@ export const login = (userData) => (dispatch) => {
 };
 
 export const signup = (newUserData) => (dispatch) => {
-  console.log(newUserData)
-  console.log(db)
   const config = {
     headers: {
       "Content-Type": "application/json"
@@ -32,7 +30,6 @@ export const signup = (newUserData) => (dispatch) => {
   axios
     .post(`${db}/signup`, newUserData, config)
     .then((res) => {
-      console.log(res)
       setAuthorizationHeader(res.data.token);
       dispatch({ type: actionTypes.SET_AUTHENTICATED });
       // dispatch(getUserData());

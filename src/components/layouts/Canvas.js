@@ -1,6 +1,7 @@
 import React from "react";
 import {
   totalWidthTiles,
+  totalHeightTiles,
   mapWidth,
   mapHeight,
   tileSize,
@@ -17,6 +18,7 @@ import * as _map from "./GenerateLayout";
 import WeightedGraph from "../../algorithms/WeightedGraph";
 import Dijkstra from "../../algorithms/Dijkstra";
 import { connect } from "react-redux";
+import { setDirections } from "../../redux/actions/mapAction";
 
 const style = {
   root: {
@@ -30,28 +32,31 @@ const style = {
 }
 
 let ctx;
-let g;
 let shoppingListArr;
 
 class Canvas extends React.Component {
+  constructor() {
+    super();
+    this.g = new WeightedGraph();
+    this.path = "";
+  }
   state = {
     tileSize: tileSize(totalWidthTiles),
     catKeyArr: [],
   }
 
   componentDidMount() {
+    shoppingListArr = [];
     const canvas = this.refs.canvas;
     ctx = canvas.getContext("2d");
-    g = new WeightedGraph();
-    shoppingListArr = [];
-    this.clearFloor();
+    // this.clearFloor();
     this.addMapCategories();
     // this.addRandomCategories();
     this.drawLayout();
     this.linkConnections();
-    const path = Dijkstra(0, shoppingListArr, g);
-    this.getDirections(path);
-    this.animatePath(path);
+    this.path = Dijkstra(0, shoppingListArr, this.g);
+    this.getDirections(this.path);
+    this.animatePath(this.path);
     // window.addEventListener("resize", this.updateDimensions);
   }
 
@@ -96,23 +101,21 @@ class Canvas extends React.Component {
     ctx.fill();
   }
 
-  clearFloor = () => {
-    for (let i=0; i<getLastKey(); i++) {
-        this.fillColor(i, "#116466");
-    }
-  }
+//   clearFloor = () => {
+//     ctx.clearRect(0, 0, totalWidthTiles*tileSize, totalHeightTiles*tileSize);
+//   }
 
   drawLayout = () => {
-    for (let i=0; i<g.wallArr.length; i++) {
-      g.addVertex(i);
+    for (let i=0; i<this.g.wallArr.length; i++) {
+      this.g.addVertex(i);
       // wall
-      if (g.wallArr[i] === 5) {
+      if (this.g.wallArr[i] === 5) {
         this.fillColor(i, "#2c3531");
         // floor
-      } else if (g.wallArr[i] === 1) {
+      } else if (this.g.wallArr[i] === 1) {
         this.fillColor(i, "#116466");
         // category
-      } else if (g.wallArr[i] === 2) {
+      } else if (this.g.wallArr[i] === 2) {
         // this.fillColor(i, "#D9B08C");
         this.fillColor(i, "#116466");
       }
@@ -121,19 +124,19 @@ class Canvas extends React.Component {
 
   linkConnections = () => {
     const weight = 5;
-    for (let i=0; i<g.wallArr.length; i++) {
-      addConnections(g, i, weight);
+    for (let i=0; i<this.g.wallArr.length; i++) {
+      addConnections(this.g, i, weight);
     }
   }
 
-  addCategory = (startKey, categoryWidth, categoryHeight, name) => {
+   addCategory = (startKey, categoryWidth, categoryHeight, name) => {
     const catArr = getCategoryKeyArr(startKey, categoryWidth, categoryHeight);
     const catEdgeArr = getCategoryEdgeKeys(startKey, categoryWidth, categoryHeight);
     for (let i=0; i<catArr.length; i++) {
       if (catEdgeArr.indexOf(catArr[i]) !== -1) {
-        g.wallArr[catArr[i]] = 2;
+        this.g.wallArr[catArr[i]] = 2;
       } else {
-        g.wallArr[catArr[i]] = 5;
+        this.g.wallArr[catArr[i]] = 5;
       }
     }
   }
@@ -183,13 +186,11 @@ class Canvas extends React.Component {
       ((i) => {
         setTimeout(() => {
           if (shoppingListArr.indexOf(path[i]) !== -1) {
-            const {name: mapType} = this.props.mapType;
-            const map = _map[mapType];
             return this.fillColor(path[i], "red");
           } else {
             return this.fillColor(path[i], "#D1E8E2");
           }
-        }, 1 * i)
+        }, 5 * i)
       })(i)
     }
   }
@@ -204,8 +205,7 @@ class Canvas extends React.Component {
       }
     }
     const uniqueDirections = [...new Set(directions)];
-    console.log(directions)
-    console.log(uniqueDirections);
+    this.props.setDirections(uniqueDirections);
     return uniqueDirections;
   }
 
@@ -228,10 +228,17 @@ const mapStateToProps = state => {
   return {
     groceryList: state.mapReducer.groceryList,
     mapType: state.mapReducer.mapType,
+    directions: state.mapReducer.directions,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setDirections: (directionArr) => dispatch(setDirections(directionArr))
   };
 };
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(Canvas);

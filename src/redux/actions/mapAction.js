@@ -13,3 +13,11 @@ export const setMap = mapName => {
     payload: mapName
   }
 };
+
+
+export const setDirections = directionArr => {
+  return {
+    type: actionTypes.SET_DIRECTIONS,
+    payload: directionArr
+  }
+};
