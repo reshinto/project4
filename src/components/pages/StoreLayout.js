@@ -11,6 +11,7 @@ import Button from "../home-components/CustomButtons/Button.js";
 // import Paper from "@material-ui/core/Paper";
 // import SearchHeader from "../home-components/Header/SearchHeader.js";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 
 // import styles from "../../assets/jss/material-kit-react/views/landingPageSections/teamStyle.js";
@@ -34,15 +35,25 @@ class StoreLayout extends React.Component{
       <div style = {{backgroundImage:"url(https://images.unsplash.com/photo-1516594798947-e65505dbb29d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)", backgroundSize:"cover", minHeight: 800, overflow:"scroll"}} >
         <GridContainer>
         <div style = {{padding:25}}>
-          <a href="/shoptimize" style={{textDecoration: "none", color: "white"}}>
+                <Button
+                component={Link}
+                to = "/shoptimize/search"
+                color="primary"
+                variant = "outlined"
+                round
+              >
+                New Grocery List
+              </Button>
             <Button
-              color="danger"
-              variant = "outlined"
-              round
-            >
-              Home
-            </Button>
-          </a>
+                component={Link}
+                to = "/shoptimize"
+                color="danger"
+                variant = "outlined"
+                round
+              >
+                Home
+              </Button>
+
         </div>
 
         <div style = {{backgroundColor:"rgba(255,255,255,0.5)", margin: "0 auto"}}>
@@ -52,17 +63,18 @@ class StoreLayout extends React.Component{
           </div>
 
           <Floormap/>
-
-          <h4>
-            HERE ARE THE INSTRUCTIONS FOR GETTING OUT OF THIS PLACE</h4>
-            <ul style = {{listStyleType:"none"}}>
+          <div style = {{textAlign:"center"}}>
+          <h3>
+            HERE ARE THE INSTRUCTIONS FOR GETTING OUT OF THIS PLACE</h3>
+            <ul style = {{fontSize:20, listStyle:"none"}}>
               {directions !== undefined ? (
                 directions.map((direction, i) => (
-                  <li key={i}>{i+1}) Go to <span style={{fontWeight: "bold"}}>{direction.toUpperCase()}</span> Section.</li>
+                  <li key={i}>{i+1}) Go to the <span style={{fontWeight: "bold", color:"red"}}>{direction.toUpperCase()}</span> Section.</li>
                 ))
               ) : ""}
-              <li>Don"t forget to pay</li>
+              <li style = {{fontWeight:"bold", fontSize:30}}>Don't forget to pay</li>
             </ul>
+            </div>
         </div>
         </GridContainer>
       </div>
