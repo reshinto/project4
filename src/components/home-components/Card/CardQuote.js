@@ -11,8 +11,8 @@ export default function CardQuote() {
       <CardHeader color="primary">Quote</CardHeader>
       <CardBody>
         <Quote
-          text='"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."'
-          author="Someone famous in Source Title"
+          text="They call for dates and quinces in the pastry."
+          author="Shakespeare, Henry IV Part II: Act 2, Scene 4"
         />
       </CardBody>
     </Card>

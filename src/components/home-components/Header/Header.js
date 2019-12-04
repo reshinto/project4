@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-import Button from "@material-ui/core/Button";
+import Button from '../CustomButtons/Button.js'
 import Hidden from "@material-ui/core/Hidden";
 import Drawer from "@material-ui/core/Drawer";
 import LogIn from "../FormDialog/Login.js";
@@ -67,7 +67,7 @@ function Header(props) {
     [classes.absolute]: absolute,
     [classes.fixed]: fixed
   });
-  const brandComponent = <Button className={classes.title}>{brand}</Button>;
+  const brandComponent = <p className={classes.title} style = {{fontSize:20, fontWeight:"500"}}>{brand}</p>;
   console.log(props.authenticated)
   return (
     <AppBar className={appBarClasses}>
@@ -83,19 +83,25 @@ function Header(props) {
           )}
         </div>
 
+        {props.authenticated === false ?(<Register/>):(<></>)}
+
         {props.authenticated === false ? (
           <LogIn/>
         ) : (
-          <Button
+
+             <Button
             type="submit"
             onClick={props.logout}
-            color="primary"
+            color="danger"
+            variant = "outlined"
+            round
           >
             Log out
           </Button>
         )}
 
-    <Register/>
+
+
       </Toolbar>
 
     </AppBar>

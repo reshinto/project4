@@ -478,9 +478,13 @@ class Search extends React.Component {
         justify="center">
             <Badge color = "primary"
             badgeContent={this.state.groceryList.length} style = {{zIndex:"0"}}>
-                   <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>
+            {this.state.selectedLocationOption !== null? (<Button variant="contained" color="secondary" onClick={this.handleClickOpen}>
                       View Grocery List
                     </Button>
+                    ): <Button variant="contained" color="secondary" onClick={this.handleClickOpen} disabled>
+                      View Grocery List
+                    </Button>}
+
             </Badge>
         </Grid>
 

@@ -40,7 +40,7 @@ export default function LandingPage(props) {
       <Header
         color="transparent"
         routes={dashboardRoutes}
-        brand="shoptimize"
+        brand="shoptimize."
 
         fixed
         changeColorOnScroll={{

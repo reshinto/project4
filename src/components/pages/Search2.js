@@ -46,7 +46,7 @@ export default function Search2(props) {
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
-            <div style = {{textAlign:"justify"}}>
+            <div>
               <h1 className={classes.title}>Get your groceries and get out.</h1>
               </div>
               <br />
