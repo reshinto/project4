@@ -38,9 +38,12 @@ const options = [
   { value: 'baking needs', label: 'Baking Needs' },
 ];
 
-const stores = [{value: "NTUC", label:"NTUC"}, {value: "Cold Storage", label: "Cold Storage"}, {value: "Giant", label: "Giant"}]
+const stores = [
+{value: "NTUC", label:"NTUC", locations: [{value: "Tanjong Pagar", label:"Tanjong Pagar"}, {value: "Lavender", label: "Lavender"}, {value: "Terence's House", label: "Terence's House"}]},
+{value: "Cold Storage", label: "Cold Storage", locations: [{value: "Tanjong Pagar", label:"Tanjong Pagar"}, {value: "Lavender", label: "Lavender"}, {value: "Tampines", label: "Tampines"}]},
+{value: "Giant", label: "Giant", locations: [{value: "Garrick's", label:"Garrick's"}]}
+]
 
-const locations = [{value: "Tanjong Pagar", label:"Tanjong Pagar"}, {value: "Lavender", label: "Lavender"}, {value: "Tampines", label: "Tampines"}]
 
 const allItems =
                 {
@@ -322,13 +325,19 @@ class Search extends React.Component {
             </Grid>
 
             <Grid item xs={6}>
-            <h3 style = {{color:"rgb(156, 39, 176)"}}>Select Location</h3>
-                <Select
-                    value={selectedLocationOption}
-                    onChange={this.handleLocationChange}
-                    options={locations}
-                    className = {classes.dropdownFont}
-                />
+
+            {this.state.selectedLayoutOption !== null? (
+                <>
+                    <h3 style = {{color:"rgb(156, 39, 176)"}}>Select Location</h3>
+                    <Select
+                        value={selectedLocationOption}
+                        onChange={this.handleLocationChange}
+                        options={this.state.selectedLayoutOption.locations}
+                        className = {classes.dropdownFont}
+                    />
+                </>
+                ): ""}
+
 
             </Grid>
         </Grid>
