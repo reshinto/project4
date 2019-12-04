@@ -43,21 +43,115 @@ const stores = [
     value: "NTUC",
     label:"NTUC",
     locations: [
-      {value: "Tanjong Pagar", label:"Tanjong Pagar", mapName: "map1"},
-      {value: "Lavender", label: "Lavender", mapName: "map2"},
-      {value: "Terence's House", label: "Terence's House", mapName: "map1"}
-    ]},
+      {
+        value: "Tanjong Pagar",
+        label:"Tanjong Pagar",
+        mapType: {
+          name: "map1",
+          category: {
+            "frozen": 7579,
+            "fruits": 5239,
+            "vegetables": 2115,
+            "snacks and candy": 4409,
+            "baking needs": 3665
+          }
+        }
+      },
+      {
+        value: "Lavender",
+        label: "Lavender",
+        mapType: {
+          name: "map2",
+          category: {
+            "frozen": 5420,
+            "fruits": 6420,
+            "vegetables": 6065,
+            "snacks and candy": 7579,
+            "baking needs": 2115
+          }
+        }
+      },
+      {
+        value: "Terence's House",
+        label: "Terence's House",
+        mapType: {
+          name: "map1",
+          category: {
+            "frozen": 7579,
+            "fruits": 5239,
+            "vegetables": 2115,
+            "snacks and candy": 4409,
+            "baking needs": 3665
+          }
+        }
+      }
+    ]
+  },
   {
     value: "Cold Storage",
     label: "Cold Storage",
     locations: [
-      {value: "Tanjong Pagar", label:"Tanjong Pagar", mapName: "map2"},
-      {value: "Lavender", label: "Lavender", mapName: "map1"},
-      {value: "Tampines", label: "Tampines", mapName: "map2"}]},
+      {
+        value: "Tanjong Pagar",
+        label:"Tanjong Pagar",
+        mapType: {
+          name: "map2",
+          category: {
+            "frozen": 5420,
+            "fruits": 6420,
+            "vegetables": 6065,
+            "snacks and candy": 7579,
+            "baking needs": 2115
+          }
+        }
+      },
+      {
+        value: "Lavender",
+        label: "Lavender",
+        mapType: {
+          name: "map1",
+          category: {
+            "frozen": 7579,
+            "fruits": 5239,
+            "vegetables": 2115,
+            "snacks and candy": 4409,
+            "baking needs": 3665
+          }
+        }
+      },
+      {
+        value: "Tampines",
+        label: "Tampines",
+        mapType: {
+          name: "map2",
+          category: {
+            "frozen": 5420,
+            "fruits": 6420,
+            "vegetables": 6065,
+            "snacks and candy": 7579,
+            "baking needs": 2115
+          }
+        }
+      }
+    ]
+  },
   {
     value: "Giant",
     label: "Giant",
-    locations: [{value: "Garrick's", label:"Garrick's", mapName: "map1"}]}
+    locations: [{
+      value: "Garrick's",
+      label:"Garrick's",
+        mapType: {
+          name: "map1",
+          category: {
+            "frozen": 7579,
+            "fruits": 5239,
+            "vegetables": 2115,
+            "snacks and candy": 4409,
+            "baking needs": 3665
+          }
+        }
+    }]}
 ]
 
 
@@ -232,9 +326,9 @@ class Search extends React.Component {
     }
     if (this.state.selectedLocationOption !== null) {
       if (prevState.selectedLocationOption === null) {
-        this.props.setMap(this.state.selectedLocationOption.mapName);
-      } else if (this.state.selectedLocationOption.mapName !== prevState.selectedLocationOption.mapName) {
-        this.props.setMap(this.state.selectedLocationOption.mapName);
+        this.props.setMap(this.state.selectedLocationOption.mapType);
+      } else if (this.state.selectedLocationOption.mapType.name !== prevState.selectedLocationOption.mapType.name) {
+        this.props.setMap(this.state.selectedLocationOption.mapType);
       }
     }
   }
@@ -429,7 +523,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setGroceryList: list => dispatch(setGroceryList(list)),
-    setMap: mapName => dispatch(setMap(mapName)),
+    setMap: mapType => dispatch(setMap(mapType)),
   };
 };
 
