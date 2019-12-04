@@ -19,22 +19,16 @@ import Badge from '@material-ui/core/Badge';
 // import Badge from 'components/Badge/Badge.js';
 
 import { Link } from "react-router-dom";
+import { withStyles } from "@material-ui/core/styles"
 
 
 import badgeStyle from "../../assets/jss/material-kit-react/components/badgeStyle.js"
 
 import { connect } from 'react-redux';
 
-import {
-  grayColor,
-  roseColor,
-  primaryColor,
-  infoColor,
-  successColor,
-  warningColor,
-  dangerColor
-} from "../../assets/jss/material-kit-react.js";
-
+const styles = theme=>({
+    dropdownFont:{color: "black"}
+})
 
 const options = [
   { value: 'frozen', label: 'Frozen' },
@@ -254,6 +248,8 @@ class Search extends React.Component {
     console.log('HELLO ARRAYYYY')
     console.log(singleArrayItems)
 
+    const {classes} = this.props
+
     return (
 
         <div style = {{padding:"5%", backgroundColor:"rgba(255,255,255,0.7)"}} >
@@ -265,9 +261,10 @@ class Search extends React.Component {
                 onChange={this.handleItemChange}
                  isMulti
                 options={itemsObject}
-                className="basic-multi-select"
                 classNamePrefix="select"
-              />
+                className = {`${classes.dropdownFont} basic-multi-select`}
+
+             />
 
         <ResultsItem allData = {singleArrayItems} itemFilter = {this.state.selectedItemOption} list = {this.addToList}/>
 
@@ -277,6 +274,7 @@ class Search extends React.Component {
                 value={selectedCategoryOption}
                 onChange={this.handleCategoryChange}
                 options={options}
+                className = {classes.dropdownFont}
               />
 
       <ResultsCategory allData = {allItems}  category = {this.state.selectedCategoryOption}  list = {this.addToList}/>
@@ -289,6 +287,7 @@ class Search extends React.Component {
                     value={selectedLayoutOption}
                     onChange={this.handleLayoutChange}
                     options={stores}
+                    className = {classes.dropdownFont}
                 />
             </Grid>
 
@@ -298,6 +297,7 @@ class Search extends React.Component {
                     value={selectedLocationOption}
                     onChange={this.handleLocationChange}
                     options={locations}
+                    className = {classes.dropdownFont}
                 />
 
             </Grid>
@@ -361,4 +361,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   null
-)(Search);
+)(withStyles (styles)(Search));
