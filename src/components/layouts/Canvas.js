@@ -19,18 +19,20 @@ import WeightedGraph from "../../algorithms/WeightedGraph";
 import Dijkstra from "../../algorithms/Dijkstra";
 import { connect } from "react-redux";
 import { setDirections } from "../../redux/actions/mapAction";
+import Tooltip from "./Tooltip";
 
 const style = {
   root: {
-    width: "100vw",
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    zIndex:"100"
+    // width: "100vw",
+    // height: "100vh",
+    // display: "flex",
+    // justifyContent: "center",
+    // alignItems: "center",
+    // zIndex:"100"
     }
 }
 
+let canvas;
 let ctx;
 let shoppingListArr;
 
@@ -47,7 +49,7 @@ class Canvas extends React.Component {
 
   componentDidMount() {
     shoppingListArr = [];
-    const canvas = this.refs.canvas;
+    canvas = this.refs.canvas;
     ctx = canvas.getContext("2d");
     // this.clearFloor();
     this.addMapCategories();
@@ -186,6 +188,9 @@ class Canvas extends React.Component {
       ((i) => {
         setTimeout(() => {
           if (shoppingListArr.indexOf(path[i]) !== -1) {
+            const {name: mapType} = this.props.mapType;
+            const map = _map[mapType];
+            new Tooltip(canvas, path[i], map[path[i]].name)
             return this.fillColor(path[i], "red");
           } else {
             return this.fillColor(path[i], "#D1E8E2");
@@ -208,6 +213,7 @@ class Canvas extends React.Component {
     this.props.setDirections(uniqueDirections);
     return uniqueDirections;
   }
+
 
   render() {
     return (

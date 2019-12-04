@@ -3,7 +3,6 @@ import { Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import Home from "../pages/Home";
 import Search from "../pages/Search";
-import Floormap from "../pages/Floormap";
 import StoreLayout from "../pages/StoreLayout"
 import Search2 from "../pages/Search2"
 
