@@ -184,6 +184,8 @@ class Canvas extends React.Component {
   // }
 
   animatePath = (path) => {
+    new Tooltip(canvas, 0, "Entrance");
+    new Tooltip(canvas, getLastKey(), "Exit");
     for (let i=0; i<path.length; i++) {
       ((i) => {
         setTimeout(() => {
