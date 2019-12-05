@@ -28,6 +28,8 @@ import WorkSection from "../home-components/Sections/WorkSection.js";
 
 import { Link } from "react-router-dom";
 
+import Cat from "../../assets/img/cat.gif";
+
 const dashboardRoutes = [];
 
 const useStyles = makeStyles(styles);
@@ -71,6 +73,10 @@ export default function LandingPage(props) {
                 Create Grocery List
               </Button>
 
+            </GridItem>
+            <GridItem xs={12} sm={12} md={6}>
+
+              <img width={500} src={Cat} alt="" />
             </GridItem>
           </GridContainer>
         </div>
