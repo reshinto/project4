@@ -1,4 +1,4 @@
-# VETNER
+# Shoptimize
 ## Demo
 ![Demo](./documentation/demo.gif)
 ## Technologies used
